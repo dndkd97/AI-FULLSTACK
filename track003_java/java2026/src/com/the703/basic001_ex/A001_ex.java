@@ -1,4 +1,4 @@
-package comm.the703.basic001_ex;
+package com.the703.basic001_ex;
 
 public class A001_ex {
 
