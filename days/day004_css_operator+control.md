@@ -38,7 +38,7 @@ CSS(1)
     2-2 정수형 : byte-short-int-long
     2-3 실수형 : float-double
     2-4 문자형 : char 
-  3. 자동형변환은 ( boolean  )  빼고  (    ) 기본형
+  3. 자동형변환은 ( boolean )  빼고  ( byte < short < int < long < float < double ) 기본형
 
 
 - 3. java [실습]

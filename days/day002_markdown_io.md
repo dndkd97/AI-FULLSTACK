@@ -48,4 +48,6 @@ System.out.print("%s%d\n","Hi",2);
 
 5. 다음을 10+3=13으로 출력하시오.
 int a=10, b=3;    
-System.out.println(10 + "+" + 3+ "=" + 13);
+System.out.println(  a +  "+"  + b  + "="  +  (a+b)  );
+System.out.printf( "%d+%d=%d" ,  a , b , a+b);
+
