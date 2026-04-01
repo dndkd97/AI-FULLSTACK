@@ -24,7 +24,7 @@ CSS(1)
 5. 밑줄 : text-decoration
 6. 글꼴 : font-family
 7. 굵게 : font-weight
-8. 가로 : wight
+8. 가로 : width
 9. 바깥쪽여백: margin
 10. 안쪽여백: padding
 11. 선 : border
