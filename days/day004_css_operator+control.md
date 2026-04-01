@@ -12,7 +12,7 @@ CSS(1)
     -9.바깥쪽여백:margin
     -10.안쪽여백:padding
     -11.선:border
-    -12.둥근모서리:border-raidus
+    -12.둥근모서리:border-radius 
     -13.그림자효과:box-shadow
 
 ### 복습문제
@@ -28,7 +28,7 @@ CSS(1)
 9. 바깥쪽여백: margin
 10. 안쪽여백: padding
 11. 선 : border
-12. 둥근모서리 : border-raidus 
+12. 둥근모서리 : border-radius
 13. 그림자효과 : bow-shadow
 
 - 2. java
@@ -38,7 +38,7 @@ CSS(1)
     2-2 정수형 : byte-short-int-long
     2-3 실수형 : float-double
     2-4 문자형 : char 
-  3. 자동형변환은 ( boolean   )  빼고  (    ) 기본형
+  3. 자동형변환은 ( boolean  )  빼고  (    ) 기본형
 
 
 - 3. java [실습]
@@ -55,6 +55,7 @@ CSS(1)
       int num1, num2;
       double result;
       Scanner scanner = new Scanner(System.in);
+
 
 1. System.out.print("1") num1 = scanner.nextInt();
    System.out.print("2") num2 = scanner.nextInt();
