@@ -35,9 +35,9 @@ CSS(1)
   1. 자바의 자료형 분류( 기본형  / 참조형  )
   2. 기본형 : 값
     2-1 논리형 : 예) boolean  - true/false (1byte)   
-    2-2 정수형 : byte-short-int-long
-    2-3 실수형 : float-double
-    2-4 문자형 : char 
+    2-2 정수형 : byte-short-int★-long ( 1 < 2 < 4 <8L)
+    2-3 실수형 : float-double★ (4f <8)
+    2-4 문자형 : char (2)
   3. 자동형변환은 ( boolean )  빼고  ( byte < short < int < long < float < double ) 기본형
 
 
