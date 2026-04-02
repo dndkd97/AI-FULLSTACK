@@ -69,21 +69,21 @@ public class Operator001 {
 		a= 10; b= 3;
 		a-=b; System.out.println(a); //7
 		
-		//■6. 단항
+		//■6. 단항 ( ++1개증가 , -- 1개감소 
 		int a1=1, b1=1, c1=1, d1=1;
 		
-		System.out.println(++a1);
-		System.out.println(a1);
+		System.out.println(++a1); //2
+		System.out.println(a1);   //2
 		
-		System.out.println(b1++);
-		System.out.println(b1);
+		System.out.println(b1++); //1
+		System.out.println(b1);   //2
 		
-		System.out.println(--c1);
-		System.out.println(c1);
-		
-		System.out.println(d1--);
-		System.out.println(d1);
-		
+		System.out.println(--c1); //0
+		System.out.println(c1);   //0
+		 
+		System.out.println(d1--); //1
+		System.out.println(d1);   //0
+		 
 
 	}
 
