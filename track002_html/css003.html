@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>점검</title>
+<style>
+*{ margin:0; padding:0; }
+ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                 background-color:#f9f9f9 ;}
+ h1{text-align: center;
+    color: #333;}
+ h2{font-size: 18px;
+        color: #444; text-align: center;}
+ .notice{ width:350px;
+        border: 1px solid #ccc; 
+        padding:15px;
+        margin:20px auto;
+        text-align: center;
+        }
+
+ 
+ #urgent {background-color: #ffe0e0;}
+ #urgent:hover {background-color:#ff0000 ;
+                color: #f9f9f9;
+                transition:all 2s;}
+
+img{width:80px; height: 80px;
+          border-radius: 10%; 
+          }
+  img:hover{ transform: rotateY(180deg) ;
+transition: all 2s ; }
+ 
+ /* 애니메이션 - 바운스 @keyframes bounceAnimation {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+img {
+  animation-name: bounceAnimation;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: both;
+} */
+
+ /* 애니메이션 - 무한회전 @keyframes flipAnimation {
+  0% { transform: perspective(400px) rotateY(0); }
+  100% { transform: perspective(400px) rotateY(360deg); }
+}
+
+img {
+  animation-name: flipAnimation;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: both;
+}  */
+
+
+
+</style>
+</head>
+<body>
+
+    <div>
+        <h1>공지사항 </h1>
+        <div class="notice">
+              
+            <p ><img src="./img/portfolio3.jpg" alt="이미지" ></p>
+            <h2>일반 공지</h2>
+            <p>다음 주 월요일은 정기 점검이 있습니다.</p>
+        </div>   
+        <div class="notice" id="urgent">
+            <h2>긴급 공지</h2>
+            <p>오늘 오후 서버 점검으로 서비스가 일시 중단됩니다.</p>
+         </div>
+    
+    </div>
+    
+</body>
+</html>

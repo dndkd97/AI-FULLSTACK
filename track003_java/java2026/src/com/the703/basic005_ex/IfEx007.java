@@ -13,8 +13,8 @@ public class IfEx007 {
 		Scanner sc = new Scanner(System.in);
 		
 		int num1,num2;
-		double answer = '\u0000';
-		char op;
+		double answer = 0;
+		char op='\u0000';
 	
 		System.out.println("1.정수를 하나 입력해주세요"); num1 = sc.nextInt();
 		System.out.println("2.정수를 하나 입력해주세요"); num2 = sc.nextInt();
@@ -24,13 +24,13 @@ public class IfEx007 {
 		if     (op == '+') {answer=answer =num1+num2;}
 		else if(op == '-') {answer =(num1-num2);}
 		else if(op == '*') {answer =num1*num2;}
-		//else if(op == '/') {System.out.println(num1 + "/"+ num2+ "=" +"몫"+(num1/num2)+"나머지"+(num1%num2));}
         else if(op == '/') {answer =(double)num1/num2;}
 		
-		System.out.printf("%d %c %d = %.1f",num1,op,num2,answer);
 		
+			System.out.printf(answer == (int)answer? "%d%c%d=%.0f": "%d%c%d=%.2f"
+			  ,num1,op,num2, (answer == (int)answer? answer : answer));
 		
-		
+	
 	}
 
 }
