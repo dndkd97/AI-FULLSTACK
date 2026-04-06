@@ -60,11 +60,4 @@ public class bank {
 		
 
 }
-/*if(num == 1) {
-	System.out.println("입력>>>"+num);
-	System.out.println("아이디 입력");id = sc.next().charAt(0);
-    System.out.println("비밀번호 입력");pw = sc.next().charAt(0);
-	System.out.println("나이 입력"); num1=sc.nextInt();
-	System.out.println("잔액 입력"); num2=sc.nextInt();
-	if(id == pw) {System.out.println("조회");} } */
-	
+
