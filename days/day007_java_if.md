@@ -1,0 +1,79 @@
+1.마크업
+1-1. 이미지태그를 이용해서 001.png 파일을 마크업하시오
+<img src="001.png" alt="001이미지">
+1-2.  naver로 링크하는 a태그를 적으시오.
+<a href="www.naver.com" title="네이버링크">naver</a>
+2. css
+1. 배경을 노란색으로 설정하는 속성은? background-color:yellow
+2. 글자색상을 초록색으로 지정하는 속성은? color-green
+3. 글자 크기를 30px로 지정하는 속성은? font-size:30px
+4. 글자를 오른쪽으로 정렬하는 속성은? text-align:right
+5. 글자에 취소선을 추가하는 속성은? text-decoration:none
+6. 글꼴을 'Times New Roman'으로 지정하는 속성은? font-famil:'Times'
+7. 글자를 굵은표시를 기본으로 표시하는 속성은? font-weight:normal
+8. 요소의 세로 길이를 400px로 지정하는 속성은? height:400px
+9. 요소의 바깥쪽 여백을 20px로 지정하는 속성은?  margin:20px
+10. 요소의 안쪽 여백을 5px로 지정하는 속성은?  padding:5px
+11. 요소에 2px 점선 테두리를 추가하는 속성은? border:2px dotted
+12. 모서리를 둥글게 50%로 만드는 속성은? border-radius:50%
+13. 그림자 효과를 빨간색으로 추가하는 속성은? box-shadow:5px 5px red
+14. 빠르게 움직이는 장면전환효과를 주는 속성은?  hover{transition all 0.2s}
+
+
+3. 필수조건
+q1-1 int형 변수 x가 60이상일때 조건식  
+x>=60
+q1-2 char형 변수 ch가 'a' 또는 'A'일때   true인 조건식     
+(ch=='a' || ch=='A')
+q1-3 char형 변수 ch가 숫자('0'~'9')일때   조건식      
+(ch>= '0' && ch<='9') 
+q1-4 char형 변수 ch가 영문자(대문자) 일때    조건식 
+(ch >='A' && ch<='Z')
+
+
+4.  eclipse 열어서 작성해주세요! [20분]
+
+   패키지명 : com.the703.days
+   클래스명 :  Day008
+   출력내용 :  성적처리 프로그램입니다.
+   1. 총점 구하기
+total=kor+eng+math;
+   2. 평균 구하기
+avg=(double)total/3;
+   3. 평균이 60점이상이고  각과목이 40점 미만이면 아니라면 합격/ 아니면 불합격
+result = avg<60?"불합격":(kor>=40 && eng >=40 && math>= 40)?"합격":"불합격";
+   4. 평균이 95점이상이면 장학생
+ a = avg>=95? "장학생": " ";
+   5. 평균이  90점이상이면 수, 80점이상이면 우, 70점이상이면 미, 60점이상이면 양, 아니라면 가 
+ b = (avg>=90)?"수":(avg>=80)?"우":(avg>=70)?"미":(avg>=60)?"양":"가";
+   학번 입력 > std111
+   국어점수 입력 > 100
+   수학점수 입력 > 100
+   영어점수 입력 > 99
+   ======================================================== 
+   학번   국어   영어   수학   총점   평균   합격여부   레벨   장학생
+   ======================================================== 
+   std111   100   100   99   299   99.67   합격   수   장학생
+
+int kor,eng,math,total;
+   String result,a,b,id;
+   double avg;
+   
+   System.out.println("학번입력"); id = sc.next();
+   System.out.println("국어입력"); kor = sc.nextInt();
+   System.out.println("수학입력"); math = sc.nextInt();
+   System.out.println("영어입력"); eng = sc.nextInt();
+   
+    total=kor+eng+math;
+    
+    avg=(double)total/3;
+    
+    // a = 장학생
+    // b = 수우미양가
+    result = avg<60?"불합격":(kor>=40 && eng >=40 && math>= 40)?"합격":"불합격";
+    
+    a = avg>=95? "장학생": " ";
+    b = (avg>=90)?"수":(avg>=80)?"우":(avg>=70)?"미":(avg>=60)?"양":"가";
+    
+    System.out.printf("%s\t%d\t%d\t%d\t%d\t%.2f\t%s\t%s\t%s",
+             id, kor, eng, math, total, avg, result, b, a);
