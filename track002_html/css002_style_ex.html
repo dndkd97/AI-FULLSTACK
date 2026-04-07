@@ -17,14 +17,18 @@
 
     /* Q3. .card 너비 : 250px, 여백 : 아래쪽 30px 중앙정렬, 테두리 둥글게 : 20px, 
         그림자효과, 중앙정렬, 안쪽여백 : 20px, 트랜지션 : 0.3초 부드럽게 */    
-    .card {width:250px;
+    .cardbox{ overflow: auto; background-color: #ffffff;}
+    .card {float:left;
+          width:250px;
            margin: auto;
            margin-bottom: 30px;
+           margin-left:5%;
            border-radius: 20px;
-           box-shadow: 0 0 10px rgb(163, 87, 87);
+           box-shadow: 0 0 10px rgb(255, 212, 212);
            text-align: center;
            padding:20px;
-           transition: all 0.3s;}
+           transition: all 0.3s;
+           }
 
     /* Q4. .card:hover 위로 이동 : 5px, 그림자 강조 */    
     .card:hover{ transform: translateY(-5px);
@@ -83,7 +87,7 @@
     </style>
 </head>
 <body>
-    <div>
+    <div class="cardbox">
       <h1>사용자 프로필 카드</h1>
          <div class="card Jack">
             <p><img src="./img/one.png" alt="Jack 프로필사진"/></p>
@@ -116,7 +120,7 @@
 
          </div>
 
-         <div class="card mina">
+         <div class="card Mina">
             <p><img src="./img/three.png" alt="Mina 프로필사진"/></p>
             <h2>최다영</h2>
             <p>AI연구원 + Python & 머신러닝</p>

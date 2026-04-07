@@ -1,4 +1,4 @@
-CSS기본
+### CSS기본
 -6. css(2) 내부적용 / id vs class
 
 1.block vs line
