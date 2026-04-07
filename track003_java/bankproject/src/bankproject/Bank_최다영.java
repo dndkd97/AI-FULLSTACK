@@ -42,15 +42,9 @@ public class Bank_최다영 {  // 1. 클래스명은 대문자   - class bank
 				if (num == 5) { 
 							System.out.println("계좌를 삭제하시겠습니까? (Y/N)");
 							answer = sc.next().charAt(0);
-							if (answer == 'Y') {
-								id = 0;
-								pw = 0;
-								money = 0;
-								age = 0;}
-				          else {
-							System.out.println("다시 확인해주세요");
-						}} 
-		             else if (num == 9) {
+							if (answer == 'Y') {id = 0; pw = 0; money = 0; age = 0;}
+				          else                 {System.out.println("다시 확인해주세요");}} 
+		   else if (num == 9) {
 						System.out.println("종료합니다");break;}
 		 }}}
 			
