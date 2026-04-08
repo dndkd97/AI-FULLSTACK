@@ -1,3 +1,17 @@
+### css(2)   내부적용  / id vs class
+css 적용방법
+1) 인라인 스타일   - 태그안에 직접 적용  
+
+```html
+<p style="color:red" >color</p>
+```
+
+2) 내부 스타일 시트 - head 안에 style을 사용해 작성
+```html
+<style> p{  color:red;  }  </style>
+
+
+
 1.마크업
 1-1. 이미지태그를 이용해서 001.png 파일을 마크업하시오
 <img src="001.png" alt="001이미지">

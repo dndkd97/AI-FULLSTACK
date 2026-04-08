@@ -11,8 +11,7 @@ public class ForEx002 {
 		System.out.println("숫자입력>"); num= scanner.nextInt();
 		
 		for(int i=1; i<=10; i++) {System.out.println(num+"*"+i+"="+num*i);}
-		
-		
-	}}
+	}
+}
 	
 
