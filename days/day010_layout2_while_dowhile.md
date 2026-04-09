@@ -16,7 +16,7 @@
 
 ■ 1. html + css
 ```
-    1. 레이아웃잡는방법은? (   float  ,  forsition     ,  display    )
+    1. 레이아웃잡는방법은? (   float  ,  position     ,  display    )
     2. box를 왼쪽, 오른쪽에 붙이는 방법은?
     box{float:left;} box{float:right;}
     3. 다음박스를 왼쪽 오른쪽에 배치하려고 한다. 들어가야하는 코드는?
@@ -46,9 +46,9 @@
     5. 내가 원하는 위치에 top, right, bottom, left 속성을 줘서 원하는 위치에 배치하는 방법은?
      - 부모박스에  (    )코드를 사용해   기준점을 잡고
      - 자식콘텐츠로  (     )를 사용해 배치한다.
-    :forsition , 좌표
+    :position:relative , position:absolute
     6.  스크롤할 때 상단에 계속 붙어 있도록 만드는 방법은?  
-``` :{forsition:sticky;}
+``` :{position:sticky;}
 
 ■ 2. java
 ```
@@ -76,7 +76,7 @@
      1  2  3  4  5
 ```
 
-:	    for(int i=1; i<=5; i++) {System.out.print(i);}
+:	  for(int i=1; i<=5; i++) {System.out.print(i);}
 		
 		int i=1;
 		while(i<=5){System.out.print(i); i++;}
