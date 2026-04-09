@@ -12,7 +12,7 @@
 
 
 ### 정리문제
-1. 레이아웃잡는방법은? ( float    , forsition      ,  display    )
+1. 레이아웃잡는방법은? ( float    , position      ,  display    )
 2. box를 왼쪽, 오른쪽에 붙이는 방법은?
 : box{float:left;}-왼쪽 box{float:right;}-오른쪽 
 3. 다음박스를 왼쪽 오른쪽에 배치하려고 한다. 들어가야하는 코드는?
