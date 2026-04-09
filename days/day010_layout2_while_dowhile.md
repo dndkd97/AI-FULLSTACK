@@ -56,9 +56,9 @@
  1. if버젼에 해당하는 다음에 연결해서 문제를 작성하시오.
     문자를 한개 입력받아 a이면 apple , b이면 banana, c이면 coconut
 
-    :if(ch==a){System.out.println("apple");}
-    :if(ch==b){System.out.println("banana");}
-     if(ch==c){System.out.println("coconut");}
+    :if(ch=='a'){System.out.println("apple");}
+    else if(ch=='b'){System.out.println("banana");}
+    else if(ch=='c'){System.out.println("coconut");}
  2. switch버젼에 해당하는 다음에 연결해서 문제를 작성하시오.
     문자를 한개 입력받아 a이면 apple , b이면 banana, c이면 coconut
 
@@ -68,10 +68,11 @@
     System.out.println("a,b,c 중에 입력 > ");  
     ch = scanner.next().charAt(0);
 
-    :swtich(a){
-    case a:System.out.println("apple");
-    case b:System.out.println("banana");
-    case c:System.out.println("coconut");}
+    :swtich(ch){
+    case 'a':System.out.println("apple");break;
+    case 'b':System.out.println("banana");break;
+    case 'c':System.out.println("coconut");}break;
+    defalut: System.out.println("a,b,c가 아니다")break;
    
  3. for, while, do while 버젼으로  문제를 풀으시오!  
      1  2  3  4  5
