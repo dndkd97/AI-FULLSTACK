@@ -20,6 +20,16 @@
 
     .p{position:relative;}
     .me{position:absolute; bottom:0; right:10px;}
+    div.di p.item{background-color: rgb(179, 211, 248); text-align: center; }
+    div.di p.item a{color: #fff; display: block; background-color: red; }  
+    /* a(인라인) display:block-인라인을 블록(box)*/       
+    div.di p.item a:last-child{display:none;}
+    /* display:none 화면상에 안보이게 숨기기 (h태그에서 주의)*/
+    .d1{background-color: #8aa8ad; text-align: center;margin:10px 0; padding: 10px;}
+    .d1 li{background-color: rgb(178, 255, 175); display: inline; width: 100px;}
+    /* display:inline > 블록을 인라인으로-한줄로 배치 */
+    .d2{background-color: #ffc1ef; text-align: center; margin:10px 0; padding: 10px;}
+    .d2 li{background-color: #ffe2ad; display:inline-block;width: 100px;}
 </style>
 </head>
 <body>
@@ -54,6 +64,19 @@
             absolute(박스 위치x), fixed(브라우저 고정),stichy(스크롤할때 특정 지점에 붙기)</p>
         <p>부모: relative(공간확보) / 자식:(원하는 위치 배치)-좌표</p>
     </div>
+    <div class="container di">
+        <h3>5.배치(3)-display</h3>
+        <p>속성바꾸기 : display:block, inilne,inline-block,none</p>
+        <p>배치 - 박스들이 어떻게 놓일지 정하는 규칙(정리 도우미) display:flex</p>
+        <p class="item"><a href="https://www.naver.com">naver</a>   <!--display:block [box]-링크확대-->
+                        <a href="https://www.daum.com">daum</a>     <!--display:none [숨기기]-->
+        </p> 
+        <!--display:inline[콘텐츠]-->
+        <ul class="d1"> <li>apple</li> <li>banana</li> <li>coconut</li> </ul>
+        <!--display:inline-block [콘텐츠-width 0]-->
+        <ul class="d2"> <li>apple</li> <li>banana</li> <li>coconut</li> </ul>
+    </div>
+    
     
 </body>
 </html>
