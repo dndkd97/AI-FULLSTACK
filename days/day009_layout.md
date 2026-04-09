@@ -34,5 +34,5 @@
 <ul>
  <li>ONE </li><li>TWO</li><li>THREE</li>
 </ul>
-ul{list-style:none;}
+ul{overflow:hidden;}
 li{float:left;}

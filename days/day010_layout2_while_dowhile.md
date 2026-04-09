@@ -40,7 +40,7 @@
     <ul>
       <li>ONE </li><li>TWO</li><li>THREE</li>
     </ul>
-    :ul{list-style:none;}
+    :ul{overflow:hidden;}
      li{float:left;}
 
     5. 내가 원하는 위치에 top, right, bottom, left 속성을 줘서 원하는 위치에 배치하는 방법은?
@@ -77,7 +77,7 @@
      1  2  3  4  5
 
 
- :	  for(int i=1; i<=5; i++) {System.out.print(i);}
+ :	for(int i=1; i<=5; i++) {System.out.print(i);}
 		
 		int i=1;
 		while(i<=5){System.out.print(i); i++;}
