@@ -6,7 +6,7 @@
   <style>
     *{margin:0; padding: 0;}
     /* Q1. body 글꼴 : Arial, sans-serif / 배경색 : #f0f9ff */
-body{font-family: Arial, Helvetica, sans-serif; background-color:#f0f9ff ;}
+body{font-family: Arial, Helvetica, sans-serif; background-color:#f0f9ff ; }
     /* Q2. header : flex 컨테이너, justify-content space-between, align-items center, 배경 #333, 글자색 흰색, 안쪽여백 15px 30px */
 header{display:flex; justify-content: space-between; align-items: center; background-color: #333;
         color: #fff; padding: 15px 30px;}
@@ -19,12 +19,14 @@ header nav a {color: #fff; text-decoration: none; font-weight:bold;}
     /* Q6. header nav a:hover : 글자색 #ff6600 */
 header nav a:hover{color: #ff6600;}
     /* Q7. .banner : flex 컨테이너, 중앙정렬, 높이 300px, 배경 #ff6600, 글자색 흰색, 글자크기 30px */
-.banner{display: flex; align-items: center; height: 300px; background-color: #ff6600; color: #fff; font-size: 30px;
-             justify-content: center;}
+.banner{display: flex; align-items: center; justify-content: center;
+        height: 300px; background-color: #ff6600; color: #fff; font-size: 30px;}
     /* Q8. .cards : flex 컨테이너, flex-wrap wrap, gap 20px, 너비 80%, 중앙정렬(margin auto), 위아래 여백 40px */
-.cards {display: flex; flex-wrap: wrap; gap:20px; width: 80%; margin: auto; padding:40px 0 40px;}
+.cards {display: flex; flex-wrap: wrap; gap:20px; width: 80%;  margin:40px auto; }
     /* Q9. .card : flex 1 1 calc(33% - 20px), 배경 흰색, 모서리둥글게 8px, 그림자 효과, 안쪽여백 20px, 중앙정렬(text-align center) */
-.card{ flex: 1 1 calc(33% - 20px);
+.card{ flex: 1 1 calc(33% - 60px); /*1:카드 남으면 커질수도 있음 , 
+                                     1:공간부족하면 줄어들수도 있음
+                                     calc(33% - 20px) 카드의 기본 크기 60px*/
   background-color: #fff; border-radius: 8px; padding: 20px; text-align: center; box-shadow: 0 0 10px #ffd8d8;}
     /* Q10. .layout : flex 컨테이너, 너비 80%, 중앙정렬(margin auto), gap 20px, 위아래 여백 40px */
 .layout{display: flex; width: 80%; margin:auto; gap:20px; padding:40px 0 40px;}
@@ -33,7 +35,7 @@ header nav a:hover{color: #ff6600;}
     /* Q12. .content : flex 3, 배경 흰색, 안쪽여백 20px, 그림자 효과 */
 .content{flex:3; background-color: #fff; padding: 20px; box-shadow: 0 0 10px #3d3d3d;}
     /* Q13. footer : flex 컨테이너, 중앙정렬, 배경 #333, 글자색 흰색, 안쪽여백 20px */
-footer{display: flex; justify-content:center; background-color: #333; color:#fff; padding: 20px;}
+footer{display: flex; justify-content:center;  align-items:center; background-color: #333; color:#fff; padding: 20px;}
  
   </style>
 </head>

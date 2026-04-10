@@ -32,12 +32,13 @@ flex : flex 컨테이너로 설정 (display:flex)
 ```
 ■ 복습문제  - 빈칸채우기   
     1. 레이아웃을 구성하는 대표적인 방식은 무엇인가?    (      ,       ,      )
+    :float,position,display
     2. 박스를 화면의 왼쪽과 오른쪽에 각각 붙여서 배치하려면 어떤 방법을 사용해야 하는가?
       ① position: absolute
       ② float
       ③ display: inline-block
       ④ margin: auto
-
+    :{float-left,right}
     3. 다음li를 왼쪽으로 붙이려고한다. 코드는?
     <style>
       ul { }
@@ -51,7 +52,8 @@ flex : flex 컨테이너로 설정 (display:flex)
     ② li { display: block; }
     ③ li { position: absolute; }
     ④ li { text-align: left; }
-
+    :ul{overflow:hideen}
+     li{float:left}
 
     4. 원하는 위치에 요소를 배치하기 위해 top, right, bottom, left 속성을 활용하려고 한다.
     부모 박스에는 어떤 속성을 주어 기준을 설정하는가?
@@ -59,18 +61,22 @@ flex : flex 컨테이너로 설정 (display:flex)
     ② position: fixed
     ③ display: flex
     ④ margin: auto
-
+    :position:relative
     자식 요소에는 어떤 속성을 사용하여 위치를 지정하는가?
     ① position: absolute
     ② position: sticky
     ③ float
     ④ inline-block
-
+    :position:absolute
    5.  브라우저에 고정되도록 만드는 방법은?   
+    :position:fixed;
    6.  a태그의 링크를 확대하려고 한다. 사용해야하는 방법은?
+    :display:block
    7.  li태그들을 가로방향으로 배치하려고 한다.  width를 줘야하는데 사용해야하는 방법은?
+    :display:inline-block;
    8.  header 안에서 로고와 내비게이션을 양쪽 끝에 배치하고, 콘텐츠 간 간격을 일정하게 유지하려면 어떤 레이아웃 방식을 사용해야 하는가?
-
+    :header{display:felx;
+    justify-content:space-between;}
 ```    
 
 ■ 2. java
