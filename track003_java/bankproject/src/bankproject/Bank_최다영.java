@@ -20,26 +20,29 @@ public class Bank_최다영 {  // 1. 클래스명은 대문자   - class bank
 					         System.out.println("비밀번호 입력"); pw = sc.next().charAt(0);
 					         System.out.println("나이 입력"); age = sc.nextInt();
 					         System.out.println("잔액 입력"); money = sc.nextInt();}
-					     if ( num ==2 || num ==3 || num ==4 || num ==5) 
+				 if ( num ==2 || num ==3 || num ==4 || num ==5) 
 					       {System.out.println("아이디 입력");
 						    inputId = sc.next().charAt(0);
 							System.out.println("비밀번호 입력");
 							inputPw = sc.next().charAt(0);
-						 if ( id != inputId  || inputPw!=pw ) 
-							 {System.out.println("다시 확인해주세요");continue;}}
-				if (num == 2) { 
+							
+								 if ( id != inputId  || inputPw!=pw ) 
+							 {System.out.println("다시 확인해주세요");continue;}
+								
+					       }
+				   	if (num == 2) { 
 								System.out.println("==계좌조회");
 								System.out.println("아이디:" + id);
 								System.out.println("비번:" + pw);
 								System.out.println("나이:" + age);
 								System.out.println("잔액:" + money);} 
-				if (num == 3) { 
+					if (num == 3) { 
 							System.out.println("입금:");
 							money += sc.nextInt();}
-				if (num == 4) { 
+				 if (num == 4) { 
 							System.out.println("출금:");
 							money -= sc.nextInt();}
-				if (num == 5) { 
+				 if (num == 5) { 
 							System.out.println("계좌를 삭제하시겠습니까? (Y/N)");
 							answer = sc.next().charAt(0);
 							if (answer == 'Y') {id = 0; pw = 0; money = 0; age = 0;}
