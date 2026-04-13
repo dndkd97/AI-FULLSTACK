@@ -3,7 +3,11 @@ package com.the703.basic007;
 public class For22Ex001 {
 
 	public static void main(String[] args) {
-		
+/*1+5=6
+2+4=6
+3+3=6
+4+2=6
+5+1=6*/
 		System.out.println("ver-1:for");
 		for(int i=1; i<=1; i++) {
 			for(int a=5; a>=1; a--) {

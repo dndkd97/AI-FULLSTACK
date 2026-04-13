@@ -89,22 +89,36 @@ flex : flex 컨테이너로 설정 (display:flex)
     80점 이상 → "B 학점"
     70점 이상 → "C 학점"
     그 외 → "F 학점"
-
+ :  if(num>=90) {System.out.println("A학점");}
+		 else if(num>=80) {System.out.println("B학점");}
+		 else if(num>=70) {System.out.println("C학점");}
+		 else             {System.out.println("F학점");}
+		       
 2. switch버젼에 해당하는 다음에 연결해서 문제를 작성하시오.
    위의 문제를 switch 로
   
     int avg=0;
     Scanner scanner = new Scanner(System.in);
     System.out.print("평균입력 > ");  avg = scanner.nextInt();
-    
+ :   switch(num/10) {
+		 case 10: case 9:System.out.println("A학점");break;
+		 case 8:System.out.println("B학점");break;
+		 case 7:System.out.println("C학점");break;
+		 default:System.out.println("F학점");break;}
+
 3. for, while, do while 버젼으로  문제를 풀으시오!  
     1 2 3
-
+ :for(int i=1; i<=3; i++) {System.out.print(i);}System.out.println();
+		 
+	int i=1;
+	while(i<=3) {System.out.print(i); i++;}System.out.println();
+		 
+	int i1=1;
+	do {System.out.print(i1); i1++;}while(i1<=3);System.out.println();
 4. 이중 for를 이용해서 다음문제를 풀으시오.
   ★★★★
   ★★★★
   ★★★★
   ★★★★
-    
-  
-```
+ ```
+ : for(int i2=1; i2<=4; i2++) {for(int a=1; a<=4; a++) {System.out.print("★");}System.out.println();}
