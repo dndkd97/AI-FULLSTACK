@@ -1,3 +1,10 @@
+day004
+
+- Todo1:  CSS
+- Todo2:  java 자료형/Scanner
+
+---
+
 ### CSS기본
 
 CSS(1)
