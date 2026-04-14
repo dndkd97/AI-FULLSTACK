@@ -1,7 +1,7 @@
 day004
 
 - Todo1:  CSS
-- Todo2:  java 자료형/Scanner
+- Todo2:  java 자료형(2)/연산자/제어문
 
 ---
 

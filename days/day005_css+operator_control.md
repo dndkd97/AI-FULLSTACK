@@ -1,3 +1,10 @@
+day005
+
+ -Todo1: CSS(2) 내부적용,
+ -Todo2:
+
+ ---
+ 
 ### CSS기본
 -6. css(2) 내부적용 / id vs class
 
