@@ -5,7 +5,7 @@ day004
 
 ---
 
-### CSS기본
+## CSS기본
 
 CSS(1)
     -1.배경:background
@@ -21,6 +21,15 @@ CSS(1)
     -11.선:border
     -12.둥근모서리:border-radius 
     -13.그림자효과:box-shadow
+
+## java 자료형(2)
+1.형변환:데이터 타입을 다른타입으로 변환
+ ex)byte-int , int -double
+ (1)(boolean)을 제외한 7개의 기본형(byte,short,int,long,float,double,char)만 서로 형변환 가능
+ (2)종류:자동타입변환(promotion), 강제타입변환(casting)
+ -자동타입변환:프로그램 실행 도중 작은 타입은 큰타입으로 자동타입변환가능
+ -강제타입변환:끝의 한 부분만 작은타입으로 쪼개는 것을 강제적변환이라고함 작은타입=(작은크기타입)큰크기
+2.자료형-char
 
 ### 복습문제
     - 1. css(1)
