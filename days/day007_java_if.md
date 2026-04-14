@@ -1,3 +1,10 @@
+day007
+
+ -Todo1:css(2) 내부적용 / id vs class
+ -Todo2: java 제어문 - IF
+
+ ---
+ 
 ### css(2)   내부적용  / id vs class
 css 적용방법
 1) 인라인 스타일   - 태그안에 직접 적용  
