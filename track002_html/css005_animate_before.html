@@ -123,9 +123,7 @@ h1{text-align: center; color:#00796b ; padding-bottom: 40px; width:100% }
    - 종료: opacity 1, translateY(0) */
  @keyframes fadeInUp{
    from{opacity: 0; transform: translateY(20px);}
-     to{opacity: 1; transform: translateY(0);}
- }
-
+     to{opacity: 1; transform: translateY(0);} }
 /* Q15: float를 끊고 아래 설명 박스를 만들려면?
    - clear: both
    - 위 여백: 50px
@@ -134,7 +132,7 @@ h1{text-align: center; color:#00796b ; padding-bottom: 40px; width:100% }
    - 둥근 모서리: 10px
    - 텍스트 가운데 정렬, 글자색: #333 */
 .clear{clear:both; margin-top: 50px; padding: 15px; background-color:#e0f2f1 ;
-             border-radius: 10px; text-align: center; color:#333} 
+       border-radius: 10px; text-align: center; color:#333} 
    /* Q16: 물방울 요소를 화면 아래에서 시작하도록 고정하려면?
       - 위치: fixed
       - 시작 위치: bottom -100px
@@ -146,7 +144,7 @@ h1{text-align: center; color:#00796b ; padding-bottom: 40px; width:100% }
     */
 .bubble{position: fixed;  bottom:-100px; width: 20px; height: 20px;
         background-color:  rgb(247, 212, 212); border-radius: 50%;
-        animation: rise 8s ease-in infinite;  transition: all 8s ease-in;
+        animation: rise 8s ease-in infinite; 
         z-index: 0;  }
 /* Q17: 물방울이 위로 올라가며 크기와 투명도가 변하는 애니메이션을 정의하려면?
    - 시작: translateY(0), scale(1), opacity 0.5
@@ -154,8 +152,8 @@ h1{text-align: center; color:#00796b ; padding-bottom: 40px; width:100% }
    - 종료: translateY(-600px), scale(0.8), opacity 0
 */
 @keyframes rise{
-   0%{transform:translateY(0) scale(1); opacity: 0.5 ;}
-   50%{transform: translateY(-300px) scale(1.2); opacity: 1;}
+   0%  {transform:translateY(0)      scale(1);   opacity: 0.5 ;}
+   50% {transform:translateY(-300px) scale(1.2); opacity: 1;}
    100%{transform:translateY(-600px) scale(0.8); opacity: 0;}}
 /* Q18: 여러 개의 물방울을 서로 다른 위치와 크기, 지연 시간으로 등장시키려면?
    - 1번: left 10%, delay 0s
