@@ -83,6 +83,7 @@ TODO2:  JAVA SETTING
 
 
 ■2. eclipse
+  -11,17,21버전 설치
 
 
 
@@ -92,4 +93,3 @@ TODO2:  JAVA SETTING
 1. 집에서 github 연동 - git clone                 ※ 스크린샷 제출
 2. 집 내 컴퓨터에 java/ eclipse 설치 (11, 17, 21 ) ※ 스크린샷 제출
 3. 복습문제 - 노트 준비
-
