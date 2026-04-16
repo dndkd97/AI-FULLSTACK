@@ -1,3 +1,7 @@
+day012
+ - Todo1:  css 정리
+ - Todo2:  java 정리
+
 ### ■4.  복습문제
 
 
