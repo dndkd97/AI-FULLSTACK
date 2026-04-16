@@ -13,7 +13,7 @@ me-right
 
 - 버튼 스타일을 적용하는 기본 클래스
 - 버튼 배경색을 빨간색으로 지정
- 
+ :btn btn-daner
 
 ■2. java (5분)
 
@@ -22,3 +22,15 @@ me-right
 3. for + length 이용해서 출력 
    101   102   103
    104   105   106  
+: int num=101;
+      
+for(int i=0; i<arr.length; i++) {
+for(int j=0; j<arr[i].length; j++) {
+   arr[i][j]=num; num++;
+}
+}
+for(int i=0; i<arr.length; i++) {
+for(int j=0; j<arr[i].length; j++) {
+   System.out.print(arr[i][j]+"\t");
+}System.out.println();
+}
