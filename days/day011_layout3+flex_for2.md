@@ -1,3 +1,8 @@
+day011
+
+ - Todo1: layout-display
+ - Todo2: java-다중for
+
 ### layout
 1.배치-display
 
@@ -27,6 +32,21 @@ flex : flex 컨테이너로 설정 (display:flex)
 {align-items:flex-end;} : 세로 방향 아래쪽(flex-end)에 맞춰 정렬
 {flex-grow:1;} : 박스가 남은 공간을 모두 차지
 
+### 다중for
+
+1.다중for(중첩 for)
+-for 안에 for 문이 들어가 있는 형식
+-반복문 안에 반복문이 들어가있음
+-구조
+:for(초기값 또는 시작값; 조건 또는 종료값; 증가 또는 감소값){ (층)
+   for(초기값 또는 시작값; 조건 또는 종료값; 증가 또는 감소값) { (칸)
+   }
+}
+[1층]            for(int ch=1; ch<=2; ch++){
+1호실2호실3호실    System.out.println("\n["+ch+"층]");
+[2층]            for(int i=1; i<=3; i++){System.out.print(i+"호실\t");} 
+1호실2호실3호실   }
+ 
 
 ■ 1. html + css (  java는 오후에  eclipse 로  진행합니다    )
 ```
