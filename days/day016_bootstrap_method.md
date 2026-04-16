@@ -1,7 +1,7 @@
 day016
 
- -Todo1: bootstrap
- -Todo2: java-method
+ - Todo1: bootstrap
+ - Todo2: java-method
 
 ----
 
