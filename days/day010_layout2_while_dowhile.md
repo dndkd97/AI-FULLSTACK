@@ -1,3 +1,10 @@
+day010
+
+ - Todo1: css-layout
+ - Todo2: java - while,do while
+
+---
+
 ### css-layout2
 
 1. line-height:중앙정렬
@@ -11,6 +18,26 @@
     -sticky(스크롤할때 특정 지점에 붙기)
 
 부모: relative(공간확보) / 자식:(원하는 위치 배치)-좌표
+
+
+### java-while, do while
+
+1.while
+:초기값;
+ while(조건문){
+ 처리내용
+ 증감문
+ }
+ →반복횟수가 정해지지 않았을때 사용
+ ex), 게시판처럼 실시간으로 글의 갯수가 변동되는 게시판에서 사용
+
+ 2.do while
+:초기값;
+ do{
+ 처리내용
+ }while(조건문);
+ →무조건 1번은 처리내용을 실행하고 나중에 조건을 비교
+
 
 ### ■4.  복습문제
 
