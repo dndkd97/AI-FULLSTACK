@@ -1,11 +1,34 @@
+day015
+ 
+ - Todo1: bootstrap
+ - Todo2: java-method
 
-CSS-bootstrap
+---
+
+### CSS-bootstrap
 1. 부트스트랩이 들어간 html페이지 만들기 (boot) bootstrap004_self.html
 2. div 6개가 들어간 영역 나누기
 
-ms:-left
-me:-right
+■색
+defauly,primary,success,info,warning,danger,link + subtle(불투명)
 
+-ms:-left
+-me:-right
+
+### Array
+1.다차원 배열
+1)정의
+-2차원배열 이상의 배열 의미
+-수학의 행렬과 같은 자료구조
+
+2)선언방법
+-타입[][]변수;
+ int [][] a1 = {{1,2,3},{4,5,6}};
+ int [][] a2 = new int[2][3];
+
+---
+
+### 복습문제
 ■1. html + css + bootstrap
 1. 부트스트랩에 해당하는 class와 문제를 풀으시오.
 
