@@ -1,7 +1,7 @@
 day009
 
- -Todo1:css-layout
- -Todo2:java-for
+ - Todo1: css-layout
+ - Todo2: java-for
 
  ---
 
@@ -34,7 +34,7 @@ day009
  -반복이 중첩된 경우(for안에 for, 이중for)break;문 가장 가까운 반복문만 종료
  2-2)continue
  :반복취소가 아니라 해당경우에만 skip
- 
+
 
 
 ### 정리문제
