@@ -1,3 +1,10 @@
+day008
+
+- Todo1:  css(2)  내부적용  / id vs class
+- Todo2:  java  제어문 - SWITCH
+
+---
+
 ### css
 1. 가상 선택자 
 <선택자>
