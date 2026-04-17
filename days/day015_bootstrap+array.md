@@ -1,7 +1,7 @@
 day015
  
  - Todo1: bootstrap
- - Todo2: java-method
+ - Todo2: java-array(2)
 
 ---
 
