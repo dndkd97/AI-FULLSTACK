@@ -2,7 +2,7 @@ package bankproject;
 
 import java.util.Scanner;
 
-public class Bank2_최다영 {
+public class Bank1_2 {
 	public static void main(String[] args) {
 	 //변수
     int menu = -1; int id   = -1, pass=-1 , balance=-1;
