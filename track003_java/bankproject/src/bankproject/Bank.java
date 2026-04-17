@@ -1,6 +1,6 @@
 package bankproject;
 import java.util.Scanner;
-public class bank {
+public class Bank {
 
 	public static void main(String[] args) {
 		
