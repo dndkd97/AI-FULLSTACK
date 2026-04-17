@@ -5,3 +5,8 @@
    
 /* Q2: 전체 박스에 둥근 모서리(10px) , 그림자효과를 주려면? */
     .box{border-radius: 10px; box-shadow: 0 0 10px rgb(255, 222, 222); padding:10px;} 
+
+.myhidden{position: absolute; right:-9999px; width: 1px; height: 1px; overflow: hidden;
+  border: 0; white-space: nowrap; 
+  clip:rect(0,0,0); /*요쇼를 잘라서 시각적으로 완전히 숨김-구형 브라우저 호환*/
+} 
