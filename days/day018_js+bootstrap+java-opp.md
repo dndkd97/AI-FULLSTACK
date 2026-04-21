@@ -17,16 +17,16 @@ ex)console.log("안녕 js");
 
 2.변수 선언 방식
 
--var:재선언 및 재할당 가능
--let:재선언 불가,재할당 가능
--const:재선언 및 재할당 불가, 선언 시 초기화 필수
+-var(전역):재선언 및 재할당 가능
+-let(지역):재선언 불가,재할당 가능
+-const(상수):재선언 및 재할당 불가, 선언 시 초기화 필수
 
 
 3.자료형과 typeof
 
-:typeof로 변수의 타입 확인
- "10"+10 → "1010"
- Number("10")+10 → 20
+ex) typeof로 변수의 타입 확인
+    "10"+10 → "1010"
+    Number("10")+10 → 20
 
 
 4.알림창 이벤트
@@ -45,11 +45,11 @@ ex)  let answer = confirm("정말 취소하시겠습니까? ")
 5.이벤트 처리
 
 -onclick:클릭 이벤트
-ex)<input type="button"  value="DOG-멍멍"  title="버튼1"    class="btn btn-success" onclick="alert('멍멍')"/>
+ex) <input type="button"  value="DOG-멍멍"  title="버튼1"    class="btn btn-success" onclick="alert('멍멍')"/>
 -onmouse
-ex)onmouseover="this.style.backgroundColor='red'" → 마우스 올렸을때 red 색상
-   onmouseout="this.style.backgroundColor='#cff4fc'" → 마우스 커서가 없을때 해당색상
--addEventListener:다양한 이벤트 처리 가능
+ex) onmouseover="this.style.backgroundColor='red'" → 마우스 올렸을때 red 색상
+    onmouseout="this.style.backgroundColor='#cff4fc'" → 마우스 커서가 없을때 해당색상
+    -addEventListener:다양한 이벤트 처리 가능
 
 
 6.DOM 선택자
@@ -129,21 +129,26 @@ ex2)  { 0. 스크립트는 어디서든 동작 가능
 ■1. 자바스크립트 빈칸채우기
 1. 자바스크립트의 출력   (    ,   )
 :console.log("문자열");,document.write("문자열");
+
 2. 변수    (   ,  ,   )
 :var,let,const
+
 3. 변수차이   (    ,    ,  )
-:var-재선언,재할당 가능
- let-재선언 x,재할당 가능
- const-재선언,재할당x선언 시 초기화 필수
+:var-전역(재선언,재할당o)
+ let-지역(재선언x,재할당o)
+ const-상수(재선언,재할당x)
+
 4. 변수는 모든자료형을 담을수 있다.  자료형확인은 (      )
 :typeof
 
 5. 알림창 종류  - (   ,   ,    )
 :prompt,alert,confirm
+
 6. 이벤트  - 이벤트대상(div),    이벤트(click),  이벤트 핸들러(alert('haha'))
    다음 div 태그를 클릭했을때 알림창 haha를 출력하는 코드를 작성하시오.
     <div onclick = "">test</div>
 :<div onclick="alert('haha')">
+
 7. 다음에 해당하는하는 스크립트 코드를 작성하시오.    
     0. 스크립트가 document어느위치에서든지 동작가능하게
     1. 아이디가 test인것을  getElementById 이용해 선택
@@ -152,20 +157,23 @@ ex2)  { 0. 스크립트는 어디서든 동작 가능
    <input type="button"  value="addEventListener"  title="버튼4"  id="test"    class="btn btn-outline-primary"  />  
    <script>  
    </script>  
-   window.addEventListen("load",funticon(){
-    document.getElementById("test").onclick=funticon(){let num =prompt("1~5사이 숫자 입력");
-    alert("좋아하는 숫자는: "+ num) };
-   });
+: window.addEventListen("load",funticon(){
+  document.getElementById("test").onclick=funticon(){let num =prompt("1~5사이 숫자 입력");
+  alert("좋아하는 숫자는: "+ num); };
+  });
 
 
 
 ■2. 자바
 1.  OOP? 
 : objact orients programming , 객체지향 프로그램, 부품 객체를 조립해서 완성된 프로그램으로 만드는 기법
+
 2.  OOP특징 
 :캡슐화,다형성,상속,추상화
+
 3.  클래스는  (        )와  (       )를 갖는다 
 :상태(멤버변수),행위(멤버함수)
+
 4.  클래스와 인스턴스 구분
 - 클래스는  (      )
 - 인스턴스는  (          )
