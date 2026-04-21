@@ -73,9 +73,9 @@ ex) public Car32() { color="white"; } // 기본생성자 - 2)생성자가 개발
 
 ■ Javascript
 1. js 선택자 
-1-1. id 선택자 사용시 : getElementById
-1-2. 태그 선택자 사용시 : getElementsByTagName 
-1-3. css 표현 선택자 사용시 : querySelector
+1-1. id 선택자 사용시 : document.getElementById
+1-2. 태그 선택자 사용시 : document.getElementsByTagName 
+1-3. css 표현 선택자 사용시 : document.querySelector
 
 2. 다음에 해당하는 코드를 한줄한줄  적으시오.
 2-1. 스크립트가 document어느위치에서든지 동작가능하게     
@@ -88,8 +88,8 @@ ex) public Car32() { color="white"; } // 기본생성자 - 2)생성자가 개발
 //////////
 </script>  
 :window.addEventListener("load", function(){
-document.querySelector("#test").onclick=function(){
-let name =prompt("당신의 이름은?"); alert("당신의 이름은:" +num);};
+let test = document.querySelector("#test");
+test.onclick=function(){let name =prompt("당신의 이름은?"); alert("당신의 이름은:" +num);};
 });
 
 
