@@ -36,23 +36,23 @@ overflow-x: hidden;
    100%{transform:translateY(600px) scale(0.8); opacity: 0;}
 }
 
-.bubble:nth-of-type(1){left:10%; animation-delay:0s;}
-.bubble:nth-of-type(2){left:25%; animation-delay:2s; width:25px; height:20px;}
-.bubble:nth-of-type(3){left:40%; animation-delay:4s; width:30px; height:30px;}
-.bubble:nth-of-type(4){left:60%; animation-delay:1s; width:23px; height:23px;}
-.bubble:nth-of-type(5){left:75%; animation-delay:3s; width:27px; height:27px;}
+.bubble:nth-of-type(1){left:5%; animation-delay:0s; width:100px; height:100px;}
+.bubble:nth-of-type(2){left:25%; animation-delay:2s; width:70px; height:70px;}
+.bubble:nth-of-type(3){left:45%; animation-delay:3s; width:90px; height:90px;}
+.bubble:nth-of-type(4){left:70%; animation-delay:1s; width:83px; height:83px;}
+.bubble:nth-of-type(5){left:90%; animation-delay:3s; width:75px; height:75px;}
 
-.bbb{position: fixed; top:50px; background-color: rgb(243, 224, 243); 
+.bbb{position: fixed; top:20px; background-color: rgb(243, 224, 243); 
         border-radius: 50%; animation: rise1 8s linear infinite;  width: 20px; height: 20px; z-index: -1;}
 
 @keyframes rise1{
    0%  {transform:translateY(0)      scale(1);   opacity: 0.5 ;}
    50% {transform:translateY(300px) scale(1.2); opacity: 1;}
-   100%{transform:translateY(-600px) scale(0.8); opacity: 0;}
+   100%{transform:translateY(600px) scale(0.8); opacity: 0;}
 }
 
-.b1{left:10%; animation-delay:0s;}
-.b2{left:25%; animation-delay:2s; width:25px; height:20px;}
-.b3{left:40%; animation-delay:4s; width:30px; height:30px;}
-.b4{left:60%; animation-delay:1s; width:23px; height:23px;}
-.b5{left:75%; animation-delay:3s; width:27px; height:27px;}
+.b1{left:23%; animation-delay:0s;}
+.b2{left:38%; animation-delay:2s; width:25px; height:25px;}
+.b3{left:53%; animation-delay:3s; width:30px; height:30px;}
+.b4{left:78%; animation-delay:1s; width:23px; height:23px;}
+.b5{left:93%; animation-delay:3s; width:27px; height:27px;}
