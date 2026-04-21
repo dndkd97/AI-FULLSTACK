@@ -139,7 +139,7 @@ ex2)  { 0. 스크립트는 어디서든 동작 가능
 :typeof
 
 5. 알림창 종류  - (   ,   ,    )
-:promt,alert,confirm
+:prompt,alert,confirm
 6. 이벤트  - 이벤트대상(div),    이벤트(click),  이벤트 핸들러(alert('haha'))
    다음 div 태그를 클릭했을때 알림창 haha를 출력하는 코드를 작성하시오.
     <div onclick = "">test</div>
