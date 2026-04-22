@@ -11,12 +11,10 @@ class Card{
 	@Override public String toString() { return "Card [cardNum=" + cardNum + ", isMembership=" + isMembership + "]"; }
 
 	void input() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("채널 입력>"); cardNum = sc.nextInt();
-		System.out.println("볼륨 입력>"); isMembership = sc.nextBoolean();
+	
 	}
 	void show() {
-		System.out.println(toString());
+		
 	}
 }
 public class ClassEx005 {
