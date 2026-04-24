@@ -222,8 +222,8 @@
     let colorIndex = 0; 
 
   left.onclick=function(e){
-        e.preventDefault();  //rotate(${--cnt*45}deg)
-   box.style.transform= `translateX(${pos-=10}px)`;
+  e.preventDefault(); 
+  box.style.transform= `translateX(${pos-=10}px)`;
   };
   right.onclick=function(e){
   e.preventDefault();
@@ -239,8 +239,5 @@
   });
   </script>
 </div>
-
-
-
 </body>
 </html>

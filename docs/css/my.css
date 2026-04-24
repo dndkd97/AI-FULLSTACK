@@ -42,7 +42,7 @@ overflow-x: hidden;
 .bubble:nth-of-type(4){left:70%; animation-delay:1s; width:83px; height:83px;}
 .bubble:nth-of-type(5){left:90%; animation-delay:3s; width:75px; height:75px;}
 
-.bbb{position: fixed; top:20px; background-color: rgb(243, 224, 243); 
+.bbb{position: fixed; top:-10px; background-color: rgb(243, 224, 243); 
         border-radius: 50%; animation: rise1 8s linear infinite;  width: 20px; height: 20px; z-index: -1;}
 
 @keyframes rise1{
@@ -51,8 +51,8 @@ overflow-x: hidden;
    100%{transform:translateY(600px) scale(0.8); opacity: 0;}
 }
 
-.b1{left:23%; animation-delay:0s;}
-.b2{left:38%; animation-delay:2s; width:25px; height:25px;}
-.b3{left:53%; animation-delay:3s; width:30px; height:30px;}
-.b4{left:78%; animation-delay:1s; width:23px; height:23px;}
-.b5{left:93%; animation-delay:3s; width:27px; height:27px;}
+.b1{left:18%; animation-delay:0s; width:75px; height:75px;}
+.b2{left:38%; animation-delay:2s; width:50px; height:50px;}
+.b3{left:53%; animation-delay:3s; width:60px; height:60px;}
+.b4{left:78%; animation-delay:1s; width:35px; height:35px;}
+.b5{left:93%; animation-delay:3s; width:40px; height:40px;}
