@@ -396,10 +396,25 @@
       document.querySelector("#age").onclick=function(){
         for(;;){
           let age = prompt("어린이의 나이를 0~5세 사이만 입력하세요");
-         if(age>="0" && age<="5"){break;}
+         if(age>=0 && age<=5){alert("어린이의 나이는:" + age); break;}
         }
       }
     });
+      // window.addEventListener("load" , function(){
+      //     let age = document.getElementById("age");
+      //     age.addEventListener("click" , function(){
+      //         ageFn();
+      //     }); 
+      //     function ageFn (){
+      //         let answer = -1;
+      //         let result = "0~5세 사이가 아닙니다.";
+      //         while( !(answer >=0 && answer<= 5)  ){  // 0~5세사이가 아니라면
+      //           answer = prompt("어린이의 나이는 0~5 사이만 입력가능");
+      //           if( answer >= 0 && answer<=5 ){ result = "어린이의 나이는 " + answer ; }
+      //           alert(result);
+      //         }
+      //     }
+      // });
     </script>
   </div>
 
@@ -452,15 +467,21 @@
         let calc = document.querySelector("#calc");
        calc.onclick=function(){
         let num11,abc1,num21,result;
-        // for(;;){ 
-        // num11 = Number(prompt("숫자 1 입력"));
-        // if(num11>0 && num11<=100){break;}}
-        // for(;;){
-        // num21 = Number(prompt("숫자 2 입력"));
-        // if(num21>0 && num21<=100){break;}}
-        // for(;;){
-        // abc1 = prompt("연산자 입력");
-        // if(abc1 == "+" || abc1 == "-" || abc1 =="*" || abc1 == "/"){break;} }
+        //1.대상
+        // let btn     = document.getElementById("calc"); //버튼
+        // let targets = document.querySelectorAll("#calc_form  input"); 
+        // console.log(targets); //#0  button //1: num1 , 2:abc, 3:num2, 4: result
+        // let num1 = -1, num2=-1, op=' ', result=0;
+        // btn.addEventListener("click" , function(){
+            // for(;;){ 
+            // num11 = Number(prompt("숫자 1 입력"));
+            // if(num11>0 && num11<=100){break;}}
+            // for(;;){
+            // num21 = Number(prompt("숫자 2 입력"));
+            // if(num21>0 && num21<=100){break;}}
+            // for(;;){
+            // abc1 = prompt("연산자 입력");
+            // if(abc1 == "+" || abc1 == "-" || abc1 =="*" || abc1 == "/"){break;} }
 
         for(let i=0; i<3;){
         if(i==0){
@@ -473,11 +494,27 @@
         abc1 = prompt("연산자 입력");
         if(abc1 == "+" || abc1 == "-" || abc1 =="*" || abc1 == "/")i++;}
         }
+        //2.입력
+        // for(;;){//초기값 num1 = -1, num2=-1, op=' '
+        //   if(!(num11>=0 && num11<=100) | num11==""){num11=prompt("1.정수 입력 0~100");}
+        //   else if(!(num21>=0 && num21<=100)| num21==""){num21=prompt("1.정수 입력 0~100");}
+        //   else if(!(abc1 == '+' || abc1 == '-' || abc1 =='*' || abc1 =='/'))
+        //   {abc1=prompt("2.연산자 입력(+,-,*,/)");}
+        //   else{break;}
+        // }
 
         if(abc1 == "+"){result =num11+num21;}
         else if(abc1 == "-"){result =num11-num21;}
         else if(abc1 == "*"){result =num11*num21;}
         else if(abc1 == "/"){result =num11/num21;}
+
+        //3.처리
+        // switch(ab1){
+        //   case '+':result = Number(num11)+Number(num21);break;
+        //   case '-':result = Number(num11)-Number(num21);break;
+        //   case '*':result = Number(num11)*Number(num21);break;
+        //   case '/':result = Number(num11)/Number(num21);break;
+        // }
 
         num1.value=num11;
         num2.value=num21;
@@ -485,7 +522,11 @@
         result1.value=result;
         alert(result);
         
-        //result1 = alert(num1 + abc + num2);
+        //4. 각 value 각각 셋팅
+        // targets[1].value = num1;
+        // targets[2].value = op;
+        // targets[3].value = num2;
+        // targets[4].value = op!='/'? result: result.toFixed(2); //소수점 2
        }
       });
     </script>
