@@ -109,7 +109,7 @@ interface Animal2{
 }
 class Saram implements Animal2{ 
    @Override public void eat() { 
-      company="kakao";  
+      company="kakao";  // 값 변경 불가
       System.out.println( Animal2.company  + " 랍스탑.... 냠냠 "   );
    }
 } 
