@@ -1,7 +1,7 @@
 day 024
 
- - Todo1 :
- - Todo2 :
+ - Todo1 : java-abstract
+ - Todo2 : java-interface
 
 part1. 제어문 - 절차지향
 part2. OOP   - 객체지향
