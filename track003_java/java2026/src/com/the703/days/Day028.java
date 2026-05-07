@@ -1,6 +1,7 @@
 package com.the703.days;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -38,12 +39,32 @@ public class Day028 {
 		milks.add(new Milk("커피우유", 1500));
 		milks.add(new Milk("커피우유", 1500));
 		int cnt =0;
-		for(int i=0; i<milks.size(); i++) {
-			System.out.println(++cnt+ "\t"+milks.get(i).getMname()+"\t"+milks.get(i).getMprice());}
-	//ver-2	System.out.print("%d %s %d\n", cnt+1,milks.get(i).getMname(),milks.get(i).getMprice());
-	//ver-3	for(Milk m : milks) {
-		//System.out.printf("%d %s %d\n", ++cnt,m.getMname(),m.getMprice()); }
-		
+//		for(int i=0; i<milks.size(); i++) {
+//			System.out.println(++cnt+ "\t"+milks.get(i).getMname()+"\t"+milks.get(i).getMprice());}
+//	  ver-2	System.out.print("%d %s %d\n", cnt+1,milks.get(i).getMname(),milks.get(i).getMprice());
+	/* ver-3*/	for(Milk m : milks) {
+		System.out.printf("%d %s %d\n", ++cnt,m.getMname(),m.getMprice()); }
+	
+		//오름차순
+	    System.out.println("\n가격순으로 오름차순");
+	    
+	    //1.익명적객체
+//	    milks.sort(new Comparator<Milk>() {
+//        @Override public int compare(Milk o1, Milk o2) {  return Integer.compare(o1.getMprice(), o2.getMprice()); }	
+//	    });
+	    //2.람다식
+	   // milks.sort((o1,o2)-> Integer.compare(o1.getMprice(), o2.getMprice()));
+		// @FunctionalInterface public interface Comparator<T> {int compare(T o1,T o2);}
+	    
+	    //3.참조형 Integer 부품객체에 compare라는 기능박스
+	    // error : milks.sort(Integer::compare); Milk 객체에서 가격 꺼내야함
+	    milks.sort(Comparator.comparingInt(Milk::getMprice));
+	    /////////////////////////////////////////////////////////////
+		cnt=0;
+		for(Milk m : milks) { System.out.printf("%d %s %d\n", ++cnt,m.getMname(),m.getMprice()); }
+		// void java.util.List.sort( Comparator<? super Milk>c)
+		// 리턴값 void (안에서 알아서처리)
+		// Comparator<? super Milk> c - Comparator 비교 부품객체 <? super Milk> - Milk포함한 부모 객체
 		
 		System.out.println("<Set>");
 		Set<Milk> sets = new LinkedHashSet<>();
@@ -66,9 +87,8 @@ public class Day028 {
 		//   for(String m : maps.keySet()) {
 		//	   Milk u = maps.get(m);
 		//	   System.out.println(m + "\t"+u.getMname()+"\t"+u.getMprice());}
-		   for(String key : maps.keySet()) {
-			   System.out.printf("%s %s %s\n",key,maps.get(key).getMname(),maps.get(key).getMprice());
-		   }
+		   for(String key : maps.keySet()) { // for(Entry<String, Milk> e :maps.entrySet()){ // e.getkey(),e.getValue()
+			   System.out.printf("%s %s %s\n",key,maps.get(key).getMname(),maps.get(key).getMprice());}
 	}
 }
 /*
