@@ -8,11 +8,41 @@ import java.util.function.Supplier;
 
 public class Lambda004 {
 	public static void main(String[] args) {
-		Consumer  consumer;
-		Supplier  supplier;  
-		Predicate predicate;
-		Function  function;
-		IntBinaryOperator  operator;
+		//(t) - > {} accept 받는용도
+		//void java.util.function.Consumer.accept( T t )
+		//Consumer<String>  consumer=(t)->{System.out.println("hello:)" + t);};
+		//Consumer<String>  consumer=t->System.out.println("hello:)" + t);//ver-1 람다식 정리
+		Consumer<String> consumer = System.out::println; //ver-2 참조형
+		consumer.accept("lambda");
+		consumer.accept("뚜비");
+		
+		//() -> {return} get 주는용도
+		//T java.util.function.Supplier.get()
+		//Supplier<String>  supplier=()->{return "hello";};
+		Supplier<String>  supplier=()->"hello"; //ver-1 람다식 정리
+		System.out.println(supplier.get());
+		
+		//(t) -> {return true;} test 판단 용도
+		//boolean java.util.function.Predicate.test( T t )
+		//Predicate<Integer> predicate=(t)->{return t<0;};
+		Predicate<Integer> predicate=t->t<0; //ver-1 람다식 정리
+		System.out.println(predicate.test(10)); //false
+		System.out.println(predicate.test(-10)); //true
+		
+		//(t) -> {return} 처리 apply
+		//R java.util.function.Function.apply( T t )
+		//Function<String,Integer>  function=(t)->{return Integer.parseInt(t); }; //ver-1 람다식 정리
+		//Function<String,Integer>  function=t->Integer.parseInt(t); //ver-2 참조형
+		Function<String,Integer>  function=Integer::parseInt;
+		System.out.println(function.apply("10")+3);//13
+		
+		//() -> {return}
+		//int java.util.function.IntBinaryOperator.applyAsInt( int left, int right )
+		//IntBinaryOperator  operator=(left,right)->{return left>right? left:right;};
+		IntBinaryOperator  operator=(left,right)->left>right? left:right;//ver-1 람다식 정리
+		//IntBinaryOperator  operator=Math::max;//ver-2 참조형
+		System.out.println(operator.applyAsInt(10, 3));
+		System.out.println(operator.applyAsInt(30, 10));
 
 	}
 

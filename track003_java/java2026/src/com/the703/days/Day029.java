@@ -45,12 +45,12 @@ public class Day029 {
 		players.add(new Player("Bowser", 900));
 		players.add(new Player("Bowser", 900));
 		
-//		players.sort(new Comparator<Player>() {
-// @Override public int compare(Player o1, Player o2) {  return Integer.compare(o1.getScore(), o2.getScore()); }   });
+//		players.sort(new Comparator<Player>() { //익명클래스-오름차순
+// @Override public int compare(Player o1, Player o2) {  return Integer.compare(o1.getScore(), o2.getScore()); }   }); 
 		
-//		players.sort((o1,o2)->Integer.compare(o1.getScore(), o2.getScore()));
+//		players.sort((o1,o2)->Integer.compare(o2.getScore(),o1.getScore() ));//람다식-내림차순
 		
-		players.sort(Comparator.comparingInt(Player::getScore));
+		players.sort(Comparator.comparingInt(Player::getScore)); //참조
 		
 		//Q3. List-중복허용
 		int cnt =0;
@@ -66,9 +66,9 @@ public class Day029 {
 		setPlayers.add(new Player("Bowser", 900));
 		setPlayers.add(new Player("Bowser", 900));
 		cnt=0;
-		Iterator<Player> iter = setPlayers.iterator();
-		while(iter.hasNext()) {
-			Player p = iter.next();
+		Iterator<Player> iter = setPlayers.iterator(); //줄세우기
+		while(iter.hasNext()) { // 처리대상의 유무
+			Player p = iter.next(); //하나씩 꺼내오기
 			System.out.println(++cnt+ "\t"+p.getName()+"\t"+p.getScore());
 		}
 		
@@ -80,11 +80,7 @@ public class Day029 {
 		mapPlayers.put("bowser", new Player("Bowser", 900));
 		
 		for(Entry<String, Player> p : mapPlayers.entrySet()) {
-			
-			System.out.println(p.getKey()+"\t"+p.getValue().getName()+"\t"+p.getValue().getScore());
-			
-		}
-
+			System.out.println(p.getKey()+"\t"+p.getValue().getName()+"\t"+p.getValue().getScore());}
+		
 	}
-
 }
