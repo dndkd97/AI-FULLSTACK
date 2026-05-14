@@ -86,7 +86,7 @@ localhost : 8080
 4.  RDBMS는 ________ Database Management System의 약자이다.
 :Relational
 5. RDBMS의 구성요소는   ________, ________, ________ 
-:객체,관계,속성
+:개체,관계,속성
 6. 데이터베이스 언어
 DDL(  정의어   )  CREATE, ALTER, DROP 
 DML(   )    ________, ________, ________ , ________ 
