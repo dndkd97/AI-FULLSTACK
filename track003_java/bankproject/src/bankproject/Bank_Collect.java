@@ -10,55 +10,79 @@ class BankDto{
 	private double balance;
 	
 	public BankDto(String id, String pass, double balance) {
-		super();
-		this.id = id;
-		this.pass = pass;
-		this.balance = balance;
-	} 
+		super(); this.id = id; this.pass = pass; this.balance = balance;}
+	
+	public String getId() { return id; }  public void setId(String id) { this.id = id; }
+	public String getPass() { return pass; }  public void setPass(String pass) { this.pass = pass; }
+	public double getBalance() { return balance; }  public void setBalance(double balance) { this.balance = balance; }
 }
 class Bank1{
+	Scanner sc = new Scanner(System.in);
 	List<BankDto>  users;
 	public Bank1() { super(); }
 	public Bank1(List<BankDto> users) { super(); this.users = users; }
-	// 메뉴 - 안에 내용작성
+
 	public void menu() {
+		int menu=-1; 
+		while(menu!=9) {
 		System.out.print("\n\n🌟💰 WELCOME TO BANK SYSTEM 💰🌟\r\n"
 				+ "[1] ➕ 계좌 추가 [2] 🔍 계좌 조회 [3] 💵 입금하기 [4] 💸 출금하기 [5] 🗑️ 계좌 삭제  [9]종료\r\n" + "👉 번호를 선택하세요:");
-		
-	}   
-	// 유저추가  (add)
+	    menu = sc.nextInt();
+	    if (menu == 9) {
+			System.out.println("프로그램을 종료합니다.");}
+	   else if (menu == 1) {add();} //계좌추가
+	   else if (menu >= 2 && menu <= 5) {
+			BankDto user = login(); //사용자 인증기능
+			if (user == null) { System.out.println("정보확인해주세요.");continue;}
+			switch (menu) {
+			case 2: view(user); break; //조회기능
+			case 3: addbalance(user); break; //입금기능
+			case 4: Withdrawal(user); break; //출금기능
+			case 5: delete(user); break; /*삭제기능*/}/*switch*/  }/*menu2~5*/ }//while
+	}    
+	
 	public void add() {
-		Scanner sc = new Scanner(System.in);
-		int num = sc.nextInt();
-		
-		
-		     if(num ==1 ) {}
-		else if(num ==2 ) {}
-		else if(num ==3 ) {}
-		     
-		//변수
-		//입력 - 사용자에게 정보입력받기
-		//처리 
-//		users.add( new BankDto("aaa" , "pass" , 1 ) );
-		//출력
+		System.out.println("아이디입력");String id=sc.next(); //아이디 중복검사 +
+		for(BankDto u : users) {
+			if(u.getId().equals(id)) {System.out.println("중복계좌입니다");}}
+		System.out.println("비밀번호입력"); String pass=sc.next();
+		System.out.print("잔액    입력 > "); Double balance = sc.nextDouble();
+		users.add(new BankDto(id,pass,balance));
+		}
+	       
+	BankDto  login() {// 3.사용자 인증기능
+		System.out.print("아이디  입력 > "); String tempid = sc.next();
+		System.out.print("비밀번호 입력 > "); String temppass = sc.next();
+		for(BankDto u : users) { if(u.getId().equals(tempid) && u.getPass().equals(temppass)){return u;}}
+		return null; } 
+
+	public void view(BankDto user) { // 5.조회기능
+		System.out.println("ID : " + user.getId());
+		System.out.println("PASS : " + user.getPass());
+		System.out.println("balance : " + user.getBalance());}
+
+	public void addbalance(BankDto user) {// 6.입금기능
+		System.out.print("입금할 금액 > "); double money = sc.nextDouble();
+		user.setBalance(user.getBalance()+money); System.out.println("입금완료!");}
+	
+	public void Withdrawal(BankDto user) { // 7.출금기능
+		System.out.print("출금할 금액 > "); double tempbalance = sc.nextDouble();
+		if(tempbalance> user.getBalance()){System.out.println("잔액부족! 출금불가");}
+		else {user.setBalance(user.getBalance()-tempbalance);
+			System.out.println("출금완료! 현재잔액 :" +user.getBalance());}
 	}
-	// 입금   (get)
-	// 출금   (get)
-	// 유저삭제(remove)
-	// 종료   
+
+	public void delete(BankDto user) { // 8.삭제기능
+		System.out.print("계좌삭제 (Y/N) > "); char again = sc.next().charAt(0);
+		if (again == 'Y' || again == 'y') {
+			users.remove(user); System.out.println("계좌삭제완료"); } }
 }
 
-
-
 public class Bank_Collect {
-
 	public static void main(String[] args) {
 		List<BankDto>  users = new ArrayList<>();
 		Bank1      controller = new Bank1(users);
 		controller.menu();
-		controller.add();
-       System.out.println(controller.users);
 
 	}
-
 }
