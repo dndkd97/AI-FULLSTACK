@@ -2,9 +2,12 @@ package bankproject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 class BankDto{
+
+	public BankDto() {  }
 	private String id;
 	private String pass;
 	private double balance;
@@ -44,7 +47,7 @@ class Bank1{
 	public void add() {
 		System.out.println("아이디입력");String id=sc.next(); //아이디 중복검사 +
 		for(BankDto u : users) {
-			if(u.getId().equals(id)) {System.out.println("중복계좌입니다");}}
+			if(u.getId().equals(id)) {System.out.println("중복계좌입니다"); return;}}
 		System.out.println("비밀번호입력"); String pass=sc.next();
 		System.out.print("잔액    입력 > "); Double balance = sc.nextDouble();
 		users.add(new BankDto(id,pass,balance));
@@ -75,7 +78,8 @@ class Bank1{
 	public void delete(BankDto user) { // 8.삭제기능
 		System.out.print("계좌삭제 (Y/N) > "); char again = sc.next().charAt(0);
 		if (again == 'Y' || again == 'y') {
-			users.remove(user); System.out.println("계좌삭제완료"); } }
+			users.remove(user); System.out.println("계좌삭제완료"); }
+		else {System.out.println("계좌삭제실패");   }}
 }
 
 public class Bank_Collect {
