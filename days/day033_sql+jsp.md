@@ -109,10 +109,22 @@ alter table userinfo rename users;
 | age   | int          | NO   |     | NULL    |                |
 +-------+--------------+------+-----+---------+----------------+
 3 rows in set (0.00 sec)
-
+:use test;
+drop table userinfo; -- 테이블 있다면 삭제시(드래그해서 선택)
+create table userinfo(
+no int not null primary key auto_increment,
+name varchar(100) not null,
+age int not null
+);
+show tables;
+desc userinfo;
 
 3. 다음을 수정  
 -- 1. 이메일 필드 추가(add)       email varchar(100)
+:alter table userinfo add email varchar(100);
 -- 2. 이메일 필드 수정(change)   email을 email2로  자료형은 varchar(50) 으로 
+:alter table userinfo change email email2 varchar(50);
 -- 3. 이메일 필드 수정(modify)   email을 email2로  자료형은 varchar(50) 으로 
+:alter table userinfo modify email2 varchar(100);
 -- 4. 이메일 필드 삭제(drop)   
+:alter table userinfo drop email2;

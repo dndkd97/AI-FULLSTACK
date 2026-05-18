@@ -27,8 +27,8 @@ ex)delete from userinfo2 where age=11;
 ### 복습문제
 -- STEP1) 
 -- 1.  데이터베이스 언어 - 다음과 같은형식으로 빈칸 채우기
--- DDL(             )   
--- DML(             )   
+-- DDL(  정의어   )  CREATE , ALTER ,  DROP
+-- DML(  조작어   )  INSERT , DELETE , UPDATE , SELECT
 -- DCL(  제어어   )  GRANT , REVOKE
 
 
