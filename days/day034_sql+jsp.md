@@ -54,11 +54,15 @@ ex)delete from userinfo2 where age=11;
 -- |  3 | third  |  33 |
 -- |  4 | fourth |  44 |
 -- +----+--------+-----+
-:create table userinfo_ex select*from userinfo
+:use mbasic; -- datebase 선택
+show tables; -- 테이블들 확인
+create table userinfo_ex select*from userinfo; -- 테이블 만들기(구조+데이터)
+alter table userinfo_ex modify no int not null primary key auto_increment; -- 숫자 자동증가+기분키
+desc userinfo_ex; -- 테이블 구조 확인
+select*from userinfo_ex; -- 전체 데이터 검색
 
-
--- Q2. userinfo_re1 에  다음과 같이 데이터 추가 
--- mysql> select * from userinfo_re1;
+-- Q2. userinfo_ex 에  다음과 같이 데이터 추가 
+-- mysql> select * from userinfo_ex;
 -- +----+--------+-----+
 -- | no | name   | age |
 -- +----+--------+-----+
@@ -72,8 +76,8 @@ ex)delete from userinfo2 where age=11;
 :insert into userinfo_ex(no,name,age)values(5,'fifth',50);
 insert into userinfo_ex(no,name,age)values(6,'six',66);
 
--- Q3. userinfo_re1 에 데이터 수정
--- mysql> select * from userinfo_re1;
+-- Q3. userinfo_ex 에 데이터 수정
+-- mysql> select * from userinfo_ex;
 -- +----+--------+-----+
 -- | no | name   | age |
 -- +----+--------+-----+
@@ -88,8 +92,8 @@ insert into userinfo_ex(no,name,age)values(6,'six',66);
 update userinfo_ex set name='sixth' where no=6;
 
 
--- Q4. userinfo_re1 에 데이터 삭제
--- mysql> select * from userinfo_re1;
+-- Q4. userinfo_ex 에 데이터 삭제
+-- mysql> select * from userinfo_ex;
 -- +----+--------+-----+
 -- | no | name   | age |
 -- +----+--------+-----+
