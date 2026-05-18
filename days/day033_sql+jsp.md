@@ -91,8 +91,8 @@ alter table userinfo rename users;
 
 1.  데이터베이스 언어
 -- DDL(  정의어   )  CREATE, ALTER, DROP 
--- DML(   )    ________, ________, ________ , ________ 
--- DCL(   )     ________, ________
+-- DML(  조작어   )  INSERT, DELETE, UPDATE, SELECT  
+-- DCL(  제어어   )  GRANT, REVOKE
 
 
 2. 다음과 같이 테이블준비
