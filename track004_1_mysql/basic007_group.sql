@@ -670,5 +670,10 @@ select  dept,job,count(*) as`사원수`, max(sal) as `최고급여` , sum(sal) a
 avg(sal) as `평균급여` from emp group by dept,job order by dept asc;
 	
 -- mysql>
-
+desc milk_order;
+desc milk;
+select*from milk_order;
+select*from milk;
+alter table milk_order modify ono int not null auto_increment;
+alter table milk_order modify oname varchar(20) not null;
 --  
