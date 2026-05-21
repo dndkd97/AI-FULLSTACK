@@ -222,10 +222,45 @@
       </div>
     </div>
   </div>
+<div class="card">
+    <div class="card-header bg-secondary">
+      <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseFour">
+        milk 검색
+      </a>
+    </div>
+    <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
+      <div class="card-body">
+         <form action="jsp012_search.jsp" method="post" onsubmit="return order3()">
+        	   <div class="my-3">
+			       <label for="mno" class="form-lael">우유 번호</label>
+			       <input type="text" class="form-control" id="mno3" name="mno" />
+		       </div>
+		     
+		       <div class="my-3"> 
+		           <button  type="submit"  class="btn btn-warning" > milk 검색 </button>
+		       </div>
+	       </form>
+	       <script>
+	       function order3(){
 
+	    	   let mno =document.getElementById("mno3");
+	    	   
+	    	   if(mno.value===""){
+	    		   alert("번호 빈칸입니다");
+	    		   ono.focus();
+	    		   return false;}
+	    	    return true;
+	    	   
+	       }
+	       </script>
+      </div>
+    </div>
+  </div>
 </div>
 
 </div>
-
+<div>
+<h4></h4>
+</div>
 </body>
 </html>
