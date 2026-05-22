@@ -600,3 +600,27 @@ select upper(name) from fn_select_userinfo2 where age>=40;
 -- +------+------+
 --  
 select name, concat(left(name,1) ,'-' ,right(name,1)) `test` from fn_select_userinfo2 where length(name)>=3;
+select*from milk;
+select*from milk product where mno=1;
+select*from userinfo product where no=2;
+
+
+show databases;
+create database dbdbig;
+use dbdbig;
+show tables;
+desc mvcboard1;
+select*from mvcboard1;
+create table mvcboard1(
+bno int primary key not null auto_increment,
+bname varchar(200) not null,
+bpass varchar(50) not null,
+btitle varchar(1000) not null,
+bcontent text not null,
+bdate timestamp  not null default current_timestamp,
+bhit int not null default 0, 
+bip varchar(50) not null
+);
+
+select*from mvcboard1;
+update mvcboard1 modify set bname='dayoung' and bcontent ='hi' where bno=1;
