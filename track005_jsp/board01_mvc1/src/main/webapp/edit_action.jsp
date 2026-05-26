@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>   
 <!DOCTYPE html>
 <%
-String bno=request.getParameter("bno");
+int bno=Integer.parseInt(request.getParameter("bno"));
 String bpass = request.getParameter("bpass");
 String btitle = request.getParameter("btitle");
 String bcontent = request.getParameter("bcontent");
@@ -15,10 +15,11 @@ try{
 	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdbig","root","1234");
 	pstmt = conn.prepareStatement
 	("update mvcboard1 set btitle=?, bcontent=? where bno=? and bpass=?");
+	
 			
 	pstmt.setString(1,btitle);
 	pstmt.setString(2,bcontent);
-	pstmt.setString(3,bno);
+	pstmt.setInt(3,bno);
 	pstmt.setString(4,bpass);
 	
 	int result =pstmt.executeUpdate();

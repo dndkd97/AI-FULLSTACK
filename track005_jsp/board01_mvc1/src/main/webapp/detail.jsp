@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>   
 <%@ include file = "inc/header.jsp" %>
 <%
-String bno=request.getParameter("bno");
+int bno=Integer.parseInt(request.getParameter("bno"));
 String bname="";
 String bpass="";
 String btitle="";
@@ -17,11 +17,11 @@ try{
 	
 	PreparedStatement pstmt2 = null;
     pstmt2 = conn.prepareStatement( "update mvcboard1 set bhit = bhit + 1 where bno=?" );
-    pstmt2.setString(1, bno);  pstmt2.executeUpdate();
+    pstmt2.setInt(1, bno);  pstmt2.executeUpdate();
 	
 	pstmt = conn.prepareStatement("select*from mvcboard1 where bno=?");
 
-	pstmt.setString(1,bno);
+	pstmt.setInt(1,bno);
 	ResultSet rset=null;
 	rset = pstmt.executeQuery();
 	while(rset.next()){
@@ -31,6 +31,8 @@ try{
 				bcontent=rset.getString("bcontent");
 				bhit=rset.getInt("bhit");
 	}
+
+	
 	
 }catch(Exception e){e.printStackTrace();}
 
