@@ -623,4 +623,11 @@ bip varchar(50) not null
 );
 
 select*from mvcboard1;
-update mvcboard1 modify set bname='dayoung' and bcontent ='hi' where bno=1;
+update mvcboard1 modify set bname='dayoung', bcontent ='hi' where bno=1;
+update mvcboard1 modify set btitle='글쓰기' where bno=1;
+
+alter table mvcboard1 auto_increment=1;
+set @cnt=0;
+update mvcboard1 set mvcboard1.bno = @cnt:=@cnt+1;
+desc mvcboard1;
+select count(*) `cnt` from mvcboard1;

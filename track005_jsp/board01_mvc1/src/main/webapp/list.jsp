@@ -23,15 +23,31 @@
     	  Class.forName("com.mysql.cj.jdbc.Driver");
     	  Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdbig", "root", "1234");
     	  PreparedStatement pstmt= null; ResultSet rset = null;
-    	  pstmt=conn.prepareStatement("select*from mvcboard1 order by bno desc");
-    	  rset=pstmt.executeQuery();
-    	  while(rset.next()){
-    		  out.println("<tr><td>"+rset.getInt("bno")+"</td><td><a href='detail.jsp?bno="+rset.getInt("bno")+"'>"+rset.getString("btitle")
+    	//  ResultSet rset2 = null;
+    	//  PreparedStatement pstmt2 = null;
+    	//  pstmt2= conn.prepareStatement ("select count(*) `cnt` from mvcboard1");
+    	//  rset2=pstmt2.executeQuery();
+    	 
+    	  
+    	  pstmt = conn.prepareStatement("select b.* , (select count(*) from mvcboard1)`cnt` "+" from mvcboard1 b order by bno desc" , ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+    	 // pstmt=conn.prepareStatement("select b.* , (select count(*) from mvcboard1)`cnt` "+"from mvcboard1 b order by bno desc");
+    	 // pstmt=conn.prepareStatement("select*from mvcboard1 order by bno desc");  
+    	  rset=pstmt.executeQuery(); //표
+    	  int no =-1;
+    	  if(rset.next()){no=rset.getInt("cnt"); //칸 
+    	  				  rset.beforeFirst(); //다시 처음부터 표기
+    	  }
+    	  
+    	  while(rset.next()){//
+    		  out.println("<tr><td>"+ no-- +"</td><td>"
+    	  +"<a href='detail.jsp?bno="+rset.getInt("bno")+"'>"+rset.getString("btitle")
     		  +"</a></td><td>"+rset.getString("bname")+"</td><td>"+rset.getString("bdate")
     		  +"</td><td>"+rset.getString("bhit")+"</td></tr>"  ); }
     	  if(rset!=null){rset.close();}
+    	//  if(rset2!=null){rset2.close();}
     	  if(pstmt!=null){pstmt.close();}
     	  if(conn!=null){conn.close();}
+    	//  if(pstmt2!=null){pstmt2.close();}
       }catch(Exception e){e.printStackTrace();}
       %>
       </tbody>

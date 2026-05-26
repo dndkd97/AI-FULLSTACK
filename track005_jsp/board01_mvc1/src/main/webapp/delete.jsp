@@ -2,10 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
 <%@ include file="inc/header.jsp" %>
+<%int bno = Integer.parseInt(request.getParameter("bno")); %>
 
    <div class="container card my-5">
       <h3 class="card-header bg-danger my-1">글 삭제</h3>
-      <form action="#" method="post" onsubmit="return check()">
+      <form action="delete_action.jsp" method="post" onsubmit="return check()">
+      <input type="hidden" name="bno" value="<%=bno%>">
        <div class="my-3">
        <label for="bpass">비밀번호</label>
        <input type="text" class="form-control" id="bpass" name="bpass">
@@ -20,33 +22,10 @@
    <script>
    function check(){
    	let bpass = document.getElementById("bpass");
-   	if(bpass.value.trim()==""){ alert("비밀번호 빈칸입니다"); bpass.focus(); return false; }
+   	if(bpass.value.trim()==""){ alert("비밀번호 빈칸입니다"); bpass.focus(); return false; }return true;
    	
    }
    </script>
    
-   <%
-   String bno=request.getParameter("bno");
-   String bpass = request.getParameter("bpass");
-
-   if(request.getMethod().equals("POST")){
-   try{
-		Connection conn = null; PreparedStatement pstmt = null;
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdbig", "root", "1234");
-		pstmt = conn.prepareStatement("delete from mvcboard1 where bno=? and bpass=?");
-
-		pstmt.setString(1,bno);
-		pstmt.setString(2,bpass);
-		int result = pstmt.executeUpdate();
-		
-		if(pstmt!=null){pstmt.close();}
-		if(conn!=null){conn.close();}
-		
-		if(result>0){out.println("<script>alert('글 삭제 완료'); location.href='list.jsp'; </script>");}
-		else {out.println("<script>alert('글 삭제 실패'); location.href='list.jsp'; </script>");}
-		
-		
-	}catch(Exception e){e.printStackTrace();}}
-   %>
+  
 <%@include file="inc/footer.jsp" %>

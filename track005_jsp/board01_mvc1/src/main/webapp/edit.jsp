@@ -4,7 +4,8 @@
 <%@ include file="inc/header.jsp" %>
 
 <%
-String bno=request.getParameter("bno");
+request.setCharacterEncoding("UTF-8");
+int bno=Integer.parseInt(request.getParameter("bno"));
 String bname="";
 String bpass="";
 String btitle="";
@@ -16,7 +17,7 @@ try{
 	Connection conn = null; PreparedStatement pstmt = null;
 	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdbig","root","1234");
 	pstmt = conn.prepareStatement("select*from mvcboard1 where bno=?");
-	pstmt.setString(1,bno);
+	pstmt.setInt(1,bno);
 	ResultSet rset=null;
 	rset = pstmt.executeQuery();
 	while(rset.next()){
@@ -25,6 +26,7 @@ try{
 				btitle=rset.getString("btitle");
 				bcontent=rset.getString("bcontent");
 	}
+
 	
 }catch(Exception e){e.printStackTrace();}
 
