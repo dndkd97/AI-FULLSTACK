@@ -18,8 +18,12 @@ day039
 
 
 상세보기
-select*from mvcboard1 order bno desc
 select*from mvcboard1 where bno=?
 
 수정하기
-update mvcboard1 set bhit=bhit+1 where bno=?
+pstmt = conn.prepareStatement("select*from mvcboard1 where bno=?");
+pstmt2 = conn.prepareStatement( "update mvcboard1 set bhit = bhit + 1 where bno=?" );
+
+
+삭제하기
+delete from mvcboard1 where bno=? and bpass=?

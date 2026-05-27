@@ -17,28 +17,36 @@
 -- select (3) - 함수 ( Number, String, Date , if, switch )
 
 -- 1. 시스템의 현재 시각 조회 
+select now(); 
+select current_time();
+select current_date();
 
 -- 2.  요일  ( 0= Mon  , 1=Tue    6=Sun) 
+select weekday(now()); -- 1 화요일
+select weekday("2026-05-26"); -- 1 화요일
 
 -- 3.  날짜형식  date_format(  날짜지정, '%Y-%m-%d %H:%i-%s' )
-
+select date_format("2023-11-28", "%Y-%m-%d");
+select date_format(now(), "%Y-%m-%d");
+select date_format(now(), "%Y-%m-%d %H:%i-%s");
 
 -- 참고사항)
 -- https://www.w3schools.com/sql/func_mysql_date_format.asp
 
 
 -- 4.  100일전/ 100일 후  - date_add 
-
-
+select date_add(now(),interval -10 day);
+select date_add(now(), Interval 10 day);
+select date_add(now(), interval -3 hour);
 
 -- YEAR MONTH DAY HOUR MINUTE SECOND
 -- https://www.w3schools.com/sql/func_mysql_date_add.asp
 
 
 -- 5. datediff  /  timestampdiff 
-
-
-
+select datediff("2026-05-28", "2026-05-26");
+select timestampdiff(hour, "2026-05-28", "2026-05-26");
+-- now () , weekday (0=월,6=일) , date_format(날짜,"%Y-%m-%d %H:%i-%s"), date_add
 
 -- ■ 2. CRUD (SELECT Function-Date  연습문제)
 -- >> 연습문제1)  date_userinfo
@@ -54,7 +62,18 @@
 -- | date  | datetime     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
 -- +-------+--------------+------+-----+-------------------+-------------------+
 -- 4 rows in set (0.01 sec)
+use mbasic;
+show tables;
+desc date_userinfo;
+create table date_userinfo(
+no int not null default 0,
+name varchar(100) not null,
+age int not null,
+date datetime default current_timestamp 
+);
 
+ create table date_userinfo select*from userinfo where 1=2; -- 구조만 복사
+ select*from date_userinfo;
 
 -- mysql> select * from date_userinfo;
 -- +----+------+-----+---------------------+
@@ -66,7 +85,10 @@
 -- |  4 | ddd  |  44 | 2022-09-30 00:00:00 |
 -- +----+------+-----+---------------------+
 -- 4 rows in set (0.00 sec)
-
+insert into date_userinfo values(1,"aaa",11,"2022-12-30 00:00:00");
+insert into date_userinfo values(2,"bbb",22,"2022-11-30 00:00:00");
+insert into date_userinfo values( 3 , "ccc"  ,  33 , "2022-10-30 00:00:00");
+insert into date_userinfo values(4 , "ddd"  , 44 , "2022-09-30 00:00:00");
 -- mysql>
 
 -- > [001] '2022-11-01' 이전에 회원가입한 유저의 다음과 같이 데이터를 조회하시오
@@ -76,7 +98,7 @@
 -- | ccc  | 2022-10-30 00:00:00 |
 -- | ddd  | 2022-09-30 00:00:00 |
 -- +------+---------------------+
-
+select name,date from date_userinfo where date <'2022-11-01';
 
 -- > [002] '12'월달에  회원가입한 유저에게 30일 연장 이벤트를 실시하려고 한다.
 -- +------+---------------------+---------------------+
@@ -85,7 +107,8 @@
 -- | aaa  | 2022-12-30 00:00:00 | 2023-01-29 00:00:00 |
 -- +------+---------------------+---------------------+
 
-
+ select name, date , date_add(date, Interval 30 day)`event` from date_userinfo where Month(date)=12;
+                                                            -- where date>='2022-12-1' and date <= '2022-12-31'
 
 -- > [003] 다음과 같이 유저의 가입날자를 조회하시오.
 -- +------+----------------+
@@ -97,21 +120,21 @@
 -- | ddd  | 2022년09월30일 |
 -- +------+----------------+
 -- 4 rows in set (0.01 sec)
-
-
+select name , date_format(date , "%Y년%m월%d일")`가입날짜` from date_userinfo;
+ 
 
 
 -- >> 연습문제2)  select_emp
 -- > 1. 금일날짜를 출력하시오.
-
+select now();
 -- > 2.  금일과  이번년도 크리스마스  날짜사이의 일수 차이를 구하시오
-
+select datediff("2026-12-25", now());
 -- > 3. 현재날짜에서 5개월 더해 출력하시오.
-
+select date_add(now(), interval + 5 month);
 -- > 4. 현재날짜를 기준으로 가장 가까운 일요일의 날짜를 구하시오.
 -- -- 0 = Monday, 1 = Tuesday, 2 = Wednesday, 3 = Thursday, 4 = Friday, 5 = Saturday, 6 = Sunday.
-
-
+select date_add(current_date(),  interval(6- weekday(current_date())) day);
+-- 6 - 현재시간 = 0
 
 
 
@@ -134,7 +157,34 @@
 -- |    3 |
 -- +------+
 -- 3 rows in set (0.00 sec)
+create table control(no int);
+insert into control values(1),(2),(3);
+select*from control;
 
+-- if(조건,참,거짓)
+-- 1이다, 1이 아니다
+select no ,if(no=1, '1이다','1이 아님') `1상태` 
+from control;
+
+-- 1보다 크다,작다
+select no , if(no>1, '크다','작다')`1보다 작다,크다` from control;
+
+-- case
+select no , case 
+when no=1 then '1이다'
+when no=2 then '2이다'
+when no=3 then '3이다'
+else '1,2,3이 아니다.'
+end `상태` 
+from control;
+
+select no, case
+when no>2 then '2보다 크다'
+when no=2 then '2이다'
+when no<2 then '2보다 작다'
+else '1,2,3이 아니다.'
+end `상태` 
+from control;
 -- mysql>
 
 -- ■ 4. CRUD (SELECT Function-IF , CASE 연습문제)
@@ -150,7 +200,13 @@
 -- | sns   | char(1)      | YES  |     | NULL    |                |
 -- +-------+--------------+------+-----+---------+----------------+
 -- 5 rows in set (0.00 sec)
-
+desc if_userinfo;
+create table if_userinfo select*from userinfo where 1=2;
+select*from if_userinfo;
+alter table if_userinfo modify no int not null primary key auto_increment;
+alter table if_userinfo modify age int null default 0;
+alter table if_userinfo add sex char(1);
+alter table if_userinfo add sns char(1);
 -- mysql> select * from if_userinfo;
 -- +----+--------+------+------+------+
 -- | no | name   | age  | sex  | sns  |
@@ -163,8 +219,12 @@
 -- |  6 | sixth  |   66 | m    | n    |
 -- +----+--------+------+------+------+
 -- 6 rows in set (0.00 sec)
-
-
+insert into if_userinfo values(1 , "first"  ,   11 , NULL , "n");
+insert into if_userinfo values(2 , "second" ,  122 , "m"    , "y");
+insert into if_userinfo values(3 , "third"  ,   33 , "m"    , "y");
+insert into if_userinfo values(4 , "fourth" ,   44 , "f"    , "n ");
+insert into if_userinfo values(5 , "fifth"  ,   55 , "f"    , "y");
+insert into if_userinfo values(6 , "sixth"  ,   66 , "m"    , "n");
 
 -- >> 연습문제1)
 -- [question1]sns의 수신여부상태를 구하시오
@@ -179,7 +239,7 @@
 -- |  6 | sixth  |  66 | m    | n    | 수신거부     |
 -- +----+--------+-----+------+------+--------------+
 
-
+select no, name,age,sex,sns,if(sns="n", '수신유지','수신거부') `수신여부상태` from if_userinfo;
 
 -- [question2]나이가 19세 미만이면 미성년자, 성인을 구하시오.
 -- +----+--------+-----+------+------+----------+
@@ -194,7 +254,7 @@
 -- +----+--------+-----+------+------+----------+
 -- 6 rows in set (0.00 sec)
 
-
+select no, name , age , sex , sns , if(age>20 , '성인','미성년자') `성인여부` from if_userinfo;
 
 
 
@@ -205,7 +265,7 @@
 -- |             3 |
 -- +---------------+
 
-
+select count(*)`sns 수신거부수` from if_userinfo where sns="n";
 
 -- == (2) case
 -- [question1] emp 테이블을 이용하여
@@ -229,8 +289,9 @@
 -- | MILLER |     10 | ACCOUNTING |
 -- +--------+--------+------------+
 -- 14 rows in set (0.00 sec)
-
-
+select ename,dept,case when dept=10 then 'ACCOUNTING' when dept=20 then 'RESEARCH' when dept=30 then 'SALES' end `부서이름` from emp;
+desc emp;
+select*from emp;
 
 
 
@@ -256,7 +317,18 @@
 -- +--------+-----------+----------+
 -- 14 rows in set (0.00 sec)
 
+select ename,job,case when job = "CLERK" then '판매원' when job="SALESMAN" then '영업사원' else '사원' end `job2` from emp;
 
-
-
-
+use dbdbig;
+show tables;
+desc users;
+create table users(
+uno int not null primary key auto_increment,
+nickname varchar(20) not null,
+bpass  varchar(50)  not null,
+email  varchar(100)  not null,
+mobile varchar(50) not null,
+udate  timestamp  not null Default  CURRENT_TIMESTAMP,
+bip varchar(50)  not null
+);
+select*from users;

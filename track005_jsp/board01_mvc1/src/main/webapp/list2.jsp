@@ -31,19 +31,19 @@
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+          <a class="nav-link" href="login.jsp">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/join.jsp">Join</a>
+          <a class="nav-link" href="join.jsp">Join</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/mypage.jsp">Mypage</a>
+          <a class="nav-link" href="mypage.jsp">Mypage</a>
         </li>
                 <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/id.jsp">아이디찾기</a>
+          <a class="nav-link" href="id.jsp">아이디찾기</a>
         </li>
                 <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/pass.jsp">비밀번호찾기</a>
+          <a class="nav-link" href="pass.jsp">비밀번호찾기</a>
         </li>
       </ul>
     </div>
@@ -53,3 +53,9 @@
 <!-- header  -->
 <!-- header  -->
 <!-- header  -->
+<% if(session.getAttribute("email")!=null){  %>
+
+<div class="alert alert-info">반갑습니다[  <%= session.getAttribute("email") %> ]님 </div>
+<a href="logout1.jsp" class="btn btn-danger">로그아웃</a>
+
+<%} %>

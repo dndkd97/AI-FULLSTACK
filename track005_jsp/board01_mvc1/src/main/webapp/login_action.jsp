@@ -1,20 +1,33 @@
+<%@page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>JSP</title>
-<!-- Latest compiled and minified CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<%
+String email = request.getParameter("email");
+String bpass = request.getParameter("bpass");
 
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-   <div class="container card my-5">
-      <h3 class="card-header"></h3>
-       
-   </div>
-</body>
-</html>
+
+try{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection conn = null; PreparedStatement pstmt = null; ResultSet rset = null;
+	conn =DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdbig", "root", "1234");
+	pstmt= conn.prepareStatement("select*from users where email=? and bpass=?");
+	
+	pstmt.setString(1, email);
+	pstmt.setString(2, bpass);
+	
+	rset =pstmt.executeQuery();
+	
+	if(rset.next()){ session.setAttribute("email", email); 
+	session.setMaxInactiveInterval(60 * 60);
+	response.sendRedirect("list2.jsp");
+	out.println("<script>alert('로그인성공'); location.href='mypage.jsp';</script>");}
+	else{out.println("<script>alert('로그인실패'); history.go(-1);</script>");}
+	
+	if(rset!=null){rset.close();}
+	if(conn!=null){conn.close();}
+	if(pstmt!=null){pstmt.close();}
+	
+}catch(Exception e){e.printStackTrace();}
+
+
+%>
