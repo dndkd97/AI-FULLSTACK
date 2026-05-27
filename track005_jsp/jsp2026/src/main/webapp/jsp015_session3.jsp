@@ -1,0 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>   
+<%
+session.removeAttribute("userage");
+
+// response.sendRedirect("jsp015_1_session.jsp"); alertX
+out.println("<script>location.href='jsp015_1_session.jsp';</script>"); // alert O
+%>
