@@ -30,9 +30,18 @@
     </button>
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav ms-auto">
+      
+      
+     <%  if(session.getAttribute("email") == null){%>
         <li class="nav-item">
           <a class="nav-link" href="login.jsp">Login</a>
         </li>
+        <% } else{%>
+        
+                <li class="nav-item">
+          <a class="nav-link" href="logout1.jsp">Logout</a>
+        </li>
+<%} %>
         <li class="nav-item">
           <a class="nav-link" href="join.jsp">Join</a>
         </li>
@@ -53,9 +62,8 @@
 <!-- header  -->
 <!-- header  -->
 <!-- header  -->
-<% if(session.getAttribute("email")!=null){  %>
 
-<div class="alert alert-info">반갑습니다[  <%= session.getAttribute("email") %> ]님 </div>
-<a href="logout1.jsp" class="btn btn-danger">로그아웃</a>
+ <%  if(session.getAttribute("email")!= null){%>
+<div class="container card my-5 p-3">반갑습니다[  <%= session.getAttribute("email") %> ]님 </div>
 
-<%} %>
+<% } %>
