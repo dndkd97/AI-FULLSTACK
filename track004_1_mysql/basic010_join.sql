@@ -845,9 +845,63 @@ left join emp m
 on e.mgr = m.empno
 order by d.deptno asc ,e.empno asc;
 
+select    d.DEPTNO , d.DNAME  , e.EMPNO , e.ENAME, e.MGR  , e.SAL ,e.DEPTNO, 
+          s.LOSAL , s.HISAL ,s.GRADE ,
+          mgr.empno `MGR_EMPNO` , mgr.ename `MGR_ENAME` 
+from      emp e   right join  DEPT d      on (e.deptno = d.deptno)  
+                  left  join  salgrade s  on (e.sal  between  s.losal  and  s.hisal)
+                  left  join  emp mgr     on (e.mgr = mgr.empno)
+order by  d.deptno , e.empno ;    -- d.deptno  , e.ename   /    d.deptno , e.empno
+
+--
+select    d.DEPTNO , d.DNAME  , e.EMPNO , e.ENAME, e.MGR  , e.SAL ,e.DEPTNO, 
+          s.LOSAL , s.HISAL ,s.GRADE ,
+          mgr.empno `MGR_EMPNO` , mgr.ename `MGR_ENAME` 
+from     DEPT d   left join   emp e       on (e.deptno = d.deptno)  
+                  left  join  salgrade s  on (e.sal  between  s.losal  and  s.hisal)
+                  left  join  emp mgr     on (e.mgr = mgr.empno)
+order by  d.deptno , e.empno ; 
+
+--  using
+select    d.DEPTNO , d.DNAME  , e.EMPNO , e.ENAME, e.MGR  , e.SAL ,e.DEPTNO, 
+          s.LOSAL , s.HISAL ,s.GRADE ,
+          mgr.empno `MGR_EMPNO` , mgr.ename `MGR_ENAME` 
+from     DEPT d   left join   emp e       using(deptno)  
+                  left  join  salgrade s  on (e.sal  between  s.losal  and  s.hisal)
+                  left  join  emp mgr     on (e.mgr = mgr.empno)
+order by  d.deptno , e.empno ; 
+
+--  natural join
+select    d.DEPTNO , DNAME  , e.EMPNO , e.ENAME, e.MGR  , e.SAL , 
+          s.LOSAL , s.HISAL ,s.GRADE ,
+          mgr.empno `MGR_EMPNO` , mgr.ename `MGR_ENAME` 
+from     DEPT d   natural join   emp e       
+                  left  join  salgrade s  on (e.sal  between  s.losal  and  s.hisal)
+                  left  join  emp mgr     on (e.mgr = mgr.empno)
+order by   deptno ,  e.empno ; 
+
 
 
 -- mysql>
 select*from dept;
 select*from emp;
 select*from SALGRADE;
+
+
+use dbdbig;
+show tables;
+select*from users where email=1;
+select*from users where email=1;
+desc users;
+
+select email from users where nickname="1" and mobile="1";
+select*from users;
+select*from users where email="first@gmail.com" and bpass="1111";
+      insert into users (nickname, bpass, email, mobile, bip ) 
+      values            ('first' , '1111' , 'first@gmail.com' , '010-111-1111' , '127.0.0.1');
+      
+select*from users where email=1; 
+use mbasic;
+select    d.DEPTNO , DNAME    , EMPNO , ENAME ,JOB  , SAL  
+from      dept d  left join emp  e    on   d.deptno = e.deptno
+order  by  d.deptno, ename;
