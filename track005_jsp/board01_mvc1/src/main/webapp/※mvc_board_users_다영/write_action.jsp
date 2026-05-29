@@ -26,10 +26,11 @@ try{
 	pstmt.setString(5,InetAddress.getLocalHost().getHostAddress());
 	
 	int result =pstmt.executeUpdate();
-	if(pstmt!=null){pstmt.close();}
-	if(conn!=null){conn.close();}
 	if(result>0){out.println("<script>alert('입력 성공했습니다');location.href='list.jsp';</script>");}
 	else{out.println("<script>alert('관리자에게 문의바랍니다.');location.href='list.jsp';</script>");}
+
+	if(pstmt!=null){pstmt.close();}
+	if(conn!=null){conn.close();}
 	
 }catch(Exception e){e.printStackTrace();}
 

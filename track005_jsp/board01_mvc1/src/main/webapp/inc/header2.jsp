@@ -24,26 +24,38 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-danger-subtle">
         <h2 class="myhidden">주메뉴</h2>
     <div class="container-fluid">
-    <a class="navbar-brand" href="<%= request.getContextPath() %>/list2.jsp">Logo</a>
+    <a class="navbar-brand" href="<%= request.getContextPath() %>/index.jsp">Logo</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav ms-auto">
+      
+     <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
+     <c:if test="${empty sessionScope.email}">
         <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+          <a class="nav-link" href="LoginAction">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/join.jsp">Join</a>
+          <a class="nav-link" href="${pageContext.request.contextPath}/JoinAction">Join</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/mypage.jsp">Mypage</a>
-        </li>
+         </c:if>
+        <c:if test="${not empty sessionScope.email}">
                 <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/id.jsp">아이디찾기</a>
+          <a class="nav-link" href="${pageContext.request.contextPath}/Logout">Logout</a>
         </li>
-                <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/pass.jsp">비밀번호찾기</a>
+        <li class="nav-item">
+          <a class="nav-link" href="${pageContext.request.contextPath}/MyAction">${sessionScope.email}의 마이페이지</a>
+        </li>
+         </c:if>
+        <li class="nav-item">
+          <a class="nav-link" href="${pageContext.request.contextPath}/Email">이메일찾기</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${pageContext.request.contextPath}/Pass">비밀번호찾기</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="${pageContext.request.contextPath}/Users">사용자목록확인</a>
         </li>
       </ul>
     </div>

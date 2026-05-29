@@ -1,7 +1,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
-<%@ include file="inc/header2.jsp" %>
+<%@ include file="inc/header.jsp" %>
 
 <%
 request.setCharacterEncoding("UTF-8");

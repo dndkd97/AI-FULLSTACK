@@ -1,7 +1,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
-<%@ include file="inc/header2.jsp"%>
+<%@ include file="inc/header.jsp"%>
 
 <%
 request.setCharacterEncoding("UTF-8");
@@ -19,7 +19,7 @@ try{
 	conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/dbdbig","root","1234");
 	ResultSet rset = null;
 	
-	pstmt=conn.prepareStatement("select*from users where email=?");
+	pstmt=conn.prepareStatement("select * from users where email=?");
 	
 	pstmt.setString(1, email);
 	rset = pstmt.executeQuery();
@@ -30,6 +30,9 @@ try{
 		bip=rset.getString("bip");
 	}
 	
+	if(rset!=null){rset.close();}
+	if(pstmt!=null){pstmt.close();}
+	if(conn!=null){conn.close();}
 	
 }catch(Exception e){e.printStackTrace();}
 

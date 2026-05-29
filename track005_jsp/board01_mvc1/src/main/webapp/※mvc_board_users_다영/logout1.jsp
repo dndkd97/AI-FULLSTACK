@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>   
 <%
 session.invalidate();
-response.sendRedirect("list2.jsp");
+response.sendRedirect("list.jsp");
 %>

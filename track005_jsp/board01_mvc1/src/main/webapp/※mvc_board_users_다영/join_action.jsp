@@ -22,11 +22,12 @@ try{
 	pstmt.setString(5,InetAddress.getLocalHost().getHostAddress());
 			
 	int result = pstmt.executeUpdate();
+	if(result>0){out.println("<script>alert('회원가입성공');location.href='join.jsp';</script>");}
+	else {out.println("<script>alert('회원가입실패'); history.go(-1);</script>");}
+
 	if(pstmt!=null){pstmt.close();}
 	if(conn!=null){conn.close();}
 	
-	if(result>0){out.println("<script>alert('회원가입성공');location.href='join.jsp';</script>");}
-	else {out.println("<script>alert('회원가입실패'); history.go(-1);</script>");}
 	
 }catch(Exception e){e.printStackTrace();}
 

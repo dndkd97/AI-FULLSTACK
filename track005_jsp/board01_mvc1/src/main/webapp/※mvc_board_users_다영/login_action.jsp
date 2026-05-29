@@ -19,13 +19,13 @@ try{
 	
 	if(rset.next()){ session.setAttribute("email", email); 
 	session.setMaxInactiveInterval(60 * 60);
-	response.sendRedirect("list2.jsp");
+	response.sendRedirect("list.jsp");
 	out.println("<script>alert('로그인성공'); location.href='mypage.jsp';</script>");}
 	else{out.println("<script>alert('로그인실패'); history.go(-1);</script>");}
 	
 	if(rset!=null){rset.close();}
-	if(conn!=null){conn.close();}
 	if(pstmt!=null){pstmt.close();}
+	if(conn!=null){conn.close();}
 	
 }catch(Exception e){e.printStackTrace();}
 
