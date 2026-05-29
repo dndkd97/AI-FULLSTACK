@@ -18,7 +18,7 @@
 		pstmt.setString(2,bpass);
 		int result = pstmt.executeUpdate();
 		
-		if(result>0){out.println("<script>alert('글 삭제 완료'); location.href='index.jsp'; </script>");}
+		if(result>0){out.println("<script>alert('글 삭제 완료'); location.href='list.jsp'; </script>");}
 		else {out.println("<script>alert('글 삭제 실패'); history.go(-1); </script>");}
 		
 		if(pstmt!=null){pstmt.close();}

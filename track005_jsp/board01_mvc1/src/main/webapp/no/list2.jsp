@@ -24,13 +24,15 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-danger-subtle">
         <h2 class="myhidden">주메뉴</h2>
     <div class="container-fluid">
-    <a class="navbar-brand" href="<%= request.getContextPath() %>/list.jsp">Logo</a>
+    <a class="navbar-brand" href="<%= request.getContextPath() %>/list2.jsp">Logo</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav ms-auto">
-           <%  if(session.getAttribute("email") == null){%>
+      
+      
+     <%  if(session.getAttribute("email") == null){%>
         <li class="nav-item">
           <a class="nav-link" href="login.jsp">Login</a>
         </li>
@@ -41,18 +43,17 @@
         </li>
 <%} %>
         <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/join.jsp">Join</a>
+          <a class="nav-link" href="join.jsp">Join</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/mypage.jsp">Mypage</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/id.jsp">아이디찾기</a>
+          <a class="nav-link" href="mypage.jsp">Mypage</a>
         </li>
                 <li class="nav-item">
-          <a class="nav-link" href="${pageContext.request.contextPath}/pass.jsp">비밀번호찾기</a>
+          <a class="nav-link" href="id.jsp">아이디찾기</a>
         </li>
-        
+                <li class="nav-item">
+          <a class="nav-link" href="pass.jsp">비밀번호찾기</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -61,3 +62,8 @@
 <!-- header  -->
 <!-- header  -->
 <!-- header  -->
+
+ <%  if(session.getAttribute("email")!= null){%>
+<div class="container card my-5 p-3 bg-info-subtle">반갑습니다[  <%= session.getAttribute("email") %> ]님 </div>
+
+<% } %>

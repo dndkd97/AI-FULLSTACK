@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <%@ include file="inc/header2.jsp"%>
 
-<form action="join_action.jsp" method="post" onsubmit="return check()">
+<form action="JoinAction" method="post" onsubmit="return check()">
 	<div class="container card my-3">
 	<h3>회원가입</h3>
 	
@@ -44,6 +44,7 @@ function check(){
 	if(nickname.value.trim()==""){alert("닉네임 빈칸입니다"); nickname.focus(); return false;}
 	if(bpass.value.trim()==""){alert("비밀번호 빈칸입니다"); bpass.focus(); return false;}
 	if(email.value.trim()==""){alert("이메일 빈칸입니다"); email.focus(); return false;}
+	//if(email.value.includes("@"))
 	if(mobile.value.trim()==""){alert("휴대폰 빈칸입니다"); mobile.focus(); return false;}return true;
 }
 </script>

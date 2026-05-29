@@ -1,7 +1,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
-<%@ include file="inc/header2.jsp"%>
+<%@ include file="inc/header.jsp"%>
 
 <form action="login_action.jsp" method="post" onsubmit="return check()">
 	<div class="container card my-3">

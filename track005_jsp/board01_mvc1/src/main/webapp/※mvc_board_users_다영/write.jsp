@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>   
-<%@ include file="inc/header2.jsp" %>
+<%@ include file="inc/header.jsp" %>
 
 
  <form action="write_action.jsp" method="post" onsubmit="return check()">
@@ -27,7 +27,7 @@
      
         <button type="submit" title="입력" class="btn btn-primary">입력</button>
         <button type="reset" class="btn btn-danger">취소</button>
-        <a href="index.jsp" class="btn btn-primary">목록보기</a>
+        <a href="list.jsp" class="btn btn-primary">목록보기</a>
      </div>
    </div>
     </form>

@@ -332,3 +332,4 @@ udate  timestamp  not null Default  CURRENT_TIMESTAMP,
 bip varchar(50)  not null
 );
 select*from users;
+
