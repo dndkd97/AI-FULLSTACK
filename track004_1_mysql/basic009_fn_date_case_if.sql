@@ -333,3 +333,4 @@ bip varchar(50)  not null
 );
 select*from users;
 
+select now();
