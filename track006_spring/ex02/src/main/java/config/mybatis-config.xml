@@ -5,6 +5,6 @@
 <configuration>
 
 <typeAliases>
-  	<typeAlias type="" alias=""/>
+<typeAlias type="com.the703.dto.MvcboardDto" alias="MvcboardDto"/>
 </typeAliases>
 </configuration>

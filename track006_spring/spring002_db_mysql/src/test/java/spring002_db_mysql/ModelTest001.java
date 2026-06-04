@@ -29,12 +29,12 @@ public class ModelTest001 {
 	@Test
 	public void test5() {
 		//5.삭제
-		System.out.println(userinfo.delete(5));
+		//System.out.println(userinfo.delete(5));
 		//4.수정
 		//UserInfoDto dto = new UserInfoDto(); dto.setEmail("hello@gmail.com"); dto.setAge(100); dto.setNo(5);
 		//System.out.println(userinfo.update(dto));
 		//3.한명검색
-		System.out.println(userinfo.select(5));
+		//System.out.println(userinfo.select(5));
 		//dto.setEmail("hi@gmail.com");
 		//2.삽입
 		//UserInfoDto dto = new UserInfoDto(); 
