@@ -7,6 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class BasicController {
+	
+	@RequestMapping("/")
+	public String index() {
+		//구동시작점 - db 컨트롤러 : index.jsp
+		return "redirect:/board/list.do"; // /view/ + basic + .jsp
+	}
+	
 	@RequestMapping("/basic.do")
 	public String basic(Model model) {
 		// ## model
