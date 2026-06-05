@@ -9,11 +9,11 @@ insert into mvcboard2 (bname,bpass,btitle,bcontent,bhit,bip) values (#{bname} , 
 </insert>
 
 <update id="update" parameterType="MvcboardDto">
-update mvcboard2 set bname=#{bname} , btitle=#{btitle} , bcontent=#{bcontent} where bno=#{bno} 
+update mvcboard2 set bname=#{bname} , btitle=#{btitle} , bcontent=#{bcontent} where bno=#{bno} and bpass=#{bpass}
 </update>
 
-<delete id="delete" parameterType="int">
-delete from mvcboard2 where bno=#{bno}
+<delete id="delete" parameterType="MvcboardDto">
+delete from mvcboard2 where bno=#{bno} and bpass=#{bpass}
 </delete>
 
 <select id="selectAll" resultType="MvcboardDto">
@@ -21,7 +21,11 @@ select * from mvcboard2
 </select>
 
 <select id="select" resultType="MvcboardDto" parameterType="int">
-select * from mvcboard2 where bno=#{bno}
+select * from mvcboard2 where bno=#{bno} 
 </select>
+
+<update id="updateHit" parameterType="int">
+update mvcboard2 set bhit= bhit+1 where bno = #{bno}
+</update>
 
 </mapper>
