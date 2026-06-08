@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.the703.dto.MvcboardDto;
 import com.the703.service.BoardService;
+import com.the703.util.PagingUtil;
 
 @Controller
 // @RequestMapping("/borad")
@@ -20,12 +21,19 @@ public class BoardController {
 	BoardService service;
 
 	// ■1.전체 리스트
-	@RequestMapping("/board/list.do")
-	public String list(Model model) {
-		model.addAttribute("list", service.selectAll());
-		return "board/list";
-	}// 테스트 : http://localhost:8080/spring003_mvc/board/list.do
+//	@RequestMapping("/board/list.do")
+//	public String list(Model model) {
+//		model.addAttribute("list", service.selectAll());
+//		return "board/list";
+//	}// 테스트 : http://localhost:8080/spring003_mvc/board/list.do
 	// /view(폴더) + board(폴더)/list(파일명) + .jsp(확장자)
+	
+	@RequestMapping("/board/list.do")
+	public String list(Model model,@RequestParam(value="pstartno", defaultValue = "1")int pstartno) {
+		model.addAttribute("paging", new PagingUtil(service.selectCnt(),pstartno)); /* service 전체 갯수 */
+		model.addAttribute("list", service.select10(pstartno)); /* list10 */
+		return "board/list";
+	}
 	
 	// ■2.글쓰기 폼경로
 	@RequestMapping(value = "/board/write.do", method = RequestMethod.GET)

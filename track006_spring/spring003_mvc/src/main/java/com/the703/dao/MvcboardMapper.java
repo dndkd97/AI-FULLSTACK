@@ -1,5 +1,6 @@
 package com.the703.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.the703.dto.MvcboardDto;
@@ -12,5 +13,8 @@ public interface MvcboardMapper {
     public int update(MvcboardDto dto);
     public int delete(MvcboardDto bno);
     public int updateHit(int bno);
-	
+    
+    /* paging */
+    public List<MvcboardDto> select10(HashMap<String,Integer> map);
+    public int selectCnt();
 }

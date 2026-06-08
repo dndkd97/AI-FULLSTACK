@@ -27,9 +27,14 @@
       		<label for="bcontent"  class="form-label">내용</label>
       		<textarea  class="form-control"    id="bcontent"  name="bcontent"  >${dto.bcontent}</textarea>
       	</div>
+      	      	<div class="my-3">
+      		<label for="bfile" class="form-label">기존파일</label>
+      		<input type="text" id="bfile" name="bfile" class="form-control" value="${dto.bfile}" readonly class="for-control"/>
+      		
+      	</div>
       	<div class="my-3">
       		<label for="file" class="form-label">파일업로드</label>
-      		<input type="file" id="file" name="file" class="form-control" value="${dto.bfile}"/>
+      		<input type="file" id="file" name="file" class="form-control" />
       		
       	</div>
       	<div  class="my-3  text-end"> 

@@ -19,4 +19,7 @@ public interface BoardService {
 	public int edit(MvcboardDto dto,MultipartFile file);
 	//■5.글삭제폼 경로  - 비밀번호가 맞는지 확인 후 글삭제
 	public int delete(MvcboardDto dto);
+	/*paging*/
+	public List<MvcboardDto> select10(int pstartno);
+	public int selectCnt();
 }

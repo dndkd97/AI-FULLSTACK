@@ -17,7 +17,7 @@ delete from mvcboard2 where bno=#{bno} and bpass=#{bpass}
 </delete>
 
 <select id="selectAll" resultType="MvcboardDto">
-select * from mvcboard2
+select * from mvcboard2 order by bno desc;
 </select>
 
 <select id="select" resultType="MvcboardDto" parameterType="int">
@@ -27,5 +27,14 @@ select * from mvcboard2 where bno=#{bno}
 <update id="updateHit" parameterType="int">
 update mvcboard2 set bhit= bhit+1 where bno = #{bno}
 </update>
+
+<!-- paging -->
+<select resultType="MvcboardDto" id="select10" parameterType="java.util.HashMap">
+select * from mvcboard2 order by bno desc limit #{start} , #{end}
+</select>
+
+<select resultType="int" id="selectCnt">
+select count(*) from mvcboard2
+</select>
 
 </mapper>

@@ -16,6 +16,10 @@ window.addEventListener("load",function(){
     <!--  content -->
     <section class="container  my-5">
         <h3> MultiBoard </h3>
+        <pre>
+        페이징: ${paging}
+        전체리스트: ${list}
+        </pre>
         <table  class="table  table-striped  table-bordered table-hover">
             <caption> BOARD 목록 </caption>
             <thead>
@@ -28,9 +32,9 @@ window.addEventListener("load",function(){
                 </tr>
             </thead>
             <tbody>
-				<c:forEach var="dto" items="${list}" varStatus="status">
+            <c:forEach var="dto" items="${list}" varStatus="status">
 					<tr><!--   전체 갯수   -  상태 . 갯수  -->
-						<td>${list.size()-status.index}</td>
+						<td>${paging.listtotal-(paging.current-1)*paging.onepagelist-status.index}</td> <!-- 320 - 310 = listtotal-pagetotal-1 -->
 						<td>
 							<a href="${pageContext.request.contextPath}/board/detail.do?bno=${dto.bno}">
 								${dto.btitle}
@@ -40,15 +44,32 @@ window.addEventListener("load",function(){
 						<td>${dto.bdate}</td>
 						<td>${dto.bhit}</td>
 					</tr>
-<%-- 					<tr> 
-					<td>${item.bno}</td>
-					<td>${item.btitle}</td>
-					<td>${item.bname}</td>
-					<td>${item.bdate}</td>
-					<td>${item.bhit}</td>
-					</tr> --%>
+	
 				</c:forEach>
             </tbody> 
+            <tfoot><tr><td colspan="5"> 
+            <ul class="pagination justify-content-center">
+            <!-- 이전 -->
+            <c:if test="${paging.start > 1}">
+            <li class="page-item ">
+            	<a href="?pstartno=${paging.prev}" class="btn btn-primary me-3">이전</a>
+            </li>
+            </c:if>
+            
+            <!-- 1,2,3,..10 -->
+            <c:forEach var="i" begin="${paging.start}" end="${paging.end}">
+            	<li class="page-item <c:if test="${i==paging.current}">active</c:if>">
+            		<a href="?pstartno=${i}" class="page-link">${i}</a>
+            	</li>
+            </c:forEach>
+            <!-- 다음 -->
+                <c:if test="${paging.end < paging.pagetotal}">
+            <li class="page-item">
+            	<a href="?pstartno=${paging.next}" class="btn btn-primary ms-3">다음</a>
+            </li>
+            </c:if>
+            </ul></td></tr>
+            </tfoot>
         </table>
 
         <div  class="text-end">
@@ -73,3 +94,23 @@ http://localhost:8080/spring003_mvc/
                  <td><span class="badge rounded-pill bg-dark">1</span></td>
              </tr> 
          -->
+         <%-- 				<c:forEach var="dto" items="${list}" varStatus="status">
+					<tr><!--   전체 갯수   -  상태 . 갯수  -->
+						<td>${list.size()-status.index}</td>
+						<td>
+							<a href="${pageContext.request.contextPath}/board/detail.do?bno=${dto.bno}">
+								${dto.btitle}
+							</a>
+						</td>
+						<td>${dto.bname}</td>
+						<td>${dto.bdate}</td>
+						<td>${dto.bhit}</td>
+					</tr>
+					<tr> 
+					<td>${item.bno}</td>
+					<td>${item.btitle}</td>
+					<td>${item.bname}</td>
+					<td>${item.bdate}</td>
+					<td>${item.bhit}</td>
+					</tr>
+				</c:forEach> --%>

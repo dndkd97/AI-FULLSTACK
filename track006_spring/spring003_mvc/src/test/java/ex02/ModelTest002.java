@@ -1,5 +1,7 @@
 package ex02;
 
+import java.util.HashMap;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSession;
@@ -27,7 +29,16 @@ public class ModelTest002 {
 	@Autowired MvcboardMapper mvcboard;
 	@Autowired BoardService service;
 	
-	@Test
+	@Test public void test9() {
+		HashMap<String , Integer> map = new HashMap<>();
+		map.put("start",0);
+		map.put("end",10);
+		System.out.println(mvcboard.select10(map));
+		System.out.println(mvcboard.selectCnt());
+	}
+	
+	
+	@Ignore @Test
 	public void test8() {
 		
 		//ªË¡¶
