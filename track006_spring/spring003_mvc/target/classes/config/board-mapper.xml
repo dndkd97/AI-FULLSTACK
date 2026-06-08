@@ -5,11 +5,11 @@
 <mapper namespace="com.the703.dao.MvcboardMapper">
 
 <insert id="insert" parameterType="com.the703.dto.MvcboardDto">
-insert into mvcboard2 (bname,bpass,btitle,bcontent,bhit,bip) values (#{bname} , #{bpass} , #{btitle} , #{bcontent} , #{bhit} , #{bip}) 
+insert into mvcboard2 (bname,bpass,btitle,bcontent,bhit,bip,bfile) values (#{bname} , #{bpass} , #{btitle} , #{bcontent} , #{bhit} , #{bip} , #{bfile})  
 </insert>
 
 <update id="update" parameterType="MvcboardDto">
-update mvcboard2 set bname=#{bname} , btitle=#{btitle} , bcontent=#{bcontent} where bno=#{bno} and bpass=#{bpass}
+update mvcboard2 set bname=#{bname} , btitle=#{btitle} , bfile=#{bfile}, bcontent=#{bcontent} where bno=#{bno} and bpass=#{bpass}
 </update>
 
 <delete id="delete" parameterType="MvcboardDto">
