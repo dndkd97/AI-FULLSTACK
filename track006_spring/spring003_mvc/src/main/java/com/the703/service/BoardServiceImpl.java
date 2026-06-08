@@ -30,7 +30,7 @@ public class BoardServiceImpl implements BoardService{
 			try { file.transferTo(demp); }//파일 옮기기
 		   catch (IOException e) {  e.printStackTrace(); }
 		}
-		
+		dto.setBfile(fileName);
 		try { dto.setBip(InetAddress.getLocalHost().getHostAddress());}
 		catch (UnknownHostException e) {  e.printStackTrace(); }
 		return dao.insert(dto); }
@@ -43,16 +43,18 @@ public class BoardServiceImpl implements BoardService{
 	@Override public MvcboardDto editView(int bno) {  return dao.select(bno); }
 
 	@Override public int edit(MvcboardDto dto,MultipartFile file) {  
-		String fileName="the703.png";
+		MvcboardDto imgg = dao.select(dto.getBno());
+		String fileName= imgg.getBfile();
 		if(!file.isEmpty()) {
+			
 			fileName= file.getOriginalFilename();
 			String uploadPath = "C:/file/";
 			File demp = new File(uploadPath + fileName);
-			
 			try { file.transferTo(demp); }//파일 옮기기
 		   catch (IOException e) {  e.printStackTrace(); }
 		}
-		
+	
+		dto.setBfile(fileName);
 		//비번 맞으면 수정
 //		int result = -1; //비번 안맞음
 //		MvcboardDto find = dao.select(dto.getBno());

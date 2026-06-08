@@ -29,7 +29,7 @@
       	</div>
       	<div class="my-3">
       		<label for="file" class="form-label">파일업로드</label>
-      		<input type="file" id="file" name="file" class="form-control" />
+      		<input type="file" id="file" name="file" class="form-control" value="${dto.bfile}"/>
       		
       	</div>
       	<div  class="my-3  text-end"> 
