@@ -50,12 +50,11 @@ window.addEventListener("load",function(){
             <tfoot><tr><td colspan="5"> 
             <ul class="pagination justify-content-center">
             <!-- 이전 -->
-            <c:if test="${paging.start > 1}">
-            <li class="page-item ">
-            	<a href="?pstartno=${paging.prev}" class="btn btn-primary me-3">이전</a>
-            </li>
+            <c:if test="${paging.start>paging.bottomlist}">
+            	<li class="page-item">
+            		<a href="?pstartno=${paging.start-1}" class="page-link">이전</a>
+            	</li>
             </c:if>
-            
             <!-- 1,2,3,..10 -->
             <c:forEach var="i" begin="${paging.start}" end="${paging.end}">
             	<li class="page-item <c:if test="${i==paging.current}">active</c:if>">
@@ -63,10 +62,10 @@ window.addEventListener("load",function(){
             	</li>
             </c:forEach>
             <!-- 다음 -->
-                <c:if test="${paging.end < paging.pagetotal}">
-            <li class="page-item">
-            	<a href="?pstartno=${paging.next}" class="btn btn-primary ms-3">다음</a>
-            </li>
+            <c:if test="${paging.pagetotal>paging.end}">
+            	<li class="page-item">
+            		<a href="?pstartno=${paging.end+1}" class="page-link">다음</a>
+            	</li>
             </c:if>
             </ul></td></tr>
             </tfoot>
@@ -114,3 +113,20 @@ http://localhost:8080/spring003_mvc/
 					<td>${item.bhit}</td>
 					</tr>
 				</c:forEach> --%>
+<!-- 이전 -->
+<%--  
+<c:if test="${paging.start > 1}">
+	<li class="page-item ">
+		<a href="?pstartno=${paging.prev}" class="btn btn-primary me-3">이전</a>
+	</li>
+</c:if> 
+        --%>
+
+<!-- 다음 -->
+<%--    
+<c:if test="${paging.end < paging.pagetotal}">
+	<li class="page-item">
+		<a href="?pstartno=${paging.next}" class="btn btn-primary ms-3">다음</a>
+	</li>
+</c:if> 
+            --%>
