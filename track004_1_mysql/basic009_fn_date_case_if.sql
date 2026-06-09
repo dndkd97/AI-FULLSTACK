@@ -334,3 +334,67 @@ bip varchar(50)  not null
 select*from users;
 
 select now();
+
+use mbasic;
+show tables;
+desc userinfo;
+
+create table userinfo_e select * from userinfo;
+desc userinfo_e;
+select * from userinfo_e;
+select * from userinfo;
+alter table userinfo_e modify no int not null primary key auto_increment;
+
+select * from userinfo where no=1;
+delete from userinfo_e;
+drop table userinfo_e;
+select*from userinfo_e;
+alter table userinfo_e change name email varchar(100);
+
+use dbdbig;
+select * from mvcboard2;
+show tables;
+desc mvcboard2;
+create table mvcboard2 select * from mvcboard1;
+alter table mvcboard2 modify bno int not null primary key auto_increment;
+use mbasic;
+desc users;
+show tables;
+select * from mvcboard2;
+delete from mvcboard2 where bno=5;
+update mvcboard2 set bname="다영" , btitle="다영" , bcontent="다영" where bno=4;
+   insert   into mvcboard2 (bname , bpass , btitle ,  bcontent , bip ,  bfile)
+   select   bname , bpass , btitle ,  bcontent , bip ,  bfile  from  mvcboard2;
+
+alter table mvcboard2 add bfile  varchar(500) default "the703.png";
+
+select * from mvcboard2 order by bno desc limit 0,10;
+select count(*) from mvcboard2;
+select * from mvcboard2 order by bno desc;
+select * from users;
+delete from users where uno=2;
+select * from users where uno=7;
+create table ahthorities(
+email varchar(50) not null,
+auth varchar(50) not null );
+desc authorities;
+insert into ahthorities(email,auth) values('first@gmail.com','ROLE_MEMBER');
+
+select u.email,u.bpass,a.auth
+from users u left join authorities a on u.email = a.email
+where u.email='a@a';
+alter table ahthorities rename authorities;
+select * from authorities;
+delete from authorities where auth='ADMIN_MEMBER';
+select email, bpass
+from users
+where email='a@a';
+insert into users (nickname,bpass,email,mobile,bip) values("다영","1111","a@a","111","1");
+
+desc users;
+alter table users modify bpass varchar(100);
+desc authorities;
+delete from authorities where email="a@a";
+select * from authorities;
+select * from users;
+delete from users where uno in (8,9);

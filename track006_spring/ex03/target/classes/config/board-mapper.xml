@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.the703.dao.MvcboardMapper">
+
+<insert id="insert" parameterType="com.the703.dto.MvcboardDto">
+insert into mvcboard2 (bname,bpass,btitle,bcontent,bhit,bip,bfile) values (#{bname} , #{bpass} , #{btitle} , #{bcontent} , #{bhit} , #{bip} , #{bfile})  
+</insert>
+
+<update id="update" parameterType="MvcboardDto">
+update mvcboard2 set bname=#{bname} , btitle=#{btitle} , bfile=#{bfile}, bcontent=#{bcontent} where bno=#{bno} and bpass=#{bpass}
+</update>
+
+<delete id="delete" parameterType="MvcboardDto">
+delete from mvcboard2 where bno=#{bno} and bpass=#{bpass}
+</delete>
+
+<select id="selectAll" resultType="MvcboardDto">
+select * from mvcboard2 order by bno desc;
+</select>
+
+<select id="select" resultType="MvcboardDto" parameterType="int">
+select * from mvcboard2 where bno=#{bno} 
+</select>
+
+<update id="updateHit" parameterType="int">
+update mvcboard2 set bhit= bhit+1 where bno = #{bno}
+</update>
+
+<!-- paging -->
+<select resultType="MvcboardDto" id="select10" parameterType="java.util.HashMap">
+select * from mvcboard2 order by bno desc limit #{start} , #{end}
+</select>
+
+<select resultType="int" id="selectCnt">
+select count(*) from mvcboard2
+</select>
+
+</mapper>
