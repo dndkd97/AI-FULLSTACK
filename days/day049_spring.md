@@ -49,3 +49,8 @@ AuthenticationProvider
 
 UserDetailsService
 ★ DB에 있는 [사용자정보]가져오기
+
+1. pom.xml
+2. serucity-context.xml
+3. web.xml
+4. SerucityController

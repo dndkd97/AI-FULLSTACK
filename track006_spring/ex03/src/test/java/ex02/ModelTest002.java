@@ -24,23 +24,24 @@ public class ModelTest002 {
  @Autowired UserService service;
  @Autowired @Qualifier("passwordEncoder")PasswordEncoder pwencoder;
  
- /* security */
- @Test public void test2() {
-//	 
+
+ 
+    /* security */
+    @Test public void test2() {
+	 
 	 AuthDto dto2 = new AuthDto(); dto2.setEmail("a@a");
-	 System.out.println(user.readAuth(dto2));
-//	 
-//	 AuthDto dto1 = new AuthDto(); dto1.setEmail("a@a"); dto1.setAuth("ROLE_MEMBER");
+	 System.out.println(service.readAuth(dto2));
+	
+//    AuthDto dto1 = new AuthDto(); dto1.setEmail("a@a"); dto1.setAuth("ROLE_MEMBER");
 //	 AuthDto dto1 = new AuthDto(); dto1.setEmail("a@a"); dto1.setAuth("ROLE_ADMIN");
 //	 System.out.println(user.insertAuth(dto1));
-//	 
-//	 
-////	 /* 회원가입(암호화)pwencoder.encode("a") */
+ 	 
+//	 /* 회원가입(암호화)pwencoder.encode("a") */
 //	 UserDto dto = new UserDto();
 //	 dto.setNickname("a"); dto.setBpass(pwencoder.encode("a"));
 //	 dto.setEmail("a@a"); dto.setMobile("010123"); 
 //	 System.out.println(service.insert(dto));
-	 //System.out.println(pwencoder.encode("a"));
+//   System.out.println(pwencoder.encode("a"));
 	 
  }
  
