@@ -390,11 +390,13 @@ select email, bpass
 from users
 where email='a@a';
 insert into users (nickname,bpass,email,mobile,bip) values("다영","1111","a@a","111","1");
-
+use dbdbig;
 desc users;
 alter table users modify bpass varchar(100);
 desc authorities;
-delete from authorities where email="a@a";
+
 select * from authorities;
 select * from users;
 delete from users where uno in (8,9);
+
+delete from users where uno in(14,15);
