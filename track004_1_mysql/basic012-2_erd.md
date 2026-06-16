@@ -5,7 +5,14 @@
 2. 속성(Attribute) - 열,컬럼
 3. 관계(Relationship) - 외래키
 
-예) emp(deptno)  dept(deptno) ★
+예)   dept(deptno)┼-------∈emp(deptno)
+      deptno(:★PK)        empno(:★PK)
+                           deptno(☆FK)
+풀이1) dept와 emp은 → 1:다
+      한 부서는 여러명의 사원이 소속
+풀이2) 부모테이블:dept    /    자식테이블:emp
+      dept 테이블이 존재해야, 사원을 해당 부서에 배치
+풀이3) 점선(비식별관계)
 
 ■2. ~ 구성되어 있다
 ex1) 하나의 A는 하나의 B로 구성되어있다.
@@ -91,12 +98,68 @@ EX3)   교수와 개설과목   → 1:다
 
 
 EX4)     과목과 학생      →  다:다
-<<개설과목(Course)>┼——————————————∋<<수강(std_Course)>>∈——————————————————┼<<학생(Student)>>
-과목코드(course_id:prof_id:★PK)     학번(std_id)                           학번(std_id:★PK)       
-과목명(course_name)                 과목코드(course_id)                     성명(std_name)
+<<개설과목(Course)>┼———————————————∋<<수강(std_Course)>>∈————————————————┼<<학생(Student)>>
+과목코드(course_id:prof_id:★PK)     학번(std_id:★PK)                       학번(std_id:★PK)       
+과목명(course_name)                 과목코드(course_id:★PK)                 성명(std_name)
 교수코드(prof_id:☆FK)                                                      키(height)
 시작일(start_date)                                                         학과코드(dept_id:☆FK)
 종료일(end_date)
 풀이1) 개설과목과 학생은 다:다 관계
 풀이2) 부모테이블:개설과목,학생수강    /    자식테이블:수강
-풀이3) 
+풀이3) 실선(부모테이블 PK - 자식테이블 PK) , 점선(부모테이블 PK - 자식테이블 FK)
+
+■4. FOREIGN KEY
+    => 외래키(참조키)
+    => 다른테이블의 기본키를 참조하는 키
+    => 중복가능 / NULL 허용함
+    => 참조되고있는테이블의 데이터 값 이외의 값은 삽입할수 없음.
+    => insert할때 잘못된 데이터 삽이 안되도록하는 것
+    => 레코드 삭제나 테이블삭제를 할때는 반드시 FOREIGN KEY가
+       지정된 레코드나 테이블을 삭제한후에 참조대상을 삭제할수 있다.
+
+
+    방법
+       [ CONSTRAINT 별칭 ] REFERENCES 테이블이름(필드명)
+
+(1) 부모테이블 t1
+create table t1(
+no int(11) not null primary key auto_increment,
+name varchar(100) 
+);
+
+(2) t2
+create table t2(
+ino int not null primary key,
+foreign key(ino) references t1(no)
+); -- 외래키 (ino)  참고테이블 t1(no)필드
+
+(3) t1에서 no는 1,2 부모의 값이 :1,2
+insert into t1 values(1, 'first');
+insert into t1 values(2, 'second');
+
+(4) 다음에서 오류나는 코드는?
+insert into t2(ino) values(1);
+insert into t2(ino) values(3);
+※insert into t2(ino) values(3)	Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`mbasic`.`t2`, CONSTRAINT `t2_ibfk_1` FOREIGN KEY (`ino`) REFERENCES `t1` (`no`))	0.000 sec
+
+(5) 부모테이블 t3
+create table t3(no int not null  primary key auto_increment,
+name varchar(100)
+);
+
+(6) 자식테이블 t4
+create table t4(
+ino int not null primary key,
+foreign key(ino) references t3(no) on delete cascade on update cascade
+);
+
+(7)
+insert into t3 values(1, 'first');
+insert into t3 values(2, 'second');
+insert into t4(ino) values(2);
+
+(8) 부모수정시 자식값들도 수정, 부모삭제시 자식값들도 삭제 확인
+update t3 set no=20 where no=2;
+: t3,t4 수정됨
+delete from t3 where no=20;
+: t3,t4 삭제됨
