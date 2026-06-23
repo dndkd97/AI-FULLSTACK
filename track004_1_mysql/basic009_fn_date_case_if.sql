@@ -400,3 +400,6 @@ select * from users;
 delete from users where uno in (8,9);
 
 delete from users where uno in(14,15);
+
+show databases;
+create database sb_erp_db;
