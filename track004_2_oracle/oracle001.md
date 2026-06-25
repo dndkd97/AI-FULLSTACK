@@ -7,6 +7,7 @@
 - 1. oracle 설치
 - 2. sql developer 설치 (sql 편집)
 - 3. 사용
+<실습1>
 ```sql(cmd)
 sqlplus
 conn system/1234
@@ -21,5 +22,23 @@ grant connect , resource to scott;
 ALTER USER scott DEFAULT TABLESPACE users QUOTA UNLIMITED ON users; -- 물리적 공간 이용
 grant create table to scott;
 ```
+<실습2>
+```sql(sqldeveloper)
+
+--1. 테이블 만들기
+-- 테이블명 자료형 옵션
+create table dept(
+    deptno number primary key,
+    dname  varchar2(14),
+    loc    varchar2(13)
+); 
+
+--2. dml(crud)
+
+```
 
 2. boot
+
+1. workspace
+2. utf-8
+3.project
