@@ -13,5 +13,5 @@ public class AppUserDto {
 	private String mobile;
 	private String nickname;
 	private String provider;
-	private String providerID;
+	private String providerId;
 }
