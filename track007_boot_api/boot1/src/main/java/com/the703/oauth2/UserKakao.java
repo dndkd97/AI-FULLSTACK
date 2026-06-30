@@ -1,0 +1,61 @@
+package com.the703.oauth2;
+
+import java.util.Map;
+
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public class UserKakao implements UserInfoOAuth2{
+	private final Map<String,Object> attributes;
+	@Override public String getProvider() {  return "Kakao"; }
+
+	@Override public String getProviderId() {  
+		Object id = attributes.get("id");
+		return id != null? id.toString():null; }
+
+	@SuppressWarnings("unchecked")
+	private Map<String,Object> getAccount(){
+		Object account = attributes.get("kakao_account");
+		return account instanceof Map? (Map<String,Object>)account:null;
+	}
+	
+	@Override public String getEmail() {  
+		Map<String,Object> account = getAccount();
+		return account!= null? String.valueOf(account.get("email")):null; }
+
+	@SuppressWarnings("unchecked")
+	@Override public String getNickname() {  
+		Map<String,Object> account = getAccount();
+		Object profile = account.get("profile");
+		Map<String,Object> nickname = (Map<String,Object>) profile;
+		return String.valueOf(nickname.get("nickname")); }
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public String getImage() {
+	    Map<String, Object> account = getAccount(); 
+	    Object profileObj = account.get("profile"); 
+	    Map<String, Object> profile = (Map<String, Object>) profileObj;
+	    Object imageUrl = profile.get("profile_image_url");
+	    return imageUrl != null ? imageUrl.toString() : null;
+	}
+
+
+}
+/*
+ <kakao>
+{
+    id=2632890179, 
+    connected_at=2023-01-22T08:17:54Z, 
+    properties = {nickname=효정}, 
+    kakao_account = {
+        profile_nickname_needs_agreement=false, 
+        profile={nickname=효정}, 
+        has_email=true, 
+        email_needs_agreement=false, 
+        is_email_valid=true, 
+        is_email_verified=true, 
+        email=sally03915@naver.com
+    }
+}
+*/

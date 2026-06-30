@@ -24,6 +24,11 @@ public class AppUserServiceImpl implements AppUserService{
 	@Transactional	//sql 두개이상 쓸 때
 	@Override
 	public int insert(MultipartFile file, AppUserDto dto) { //회원가입
+		
+		dto.setMbtiTypeId(1); //확장버전 : mbti
+		dto.setProviderId("the703-1"); // uuid-추가
+		
+		//이미지 업로드
 		dto.setUfile("the703.png");
 		if(!file.isEmpty()) {
 			try { dto.setUfile(upload.fileUplad(file)); } 

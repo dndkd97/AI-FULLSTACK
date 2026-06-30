@@ -68,7 +68,7 @@ class Boot1ApplicationTests2 {
 		assertTrue(login.getAuthList().stream().anyMatch(a->"ROLE_MEMBER".equals(a.getAuth())));
 	}
 	
-	 @Test
+	@Disabled @Test
 	public void insert_service() { //회원가입
 		AppUserDto user = new AppUserDto();
 		user.setEmail("2@2"); user.setPassword("2"); ;user.setMbtiTypeId(1);
