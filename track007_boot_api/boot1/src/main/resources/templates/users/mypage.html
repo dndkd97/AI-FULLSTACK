@@ -21,14 +21,14 @@
 					<tbody>
 						<tr>
 							<td  rowspan="4"  class="text-center fw-bold fs-3 table-primary"   style="width: 25%;">
-							<img 
-							style="width:150px;"
-							th:if="${dto.ufile}!=null"
-							th:src="@{|/upload/${dto.ufile}|}" alt="이미지"/>
-							<img 
-							style="width:150px;"
-							th:unless="${dto.ufile}!=null"
-							th:src="@{|/upload/${dto.ufile}|}" alt="이미지"/>
+						<img th:if="${dto.ufile != null and #strings.startsWith(dto.ufile,'http')}"
+                             th:src="${dto.ufile}"    class="w-50"/>
+                             
+                        <img     th:if="${dto.ufile != null and !#strings.startsWith(dto.ufile,'http')}"
+                              th:src="@{|/upload/${dto.ufile}|}" alt="" class="w-50"/>
+                              
+                        <img     th:unless="${dto.ufile != null}"
+                              th:src="@{/upload/the703.png}" alt="" class="w-50"/>
 							</td>
 						</tr>
 						<tr>
