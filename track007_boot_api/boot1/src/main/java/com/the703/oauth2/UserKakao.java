@@ -39,9 +39,10 @@ public class UserKakao implements UserInfoOAuth2{
 	    Object imageUrl = profile.get("profile_image_url");
 	    return imageUrl != null ? imageUrl.toString() : null;
 	}
-
-
 }
+
+/// 1) 기본뼈대작성
+/// 2) 예외상황에 대한 방어코드로 개선코드 보여줘
 /*
  <kakao>
 {
