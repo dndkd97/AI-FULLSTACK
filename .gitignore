@@ -20,3 +20,7 @@ track005_jsp/Servers/
 # OS별 임시파일
 *.DS_Store
 Thumbs.db
+
+# 윤정이가 시킴
+track008_1_nodereact/back/node_modules
+back/node_modules
