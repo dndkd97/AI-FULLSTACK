@@ -21,9 +21,10 @@ track005_jsp/Servers/
 *.DS_Store
 Thumbs.db
 
-# 윤정이가 시킴
-track008_1_nodereact/back/node_modules
-back/node_modules
 application-oauth.properties
-node_modules/
+
+# 윤정이가 시킴
+track008_1_NODEREACT/back/node_modules
 .env
+track008_1_NODEREACT/front/node_modules
+track008_1_NODEREACT/front/.next
