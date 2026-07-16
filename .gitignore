@@ -25,3 +25,5 @@ Thumbs.db
 track008_1_nodereact/back/node_modules
 back/node_modules
 application-oauth.properties
+node_modules/
+.env
