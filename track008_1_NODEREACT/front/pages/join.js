@@ -1,0 +1,95 @@
+import{ useSelector,useDispatch }from 'react-redux'; //전역상태 , 상태알림
+import { useState,useEffect } from 'react'; // 변수상태변경, 이벤트변경
+import { useRouter } from 'next/router'; // 경로
+import { SIGN_UP_REQUEST,FIND_EMAIL_REQUEST,FIND_NICKNAME_REQUEST } from '../reducers/user';
+
+// useSelector - 전역상태
+// useEffect   - 변경감지
+// useState    - 변수
+// useDispatch - 스토어알림
+// useRouter   - 경로
+
+export default function JoinPage(){
+    //1. 코드
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const {me,isLoading,error,signUpDone,users,nicknameExists,emailExists} = useSelector( (state)=>state.user);
+    //     변수  , 변수셋팅함수
+    const [email,setEmail]       = useState(''); // let email=''
+    const [password,setPassword] = useState('');
+    const [nickname,setNickname] = useState(''); // 3. 변수 상태 변경 - REACT DOM
+
+    const[emailCheck,setEmailCheck]=useState(false);
+    const[nicknameCheck,setNicknamecheck]=useState(false);
+
+    const onEmail=(email)=>{
+        dispatch({type:FIND_EMAIL_REQUEST,data:{email}});
+        setEmailCheck(true);
+    }
+    const onNickname=(nickname)=>{
+        dispatch({type:FIND_NICKNAME_REQUEST,data:{nickname}});
+    }
+
+    //회원가입 요청액션 dispatch
+    const onSubmit= (e)=>{
+        e.preventDefault();
+        // console.log(email.trim()); console.log(!email.trim()); !값이 있따 - true
+        if(!email.trim()){alert('이메일을 입력해주세요.'); return;}
+        if(!password.trim()){alert('비밀번호를 입력해주세요.'); return;}
+        if(!nickname.trim()){alert('닉네임을 입력해주세요.'); return;}
+        if(emailExists){alert('이미 사용중인 이메일입니다');return;}
+        if(nicknameExists){alert('이미 사용중인 닉네임입니다');return;}
+        // 2. Store : 액션알림 useDispatch
+        dispatch({type:SIGN_UP_REQUEST,data:{email,password,nickname}});
+    };
+        //5. 상태변화 감지
+        useEffect(()=>{
+            if(signUpDone){ //경로변경
+                router.push({
+                    pathname:'/login',
+                    query:{signUpSuccess:'true'}// 회원가입 성공여부 주소표시창줄
+                });
+            }
+        },[signUpDone,router]);
+        //로그인시 me 값이 있다면
+        useEffect(()=>{
+            if(me)router.push('/user');
+        },[me,router]);
+
+
+    //2. 뷰-렌더링 <></>,공백,닫기태그
+    return (
+        <div className="container my-4">
+            <h3 className="mb-3">회원가입</h3>
+            <form className="w-50 mx-auto" onSubmit={onSubmit}>
+                {/*이메일 입력*/}
+                <div className="mb-3">
+                    <div className="input-group">
+                    <input type="email" className="form-control" placeholder="이메일" title="이메일입력" 
+                    value={email} onChange={(e)=>{setEmail(e.target.value);}}/>
+                    <button type="button" className='btn btn-warning' onClick={()=>onEmail(email)}>중복확인</button>
+                    </div>
+                    {emailCheck && (emailExists
+                    ?<span className='text-danger mx-2'>이미 사용중인 이메일입니다.</span>
+                    :<span className='text-secondary mx-2'>사용 가능한 이메일 입니다.</span>)}
+                </div>
+                {/*비밀번호 입력*/}
+                <div className="mb-3">
+                    <input type="password" className="form-control" placeholder="비밀번호" title="비밀번호입력"
+                    value={password} onChange={(e)=>{setPassword(e.target.value);}}/>
+                </div>
+                {/*닉네임 입력*/}
+                <div className="mb-3">
+                    <input type="text" className="form-control" placeholder="닉네임" title="닉네임입력"
+                    value={nickname} onChange={(e)=>{setNickname(e.target.value);}}/>
+                </div>
+                {/*버튼 입력*/}
+                <div className="mb-3">
+                    <button type="submit" className="btn btn-primary w-100" disabled={isLoading}>회원가입</button>
+                </div>
+            </form>
+            {/*에러 메세지 */}
+            {error && <div className="alert alert-danger w-50 mx-auto">{error}</div>}
+        </div>
+    );
+}

@@ -194,6 +194,56 @@ router.delete('/:id'   ,   isAuthenticated   , async(req, res)=>{
         res.status(500).json({message:'사용자 삭제 실패'});
     }
 }); 
+//사용자조회
+/**
+ * @swagger
+ * /user/checkNickname/{nickname}:
+ *    get:
+ *      summary: 닉네임 중복 조회
+ *      description: 해당 닉네임을 가진 사용자가 있는지 조회합니다.
+ *      parameters:
+ *        - in: path
+ *          name: nickname
+ *          schema: { type: string }
+ *      responses:
+ *        200:
+ *          description: 닉네임 조회 성공
+ *        401:
+ *          description: 인증 필요
+ */
+router.get('/checkNickname/:nickname',async(req, res)=>{
+    try{
+    const users = await findUserByNickname(req.params.nickname);
+    res.json({exists: !!users, user: users});
+    }catch(err){console.error('FindUserByNickname Error',err);
+        res.status(500).json({message:'닉네임 조회 실패'});
+    }
+});
+
+/**
+ * @swagger
+ * /user/checkEmail/{email}:
+ *    get:
+ *      summary: 이메일 중복 조회
+ *      description: 해당 이메일을 가진 사용자가 있는지 조회합니다.
+ *      parameters:
+ *        - in: path
+ *          name: email
+ *          schema: { type: string }
+ *      responses:
+ *        200:
+ *          description: 이메일 조회 성공
+ *        401:
+ *          description: 인증 필요
+ */
+router.get('/checkEmail/:email',async(req, res)=>{
+    try{
+    const users = await findUserByEmail(req.params.email);
+    res.json({exists: !!users, user: users});
+    }catch(err){console.error('findUserByEmail Error',err);
+        res.status(500).json({message:'이메일 조회 실패'});
+    }
+});
 
 //3. export
 module.exports = router;

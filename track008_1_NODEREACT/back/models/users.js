@@ -40,7 +40,7 @@ async function createUser(email,password,nickname,mobile,mbtiTypeId,ufile) {
 // SELECT APP_USER_ID, EMAIL, PASSWORD, NICKNAME, MOBILE, MBTI_TYPE_ID, UFILE, CREATED_AT 
 // FROM appuser 
 // WHERE EMAIL = :email
-async function findUserEmail(email) {
+async function findUserByEmail(email) {
     let conn;
     try{
         conn = await oracledb.getConnection(dbConfig);
@@ -52,7 +52,7 @@ async function findUserEmail(email) {
             ,options); //실행
             return result.rows[0]; //결과처리
     }catch(err){
-        console.log(  'findUserEmail Error' , err);
+        console.log(  'findUserByEmail Error' , err);
         throw err;
     }finally{
         if(conn) await  conn.close();
@@ -83,15 +83,15 @@ async function findUserById(id) {
 // 4. 로그인 - sql 빼기 pass / 로그아웃
 async function verifyUser(email,password) {
 
-    const user = await findUserById(email);
+    const user = await findUserByEmail(email);
     if(!user) return null;
 
     const match = await bcrypt.compare(password,user.PASSWORD);
-    if(!user) return null;
+    if(!match) return null;
     
     return{
         id:user.APP_USER_ID,
-        email:uesr.email,
+        email:user.EMAIL,
         nickname:user.NICKNAME
     }
 }
@@ -182,5 +182,5 @@ async function findUserByNickname(nickname) {
 }
 
 // export
-module.exports={createUser,findUserEmail,findUserById,verifyUser,
+module.exports={createUser,findUserByEmail,findUserById,verifyUser,
                 getAllUsers,updateUserNickname,deleteUser,findUserByNickname};
