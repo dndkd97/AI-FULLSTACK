@@ -197,12 +197,12 @@ router.delete('/:id'   ,   isAuthenticated   , async(req, res)=>{
 //사용자조회
 /**
  * @swagger
- * /user/checkNickname/{nickname}:
- *    get:
+ * /user/checkNickname:
+ *    post:
  *      summary: 닉네임 중복 조회
  *      description: 해당 닉네임을 가진 사용자가 있는지 조회합니다.
  *      parameters:
- *        - in: path
+ *        - in: query
  *          name: nickname
  *          schema: { type: string }
  *      responses:
@@ -211,9 +211,9 @@ router.delete('/:id'   ,   isAuthenticated   , async(req, res)=>{
  *        401:
  *          description: 인증 필요
  */
-router.get('/checkNickname/:nickname',async(req, res)=>{
+router.post('/checkNickname',async(req, res)=>{
     try{
-    const users = await findUserByNickname(req.params.nickname);
+    const users = await findUserByNickname(req.query.nickname);
     res.json({exists: !!users, user: users});
     }catch(err){console.error('FindUserByNickname Error',err);
         res.status(500).json({message:'닉네임 조회 실패'});
@@ -222,12 +222,12 @@ router.get('/checkNickname/:nickname',async(req, res)=>{
 
 /**
  * @swagger
- * /user/checkEmail/{email}:
- *    get:
+ * /user/checkEmail:
+ *    post:
  *      summary: 이메일 중복 조회
  *      description: 해당 이메일을 가진 사용자가 있는지 조회합니다.
  *      parameters:
- *        - in: path
+ *        - in: query
  *          name: email
  *          schema: { type: string }
  *      responses:
@@ -236,9 +236,9 @@ router.get('/checkNickname/:nickname',async(req, res)=>{
  *        401:
  *          description: 인증 필요
  */
-router.get('/checkEmail/:email',async(req, res)=>{
+router.post('/checkEmail',async(req, res)=>{
     try{
-    const users = await findUserByEmail(req.params.email);
+    const users = await findUserByEmail(req.query.email);
     res.json({exists: !!users, user: users});
     }catch(err){console.error('findUserByEmail Error',err);
         res.status(500).json({message:'이메일 조회 실패'});

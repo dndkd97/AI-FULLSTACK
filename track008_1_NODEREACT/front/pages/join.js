@@ -28,6 +28,7 @@ export default function JoinPage(){
     }
     const onNickname=(nickname)=>{
         dispatch({type:FIND_NICKNAME_REQUEST,data:{nickname}});
+        setNicknamecheck(true);
     }
 
     //회원가입 요청액션 dispatch
@@ -70,8 +71,8 @@ export default function JoinPage(){
                     <button type="button" className='btn btn-warning' onClick={()=>onEmail(email)}>중복확인</button>
                     </div>
                     {emailCheck && (emailExists
-                    ?<span className='text-danger mx-2'>이미 사용중인 이메일입니다.</span>
-                    :<span className='text-secondary mx-2'>사용 가능한 이메일 입니다.</span>)}
+                    ?<span className='text-danger mx-2'>이미 사용중인 이메일 입니다.</span>
+                    :<span className='text-success mx-2'>사용 가능한 이메일 입니다.</span>)}
                 </div>
                 {/*비밀번호 입력*/}
                 <div className="mb-3">
@@ -80,8 +81,15 @@ export default function JoinPage(){
                 </div>
                 {/*닉네임 입력*/}
                 <div className="mb-3">
+                    <div className="input-group">
                     <input type="text" className="form-control" placeholder="닉네임" title="닉네임입력"
                     value={nickname} onChange={(e)=>{setNickname(e.target.value);}}/>
+                    <button type="button" className='btn btn-warning' onClick={()=>onNickname(nickname)}>중복확인</button>
+                    </div>
+                    {nicknameCheck && (nicknameExists
+                        ?<span className='text-danger mx-2'>이미 사용중인 닉네임 입니다.</span>
+                        :<span className='text-success mx-2'>사용 가능한 닉네임 입니다.</span>
+                    )}
                 </div>
                 {/*버튼 입력*/}
                 <div className="mb-3">

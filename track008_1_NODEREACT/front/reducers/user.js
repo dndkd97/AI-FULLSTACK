@@ -47,7 +47,10 @@ export const initialState={
     error:null, // 에러메세지
     signUpDone:false, //회원가입 완료여부
     nicknameExists:null,
-    emailExists:null
+    checkEmailLoading:false,
+    checkEmailDone:false,
+    checkEmailError:null,
+    emailExists:null // true: 사용가능 , false : 중복
 };
 // 3. reducer 함수
 const reducer = (state=initialState,action)=>{ //현재상태,요청액션
@@ -83,7 +86,7 @@ const reducer = (state=initialState,action)=>{ //현재상태,요청액션
                                             users:state.users.filter((u)=>u.id!==action.data.id)
             };
         case FIND_NICKNAME_SUCCESS:
-            return{...state,isLoading:false,nicknameExists:action.data};
+            return{...state,isLoading:false,nicknameExists:action.data.exists};
         case FIND_EMAIL_SUCCESS:
             return{...state,isLoading:false,emailExists:action.data.exists};
 

@@ -24,7 +24,15 @@ Thumbs.db
 application-oauth.properties
 
 # 윤정이가 시킴
-track008_1_NODEREACT/back/node_modules
 .env
+track008_1_NODEREACT/back/node_modules
 track008_1_NODEREACT/front/node_modules
 track008_1_NODEREACT/front/.next
+
+track008_test/back-t/node_modules
+track008_test/back-t/.next
+track008_test/front-t/node_modules
+track008_test/front-t/.next
+
+
+track007_boot_api/application.properties

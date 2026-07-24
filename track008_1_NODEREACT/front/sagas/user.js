@@ -140,7 +140,7 @@ function*watchDeleteUser(){
 //-- 닉네임 중복 검사 --watchFindNickname
 // /user/checkNickname/{nickname}:
 export function findUserByNicknameApi(nickname){
-    return client.get(`/user/checkNickname/${nickname}`);
+    return client.post(`/user/checkNickname?nickname=${nickname}`);
 }
 export function* findUserByNickname(action){
     try{
@@ -156,7 +156,7 @@ function*watchFindNickname(){
 
 //--이메일 중복 검사 --watchFindEmail
 export function findUserByEmailApi(email){
-    return client.get(`/user/checkEmail/${email}`);
+    return client.post(`/user/checkEmail?email=${email}`);
 }
 export function* findUserByEmail(action){
     try{
