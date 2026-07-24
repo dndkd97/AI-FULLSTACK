@@ -62,6 +62,19 @@ docker run   -d  --name  my-redis  -p 6379:6379   redis
 
 docker  exec  -it  my-redis  redis-cli
 docker  exec  -it  my-redis  redis-cli  FLUSHALL
+keys *
+get  저장이름
+```
+```필기
+docker pull  redis --> 최신버전 redis 다운로드
+docker run          -d    --name  my-redis  -p 6379:6379       redis
+-->   생성 및 실행 백그라운드 생성될 이름         내컴퓨터6379 번호로 내부에 6379로 연결
+
+docker  exec  -it                     my-redis  redis-cli
+-->     실행    i:표준입력, t:가상터미널
+docker  exec  -it  my-redis  redis-cli  FLUSHALL
+keys *
+get  저장이름
 ```
 
 1.  JWT  VS  세션
@@ -80,10 +93,3 @@ docker  exec  -it  my-redis  redis-cli  FLUSHALL
 - TTL(만료 시간)로 자동 만료처리
 - 로그아웃 시 즉시 삭제  
 
-docker pull  redis
-docker run   -d  --name  my-redis  -p 6379:6379   redis
-
-docker  exec  -it  my-redis  redis-cli
-docker  exec  -it  my-redis  redis-cli  FLUSHALL
-keys *
-get  저장이름
