@@ -7,6 +7,7 @@ export default function *rootSaga(){
     yield all([
         fork(authSaga),
         fork(postSaga),
+        // fork(머징)
     ]);
 }
 // fork : 기다리지 않음(다른일 할 수 있게 양보) - 동시에 실행
