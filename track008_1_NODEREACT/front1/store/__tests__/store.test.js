@@ -1,6 +1,6 @@
 // store/__tests__/store.test.js
 import { makeStore } from '../configureStore'; // 스토어 설정 파일 경로에 맞게 수정해주세요
-import { fetchPostsRequest } from '../../reducers/postReducer';
+import { fetchPostRequest } from '../../reducers/postReducer';
 
 describe('Redux Store and Saga Middleware', () => {
     it('should create store successfully with saga middleware', () => {
@@ -15,7 +15,7 @@ describe('Redux Store and Saga Middleware', () => {
         expect(store.sagaTask).toBeDefined();
 
         // 3. 액션 디스패치 테스트 (리듀서가 정상 동작하는지 확인)
-        store.dispatch(fetchPostsRequest());
+        store.dispatch(fetchPostRequest());
         const updatedState = store.getState();
         expect(updatedState.post.loading).toBe(true);
     });
