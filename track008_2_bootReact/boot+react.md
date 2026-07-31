@@ -309,3 +309,28 @@ front/
 ├── package-lock.json       # npm 의존성 잠금 파일
 ├── package.json            # 프로젝트 메타 정보 및 의존성
 └── setupTests.js           #  테스트 환경 설정 파일
+
+Step5)view
+1. Layout
+2. 경로
+```
+├── pages/                  # Next.js 라우팅 기반 페이지 폴더
+│   ├── posts/             
+│      └──new.js            # 글쓰기 파일
+│   ├── _app.js             # 전체 앱의 공통 설정 (Redux Provider, 글로벌 스타일 등)
+│   ├── join.js             # 회원가입
+│   ├── mypage.js           # 마이페이지
+│   └── index.js            # 메인 페이지
+```
+
+<Link href="/">              index.js # 메인 페이지
+<Link href="/mypage">       mypage.js # 마이 페이지
+<Link href="/signup">       signup.js # 회원가입
+<Link href="/posts/new"> posts/new.js # 글쓰기 파일
+
+// Layout: https://ant.design/components/layout 
+// Menu: https://ant.design/components/menu 
+// Input: https://ant.design/components/input 
+// Drawer: https://ant.design/components/drawer 
+// Grid(Row/Col): https://ant.design/components/grid 
+// Button: https://ant.design/components/button

@@ -8,7 +8,7 @@ import {      fetchPostRequest,fetchPostSuccess,fetchPostFailure, //전체글
               resetUserState //초기화
 }from '../reducers/postReducer';
 
-const POST_API_BASE ='http://localhost:8080/api/users';
+const POST_API_BASE ='http://localhost:8080/api/posts';
         // (watchFetchPosts)       - GET /api/posts         전체 게시글 조회
         export const fetchPostAPI = ()=>axios.get(POST_API_BASE);
         export function* fetchPost(){
