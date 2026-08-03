@@ -21,7 +21,7 @@ export default function NewPostpage(){
     const onFinish =(values)=>{
         const dto = {
             content:values.content,
-            userId:4
+            userId:1
         };
         dispath(createPostRequest(dto));
         message.success("게시글 작성요청완료")

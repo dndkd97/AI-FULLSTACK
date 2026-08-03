@@ -1,28 +1,56 @@
-import React, {useEffect} from "react";
-import {useSelector,useDispatch} from "react-redux";
-import {fetchPostRequest,updatePostRequest} from "../reducers/postReducer"
-import {Card,Button,Spin} from "antd";
+import React, {useEffect, useState} from "react"; // 이벤트 변경감지, useState(변수변경)
+import {useSelector,useDispatch} from "react-redux"; // 전역상태, 스토어알림
+import {deletePostRequest, fetchPostRequest, updatePostRequest} from "../reducers/postReducer"
+import {Spin} from "antd";
+import PostList from "../components/PostList";
+import EditPostModel from "../components/EditPostModel";
 
 export default function Home(){
     const dispatch = useDispatch();
-    //1. 유저정보가져오기   - state.auth
-    //2. 게시글정보가져오기 - state.post
     const {posts,loading,error} = useSelector((state)=>state.post);
-    //페이지가 처음뜰때 게시글 조회 액션 -dispatch
+
+    // 수정모달 : isEditModalVisible , setIsEditModalVisible
+    const [isEditModalVisible,setIsEditModalVisible] = useState();
+    // 수정할글 : editPost, setEidtPost
+    const [editPost,setEidtPost] =useState(null);
+    // 수정기능 : hadleEditSubmit
+    const handleEdit=(post)=>{
+        setEidtPost(post); // 수정글세팅
+        setIsEditModalVisible(true); // 수정화면 보이기
+    };
+    const handleEditSubmit=(values)=>{
+        dispatch(
+            updatePostRequest({postId:editPost.id , dto:{content:values.content}})
+        ); // 수정기능 후
+        setIsEditModalVisible(false); //화면안보이기
+        setEidtPost(null);
+    };
+    //삭제
+    const handleDelete = (postId) =>{
+        dispatch(deletePostRequest(postId)); //해당글번호
+    };
+    // const handleDeleteSubmit=(post)=>{
+    //     dispatch(deletePostRequest(post.id))
+    // };
+
+    // 페이지가 처음뜰때 게시글 조회 액션 - dispatch
     useEffect(()=>{
         dispatch(fetchPostRequest());
     },[dispatch]);
-
     ////////////////
     return (
-        <div>
-            {/* 게시판 리스트 */}
-            <h3>게시글:{posts.length}</h3>
-            {posts.map((post,index)=>(
-                <Card key={post.id || index} style={{marginBottom:"10px"}}>
-                    <p>{post.content}</p>
-                </Card>
-            ))}
-        </div>
+        <>
+            <PostList 
+                posts={posts}
+                handleEdit={handleEdit} 
+                handleDelete={handleDelete}
+                />
+            <EditPostModel 
+                visible={isEditModalVisible}
+                onCancel={()=>setIsEditModalVisible(false)}
+                editPost={editPost}
+                onsubmit={handleEditSubmit}
+            />
+        </>
     );
 }
