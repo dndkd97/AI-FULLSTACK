@@ -13,8 +13,12 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name="POST_LIKE", uniqueConstraints = @UniqueConstraint(columnNames={"APP_USER_ID","POST_ID"}))
 public class PostLike {
 	@Id

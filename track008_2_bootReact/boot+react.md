@@ -55,6 +55,7 @@ docker ps
 ```
 
 java -jar lombok-1.18.18.jar
+
 2. redis 설치 
 ```
 docker pull  redis
@@ -112,32 +113,34 @@ grant  create table to boot;
 
 ```
 
-##### [실습] 4. Boot + React ver1
+##### [■실습]  4.   Boot + React  - ver1  (기본게시판 + 회원가입)
 
 ##### [실습]  5.   Boot + React + 세션/쿠키  - ver2  (기본게시판 + 회원가입 + 이미지 / 해쉬태그 / 좋아요 / 팔로우)
 ※ entity → repository  → service  →  controller 
 
 ##### [실습]  6.   Boot + React + jwt+ security+redis  - ver3  (기본게시판 + 회원가입 + 이미지 / 해쉬태그 / 좋아요 / 팔로우 )
 
-##### [■실습]  4.   Boot + React  - ver1  (기본게시판 + 회원가입)
-1. board
-- [ ] 1. project
-- [ ] 2. 부품객체 () : gradle
- ※ https://mvnrepository.com/
-- [ ] 3. application.yml
+
+
+##### [실습]  4.   Boot + React  - ver1  (기본게시판 + 회원가입)
+1.  board
+- [x] 1. project
+- [x] 2. 부품객체   : gradle 
+  ※ https://mvnrepository.com/
+- [x] 3. application.yml
 ```
 spring:
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521/XE    # jdbc url
-    username: boot                              # 사용자계정
-    password: react                             # 비밀번호
-    driver-class-name: oracle.jdbc.OracleDriver # oracle,mysql,,,,
+    url: jdbc:oracle:thin:@localhost:1521/XE      # jdbc url
+    username: boot                                # 사용자계정       
+    password: react                               # 비밀번호
+    driver-class-name: oracle.jdbc.OracleDriver   # oracle, mysql,,,,
 
   jpa:
     hibernate:
-      ddl-auto: update    # 엔티티변경사항 db테이블 자동으로 변경사항 반영
-                          # update:수정반영, 기존데이터 유지 / create-drop : 생성후 삭제, 매번 초기화
-                          # 배포할때는 none(기본) , validate
+      ddl-auto: update    # 엔티티변경사항 db테이블 자동으로 변경사항반영
+                          # update:수정반영, 기존데이터 유지 / create-drop : 생성후 삭제, 매번초기화 
+                          # 배포할때는 none (기본)
     properties:
       hibernate:
         format_sql: true  # 콘솔 및 로그에 출력되는 sql 들여쓰기 속성
@@ -145,108 +148,134 @@ spring:
 
   servlet:
     multipart:
-      enabled: true           # 파일 업로드처리 기능 활성화
+      enabled: true           # 파일업로드처리 기능 활성화
       max-file-size: 10MB     # 업로드하는 최대허용용량
-      max-request-size: 20MB  # 한번에 전송되는 총용량    
+      max-request-size: 20MB  # 한번에 전송되는 총용량
 
   data:
     redis:
       host: localhost         # redis 연결주소
-      port: 6379              # 서버포트
-      timeout: 2000           # 서버와 연결 대기 시간
+      port: 6379              # 서버포트 
+      timeout: 2000           # 서버와 연결 대기시간
 
   config:
-    import: 
-      - optional:application-oauth.yml  # api 설정관련
-      - optional:file:.env[.properties] # .env 파일 실제 보관키
-
+    import:     
+      - optional:application-oauth.yml    # api 설정관련
+      - optional:file:.env[.properties]   # .env 파일 실제 보관키
 
 mybatis:
-  config-location: classpath:mybatis-config.xml # 전역설정파일
-  mapper-locations: classpath:mapper/**/*.xml   # 매퍼 경로패턴
-  type-aliases-package: com.thejoa703.domain    # 도메인설정
+  config-location: classpath:mybatis-config.xml   # 전역설정파일
+  mapper-locations: classpath:mapper/**/*.xml     # 맵퍼 경로패턴
+  type-aliases-package: com.thejoa703.domain      # 도메인설정 
 
 jwt:
-  issuer: thejoa703         # jwt 토큰 발행한 주체자
-  secret: ${JWT_SECRET}     # 사용할 비밀키 - 외부환경변수에서 불러와서 설정
+  issuer: thejoa703            # jwt 토큰 발행한 주체자
+  secret: ${JWT_SECRET}        # 사용할 비밀키 - 외부환경변수에서 불러와서 설정
   access-token-exp-seconds: 900       # 유효시간
   refresh-token-exp-seconds: 1209600   
-  header: Authorization     # 토큰전달시 http 요청헤더 이름 지정
-  prefix: Bearer
+  header: Authorization        # 토큰전달시 http요청헤더 이름 지정
+  prefix: Bearer               # 토큰앞에 앞에 붙는 이름  (접두사)
 
 file:
-  upload-dir: uploads # 업로드된 파일설정경로
+  upload-dir: uploads    # 업로드된 파일설정경로
 
-#server:  
+#server:
 #  port: 8484
 ```
- ※ (oracle db:table) → mapper → dto → service → controller → view
- ※ @Entity       → repository → dto → service → controller → view
-- [ ] 4. entity ( 테이블을 객체로 처리 )
+
+
+※ (oracle db:table)→ mapper     → dto → service  → controller  → view
+※ @Entity          → repository → dto → service  → controller  → view
+
+- [x] 4. entity  ( 테이블을 객체로 처리 )
   back1
     ㄴ src/main/java
-       ㄴ com.thejoa703.entity
-            - AppUser
-            - Post
+      ㄴ com.thejoa703.entity
+          - AppUser
+          - Post
 
-A. JPA
-  - ORM(Object-Relational Mapping)
-  부품객체(자바클래스)와 RDB(관계형데이터베이스)의 불일치 해결하려고 
-  SQL중심이 아니라 객체 중심으로 데이터를 다룰수 있게 해주는 기술
+  A. JPA
+    - ORM(Object-Relational Mapping)
+    부품객체(자바클래스)과  RDB(관계형데이터베이스)의 불일치 해결하려고 
+    SQL중심이 아니라 객체 중심으로 데이터를 다룰수 있게 해주는 기술
 
-  - 1. @Entity DB의 테이블과 매핑
-  - 테이블컬럼변경시 SQL을 일일이 수정할 필요없이 엔티티클래스만 수정
-  - 데이터베이스 방언(Dialect) 지원 - oracle,mysql 특정데이터에 종속
+    - 1. @Entity  DB의 테이블과 맵핑
+    - 테이블컬럼변경시 SQL을 일일이 수정할 필요없이 엔티티클래스만 수정
+    - 데이터베이스 방언(Dialect) 지원 - oracle, mysql 특정데이터에 종속
 
-  - 2. JpaRepository - db에 접속해서 crud 작업을 처리하는 인터페이스
-  - 3. 외래키설정
-    > 한사람이 여러글을 쓸 수 있다
+    - 2. JpaRepository - db에 접속해서 crud 작업을 처리하는 인터페이스 
+    - 3. 외래키설정
+      > 한 사람이 여러 글을 쓸 수 있다 
+      ```
+      > AppUser
+      @OneToMany
 
-    > AppUser
-    @OneToMany
+      > Post
+      @ManyToOne
+     ```
 
-    > Post
-    @ManyToOne
-- [ ] 5. Repository
-    back1
+- [x] 5. Repository
+  back1
     ㄴ src/main/java
-       ㄴ com.thejoa703.repository
-            - AppUserRepository
-            - PostRepository
-- [ ] 6. Dto
-    back1
+      ㄴ com.thejoa703.repository
+          - AppUserRepository
+          - PostRepository
+  https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
+
+
+
+- [x] 6. Dto
+  back1
     ㄴ src/main/java
-       ㄴ com.thejoa703.dto
-            - AppUserDto
-            - PostDto
+      ㄴ com.thejoa703.dto
+          - UserDto
+          - PostDto
 
-https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
 
-- [ ] 7. Service
-    back1
+- [x] 7. Service
+  back1
     ㄴ src/main/java
-       ㄴ com.thejoa703.service
-            - AppUserService
-            - PostService
-- [ ] 8. Controller
-    back1
+      ㄴ com.thejoa703.service
+          - UserService
+          - PostService
+
+7-1. 클래스 명   : UserService (package com.thejoa703.service;)
+메서드 명
+- createUser (회원가입 / 사용자 등록 기능)
+- getUser (사용자 단건 조회 기능)
+
+7-2. 클래스 명   : PostService
+- getAllPosts (모든 글)
+- getPostById (단건 조회)
+- getPostPaged (오라클 네이티브 페이징 조회)
+- createPost (게시글 생성)
+- updatePost (게시글 수정)
+- deletePost (게시글 삭제)
+
+
+- [x] 8. Controller
+  back1
     ㄴ src/main/java
-       ㄴ com.thejoa703.controller
-            - AppUserController
-            - PostController
+      ㄴ com.thejoa703.controller
+          - UserController
+          - PostController
 
-1. User Api    - 사용자 관련 API
-- POST      /api/users      회원가입
-- GET      /api/users/{id}      사용자 단건조회
+  1. User Api    - 사용자 관련 API
+  - POST	/api/users		    회원가입       ※ createUser
+  - GET		/api/users/{id}		사용자 단건조회 ※ getUser
 
-2. Post API     - 게시글 관련 API
-- GET      /api/posts/{id}      게시글 단건 조회
-- PUT      /api/posts/{id}      게시글 수정
-- DELETE      /api/posts/{id}      게시글 삭제
-- GET      /api/posts      전체 게시글 조회
-- POST      /api/posts      게시글 작성
+  2. Post API     - 게시글 관련 API
 
-- [ ] 9. View
+  - GET		  /api/posts/{id}		게시글 단건 조회 ※  getPostById 
+  - PUT		  /api/posts/{id}		게시글 수정     ※  updatePost
+  - DELETE	/api/posts/{id}		게시글 삭제     ※  deletePost
+  - GET		  /api/posts		전체 게시글 조회     ※  getAllPosts , getPostPaged
+  - POST		/api/posts		게시글 작성         ※  createPost 
+  
+  ※ Swagger는 갱신안되므로 서버 다시 재부팅!
+
+   
+- [x] 9. View
 
 1. 회원가입
    ↓
@@ -258,21 +287,6 @@ https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
    ↓
 5. 글삭제    
 
-Step1) 프로젝트만들기
-```
-mkdir front1
-cd front1
-npm init
-```
-Step2) 기본셋팅 (store)
-```
-package.json 셋팅
-npm install
-```
-Step3) reducer
-Step4) saga
-Step5) view
- 
 front/
 ├── .next/                  # Next.js 빌드 결과물 (자동 생성, 배포 시 사용)
 ├── components/         # 재사용 가능한 UI 컴포넌트 폴더
@@ -280,22 +294,22 @@ front/
 ├── node_modules/       # 설치된 npm 패키지들
 ├── pages/                  # Next.js 라우팅 기반 페이지 폴더
 │   ├── posts/             
-│      └──new.js       #  글쓰기 파일
+│   │ └──new.js       #  글쓰기 파일
 │   ├── _app.js             # 전체 앱의 공통 설정 (Redux Provider, 글로벌 스타일 등)
-│   ├── join.js              # 회원가입
+│   ├── singup.js              # 회원가입
 │   ├── mypage.js         # 마이페이지
 │   └── index.js            # 메인 페이지
 ├── reducers/               # Redux 리듀서 폴더
 │   ├── __tests__/       
-│   │   ├── post.test.js        # 게시판 테스트 코드 
-│   │   └── user.test.js        # 리듀서 테스트 코드
-│   ├── index.js            # 루트 리듀서 (combineReducers)
+│   │	├── post.test.js        # 게시판 테스트 코드 
+│   │	└── user.test.js        # 리듀서 테스트 코드
+│   ├── index.js              # 루트 리듀서 (combineReducers)
 │   ├── authReducer.js             # 사용자 관련 리듀서
 │   └── postReducer.js             # 게시판 관련 리듀서 
 ├── sagas/                  # Redux-Saga 폴더
 │   ├── __tests__/       
-│   │   ├── post.test.js     # 게시판 사가 테스트 코드
-│   │   └── user.test.js      #  유저   사가  테스트 코드
+│   │	├── post.test.js     # 게시판 사가 테스트 코드
+│   │	└── user.test.js      #  유저   사가  테스트 코드
 │   ├── index.js            # 루트 사가
 │   ├── authSaga.js             # 사용자 관련 사가
 │   └── postSaga.js             # 게시판 관련 사가 
@@ -310,24 +324,47 @@ front/
 ├── package.json            # 프로젝트 메타 정보 및 의존성
 └── setupTests.js           #  테스트 환경 설정 파일
 
-Step5)view
-1. Layout
+
+Step1) 프로젝트만들기
+```
+mkdir  front1
+cd     front1
+npm    init
+```
+
+Step2) 기본셋팅 (store)
+```
+package.json 셋팅
+npm install
+```
+Step3) reducer
+Step4) saga
+Step5) view 
+1. AppLayout({  children, initialUser })   
+2. Row - Col - Col
+3. 반응형 <Col flex="none"> 고정
+4. 반응형 <Col flex="auto" xs={0}  sm={0}  md={16}  lg={18}>
+                xs, sm (모바일): 0 숨김처리  ,  md (테블릿) : 16  24칸중에 16 , lg(pc) : 18   24칸중에 18
+5. button 종류 : primary , default(하얀색), text(없음) , link(a링크형식모양) 
+                <Button   type="text" >
+
+
 2. 경로
 ```
-├── pages/                  # Next.js 라우팅 기반 페이지 폴더
+├── pages/                # Next.js 라우팅 기반 페이지 폴더
 │   ├── posts/             
-│      └──new.js            # 글쓰기 파일
-│   ├── _app.js             # 전체 앱의 공통 설정 (Redux Provider, 글로벌 스타일 등)
-│   ├── join.js             # 회원가입
-│   ├── mypage.js           # 마이페이지
-│   └── index.js            # 메인 페이지
+│   │ └──new.js           #  글쓰기 파일
+│   ├── _app.js           # 전체 앱의 공통 설정 (Redux Provider, 글로벌 스타일 등)
+│   ├── singup.js         # 회원가입
+│   ├── mypage.js         # 마이페이지
+│   └── index.js          # 메인 페이지  
 ```
+<Link href="/">          index.js     # 메인 페이지  
+<Link href="/mypage">    mypage.js    # 마이 페이지  
+<Link href="/singup">    singup.js    # 회원가입  
+<Link href="/posts/new"> posts/new.js # 글쓰기 파일  
 
-<Link href="/">              index.js # 메인 페이지
-<Link href="/mypage">       mypage.js # 마이 페이지
-<Link href="/signup">       signup.js # 회원가입
-<Link href="/posts/new"> posts/new.js # 글쓰기 파일
-
+ 
 // Layout: https://ant.design/components/layout 
 // Menu: https://ant.design/components/menu 
 // Input: https://ant.design/components/input 
@@ -335,13 +372,15 @@ Step5)view
 // Grid(Row/Col): https://ant.design/components/grid 
 // Button: https://ant.design/components/button
 
-#  (1) : 회원가입 + board (curd)
+
+
+##  (1) : 회원가입 +  board (crud)
 ##  (2) : 멤버기능 +  board (이미지업로드, 해쉬태그 , 좋아요)
 boot2 -  프로젝트만들기
 - table     →   mapper      (dto)   →  service    →   controller
 - @Entity   →   repository  (dto)   →  service    →   controller
 
-1) 유저는 많은 글을 쓸수 있다.
+1) 유저는 많은 글을 쓸 수 있다.
 <AppUser>  → <Post>
 ```
 <AppUser>
@@ -349,7 +388,7 @@ boot2 -  프로젝트만들기
 private List<Post> posts = new ArrayList<>(); 
 
 <Post>
-@ManyToOne   //1. 다대일(테이블 필드)
+@ManyToOne   //1. 다대일  (테이블필드)
 @JoinColumn(name="APP_USER_ID" , nullable = false)
 private AppUser user; 
 ```
@@ -358,58 +397,132 @@ private AppUser user;
 <Post> → <Image>
 
 ```
- <Post>
- @OneToMany
+  <Post>	// 한 글은 여러 이미지를 갖는다
+	@OneToMany( mappedBy= "post",   cascade = CascadeType.ALL , orphanRemoval = true)
+	private List<Image>  images = new ArrayList<>();
 
- <Image>
- @ManyToOne
+  <Image>	
+  @ManyToOne // 한 글은 여러 이미지를 갖는다
+	@JoinColumn(name="POST_ID" , nullable = false)   // POST_ID 외래키 (FK)   POST엔티티의 PK(ID) 참조
+	private Post post;
 ```
+
 
 3) 글은 많은 해쉬태그를 갖는다.    / 해쉬태그는 많은 글을 갖는다.
-1) 다:다
-2) 중간테이블
-<Post> → <Hashtag> 하나의 글(여러)은 많은 해쉬태그를 갖는다.
-@ManyToMany       
+1)   다:다
+2)   중간테이블 
+<Post> → <Hashtag>       글(여러)은 많은 해쉬태그를 갖는다.
+<Hashtag> → <Post>       해쉬태그은 많은 글를 갖는다.
 
-<Hashtag> → <Post>
-<Post>                   <Hashtag>
-content                  1 test123
-deleted                  2 like
-        Post_Hashtag.>
-            1 1
-            1 2
-            2 1 
-            2 2
-          1번글 test123
-          1번글 like
+<Post>                                     <Hashtag>
+content                                    1  test123 
+deleted                                    2  like 
+                    
+         ↔     <Post_Hashtag>  ↔
+                    1   1
+                    1   2 
+                    2   1
+                    2   2 
+                 1번글  test123
+                 1번글  like
+
 ```
 <Post>
-    @ManyToMany
-    @JoinTable(name="POST_HASHTAG",
-    joinColumns = @JoinColumn(name="POST_ID"),
-    inverseJoinColumns = @JoinColumn(name="HASHTAG_ID"))
-    private List<HashTag> hashtags = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name="POST_HASHTAG" ,
+		joinColumns = @JoinColumn(name="POST_ID") ,
+		inverseJoinColumns =  @JoinColumn(name="HASHTAG_ID") 
+	)
+	private List<Hashtag>  hashtags = new ArrayList<>();
 
 <Hashtag>
-   @ManyToMany(mappedBy = "hashtags")
-   private List<Post> posts = new ArrayList<>();
+	@ManyToMany(mappedBy = "hashtags")
+	private List<Post>  posts = new ArrayList<>();
 ```
 
-4) 글은 많은 좋아요를 갖는다
+4) 글은 많은 좋아요를 갖는다   
 한글에 여러유저가 좋아요를 눌러요
-<Post>                                     <POST_LIKE>
-@OneToMany List<POST_LIKE> likes;          @ManyToOne   AppUser user;
-@OneToMany List<POST_LIKE> likes;          @ManyToOne   Post post;
+<Post>                                     <POST_LIKE>     
+@OneToMany List<POST_LIKE> likes;          @ManyToOne    AppUser user;  
+@OneToMany List<POST_LIKE> likes;          @ManyToOne    Post    post;    
 <AppUser>
+                                          좋아요번호   글번호   유저번호
+                                          1           1      1
+                                          2           1      2
+                                          3           1      3
+                                          4           2      2
+                                          5           2      3
 
-          좋아요번호  글번호   유저번호
-          1          1       1
-          2          1       2
-          3          1       3
-          4          2       2
-          5          3       3
 
 5) 리트윗
 6) 팔로우
+팔로워 :  나를 구독하는 사람들  ,내팬 
+팔로잉 :  내가 한 구독             ,김우빈/신민아/카리나
+
+		follower	     followee
+		1	     2
+		1	     3
+		2                3	
+
+		1 나	2 김우빈	3신민아	4카리나	 	 
+
+
+> 포트폴리오
+1. boot - 두번째
+1) 포폴1 - 옮기기 ( 리뉴얼 )
+	1. 프로젝트
+	2. 테이블구성 @Entity  숙제)
+	3. mybatis 셋팅  (mapper)  / repository  
+	4. service  
+	5. RestController   	
+
+2) 포폴2 - 새롭게 구성되는파트
+
 
 front2 - 프로젝트복사하기
+
+[4] Dto/Service
+- table     →   mapper      (dto)   →  service    →   controller
+- @Entity   →   repository  (dto)   →  service    →   controller
+
+■ 멤버관리
+
+회원가입  ( 이메일중복검사,닉네임중복검사 )
+↓
+로그인    
+↓
+마이페이지 (닉네임변경,프로필이미지변경,회원탈퇴,로그아웃) ※ 팔로워 / 팔로잉
+
+(UserDto : UserRequestDto / UserResponseDto)
+UserRequestDto < email , password , nickname , ☆ iamge (ufile: Multpart 빠짐) / provider , mobile , mbtitype >
+UserResponseDto < email , role , nickname , ufile / provider , mobile , mbtitype >
+
+LoginRequest < email , password , provider >
+
+■ 게시글관리
+게시글작성
+↓
+게시글 목록( 전체글 / 좋아요한글 / 내글+리트윗 )
+※1. 각세부내용 / 수정 / 삭제
+※2. 좋아요 / 리트윗 / 댓글
+
+[5] RestController
+
+> Ver 2. frontend
+
+1. 프로젝트 만들기
+```
+mkdir front2
+cd front2
+npm init
+```
+
+2. 프로그램 설치(npm install)
+```
+npm install
+```
+
+3. 개발
+1) reducer
+2) saga
+3) page

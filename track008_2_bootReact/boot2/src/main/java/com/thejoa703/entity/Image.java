@@ -9,9 +9,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name="IMAGE")
+@Getter
+@Setter
 public class Image {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator="image_seq")

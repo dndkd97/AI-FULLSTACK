@@ -12,26 +12,15 @@ import MenuItem from 'antd/lib/menu/MenuItem';
 
 const {Header,Content} = Layout;    // <Layout.Header> → <Header>
 const {userBreakpoint} = Grid;
-import {logoutRequest} from "../reducers/authReducer";
 //2. 부품
 // Header / Drawer
 // children : 각각의 부품 대체 / initialUser : 초기값
 function AppLayout({children,initialUser}){ 
     const [drawerOpen,setDrawerOpen] = useState(false);
-    const router = useRouter();
-    const {user} = useSelector((state)=>state.auth);
-    const handleLogout=()=>{dispatchEvent(logoutRequest()); router.replace('/login');}; // 디스패치(logoutRequest()) / 경로 login 넘기기
     const menuItems = [
-    ...(user && user.nickname
-    ?[   
         { key: "new",     label: <Link href="/posts/new">✏️ NEW POST</Link> },
         { key: "profile", label: <Link href="/mypage">👤 MYPAGE </Link> },
-        { key: "home",    label: <a onClick={handleLogout} style={{cursor:"pointer"}}>🔓 로그아웃</a> },
-    ]:[
-        { key: "login",     label: <Link href="/login">🏠 로그인</Link> },
-        { key: "signup",    label: <Link href="/signup">🏠 JOIN</Link> }
-    ]
-    )
+        { key: "home",    label: <Link href="/signup">🏠 JOIN</Link> },
     ];
     ///////////////////////// #1) Row(줄) - Col(칸) / Col
     ///////////////////////// #2) 반응형속성 (모바일:xs,sm, 태블릿:md, pc:lg) - 24칸

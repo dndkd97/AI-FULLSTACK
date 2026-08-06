@@ -77,7 +77,7 @@ public class Post {
    @ManyToMany
    @JoinTable(name="POST_HASHTAG",
             joinColumns = @JoinColumn(name="POST_ID"),
-            inverseJoinColumns = @JoinColumn(name="HASGTAG_ID")
+            inverseJoinColumns = @JoinColumn(name="HASHTAG_ID")
    )
    private List<Hashtag> hashtags = new ArrayList<>();
 }

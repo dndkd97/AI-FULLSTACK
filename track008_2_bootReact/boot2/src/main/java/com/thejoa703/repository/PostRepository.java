@@ -13,6 +13,9 @@ import com.thejoa703.entity.Post;
 public interface PostRepository extends JpaRepository<Post, Long>{ // Entity , PK
 	List<Post> findByDeletedFalse(); // List<Post> - 결과 여러개 일때 : List
 	
+	// 해쉬태그 이름으로 게시글 검색 
+	List<Post> findByHashtags_NameAndDeletedFalse(String name);
+	
 	//비교- 결과값이 1개거나 없을때(null) - Optional
 	//Optional<AppUser> findByEmail(String email);
 	@Query(
@@ -26,6 +29,28 @@ public interface PostRepository extends JpaRepository<Post, Long>{ // Entity , P
 	
 	List<Post> findPostsWithPaging(@Param("start")int start, @Param("end")int end);
 	
+	// 내가 쓴 글 + 내가 리트윗 한 글 ( 합쳐서 조회 )
+	@Query(value=
+	"SELECT * FROM ( " +
+    "SELECT p.*, ROWNUM AS rnum " +
+    "FROM ( " +
+    "   SELECT po.ID, po.CONTENT, po.CREATED_AT, po.DELETED, po.UPDATED_AT, po.APP_USER_ID " +  
+    "   FROM POSTS po " +
+    "   WHERE po.APP_USER_ID = :userId AND po.DELETED = 0 " +
+    "   UNION ALL " +
+    "   SELECT po.ID, po.CONTENT, po.CREATED_AT, po.DELETED, po.UPDATED_AT, po.APP_USER_ID " + 
+    "   FROM POSTS po " +
+    "   WHERE po.ID IN ( " +
+    "       SELECT DISTINCT r.ORIGINAL_POST_ID " +
+    "       FROM RETWEETS r " +
+    "       WHERE r.APP_USER_ID = :userId " +
+    "   ) AND po.DELETED = 0 " +
+    "   ORDER BY CREATED_AT DESC " +  
+    ") p " +
+    ") " +
+    "WHERE rnum BETWEEN :start AND :end",
+    nativeQuery=true)
+List<Post> findMyPostsAndRetweetsWithPaging(@Param("userId")Long userId, @Param("start")int start,@Param("end")int end);
 }
 
 /*
