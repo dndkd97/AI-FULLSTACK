@@ -35,7 +35,7 @@ export const loginApi = (payload)=> axios.post(`${USER_API_BASE}/login`,payload)
 //2)
 export function* login(action){
    try{ 
-        const result = yield call(loginApi,action.payload);
+        const result = yield call(loginApi,action.payload.values);
         yield put(loginSuccess(result.data));
     }catch(err){
         yield put(loginFailure(err.response?.data?.message||err.message));

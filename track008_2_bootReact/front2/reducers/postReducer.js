@@ -6,6 +6,9 @@ const initialState = {
     loading:false,
     error:null,
     success:false,
+    // createSuccess:false,   // 작성 성공 여부
+    // updateSuccess:false,   // 수정 성공 여부
+    // deleteSuccess:false,   // 삭제 성공 여부
 };
 
 const postReducer = createSlice({
@@ -16,17 +19,14 @@ const postReducer = createSlice({
         fetchPostRequest:(state)=>{
             state.loading=true;
             state.error=null;
-            state.success=false;
         },
         fetchPostSuccess:(state,action)=>{
             state.loading=false;
             state.posts=action.payload;
-            state.success=true;
         },
         fetchPostFailure:(state,action)=>{
             state.loading=false;
             state.error=action.payload;
-            state.success=false;
         },
         // --- 단건 게시글 ---
         fetchPostDetailRequest:(state)=>{
@@ -52,7 +52,9 @@ const postReducer = createSlice({
         },
         createPostSuccess:(state,action)=>{
             state.loading=false;
-            state.posts=[action.payload, ...state.posts]; // 새글을 목록상단추가
+            //ver-1) state.posts=[action.payload, ...state.posts]; // 새로운게시글 맨 앞으로 추가
+            state.posts.unshift(action.payload);
+            //ver-2) action.payload - 새로 작성된 게시글 / unshift 배열의 맨 앞에 새 요소 추가 (직접 배열 수정)
             state.success=true;
         },
         createPostFailure:(state,action)=>{
@@ -87,6 +89,7 @@ const postReducer = createSlice({
         },
         deletePostSuccess:(state,action)=>{
             state.loading=false;
+            // 삭제된 게시글의 id 받아서 목록에서 제외
             state.posts=state.posts.filter(post=>post.id!==action.payload);
             state.success=true;
         },
@@ -96,7 +99,7 @@ const postReducer = createSlice({
             state.success=false;
         },
         // --- 상태 초기화 ---
-        resetUserState:(state)=>{
+        resetPostState:(state)=>{
             state.loading=false;
             state.error=null;
             state.success=false;
@@ -109,7 +112,7 @@ export const {fetchPostRequest,fetchPostSuccess,fetchPostFailure, //전체글
               createPostRequest,createPostSuccess,createPostFailure, //글쓰기
               updatePostRequest,updatePostSuccess,updatePostFailure, //글수정
               deletePostRequest,deletePostSuccess,deletePostFailure, //글삭제
-              resetUserState                                         //초기화
+              resetPostState                                         //초기화
             } = postReducer.actions;
 
 export default postReducer.reducer;

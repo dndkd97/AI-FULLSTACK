@@ -58,7 +58,7 @@ const authReducer=createSlice({
             state.error=null;
         },
         logoutSuccess : (state)=>{
-            state.loading=true;
+            state.loading=false;
             state.error=null;
             state.user=null;
             state.success=false;
