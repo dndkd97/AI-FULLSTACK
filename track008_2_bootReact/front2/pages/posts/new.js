@@ -18,7 +18,7 @@ export default function NewPostpage(){
     //2. 유저정보 
     const {user} = useSelector((state)=>state.auth); // 유저정보 user
     console.log("user 확인:", user);
-    const [fileList,setfileList] = useState();
+    const [fileList,setfileList] = useState([]);
 
     //2. 게시글 작성(dispatch(createPostRequest(dto)):이벤트발생알림)
     // {userId,dto(content,해쉬태그),files}
@@ -27,7 +27,7 @@ export default function NewPostpage(){
             content:values.content,
             hashtags:values.hashtags?values.hashtags.join(","):"",
         };
-        const files= fileList.map((f)=>f.originFileOjb);
+        const files= fileList.map((f)=>f.originFileObj);
 
         dispath(createPostRequest({userId:user.id,dto,files}));
 

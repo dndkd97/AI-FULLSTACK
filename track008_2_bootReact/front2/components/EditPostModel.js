@@ -14,9 +14,11 @@ export default function EditPostModel({visible,onCancel,editPost,onsubmit,upload
                 <Form.Item name="content" label="내용">
                     <Input.TextArea rows={4}/>
                 </Form.Item>
+                {/* 해시태그 입력 */}
                 <Form.Item label="해시태그" name="hashtags">
                     <Select mode="tags" style={{width:"100%"}} placeholder="해시 태그 입력 후 Enter" />
                 </Form.Item>
+                {/* 이미지 업로드 ##5. 파일변경시 변경되는 값 추가 */}
                 <Form.Item>
                     <Upload multiple
                     beforeUpload={()=>false}
