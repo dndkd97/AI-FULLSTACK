@@ -41,3 +41,6 @@ track007_boot_api/application.properties
 
 track008_2_bootReact/front2/.next
 track008_2_bootReact/front2/node_modules
+
+track008_2_bootReact/front3/.next
+track008_2_bootReact/front3/node_modules

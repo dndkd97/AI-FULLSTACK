@@ -82,6 +82,7 @@ public class UserService {
 		return appUserRepository.findByEmailAndProvider(email, provider);
 	}
 	// saveSocialUser
+	@Transactional
     public AppUser saveSocialUser( String email, String provider, String providerId, String nickname, String image) {
 	      AppUser user  = AppUser.builder()
 	                        .email(email)
@@ -89,6 +90,7 @@ public class UserService {
 	                        .providerId(providerId)
 	                        .nickname(nickname)
 	                        .ufile(image)
+	                        .password(passwordEncoder.encode("thejoa703"))
 	                        .role("ROLE_USER")
 	                        .build();
 	      return appUserRepository.save(user);  

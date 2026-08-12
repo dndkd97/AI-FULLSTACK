@@ -137,7 +137,7 @@ public class PostService {
 	}
 	//6. 게시글삭제
 	@Transactional
-	public void deletePost(Long postId,Long userId) {
+	public void deletePost(Long userId, Long postId) {
 		Post post = postRepository.findById(postId)
 				.orElseThrow(()->new IllegalArgumentException("존재하지 않는 사용자입니다.id"+postId));
 		if(!post.getUser().getId().equals(userId)) {
