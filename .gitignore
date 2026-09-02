@@ -44,3 +44,30 @@ track008_2_bootReact/front2/node_modules
 
 track008_2_bootReact/front3/.next
 track008_2_bootReact/front3/node_modules
+
+# Eclipse 관련 폴더 및 파일 무시   
+.classpath
+.project
+.settings/ 
+node_modules/
+.env 
+.next/
+
+
+# 빌드 결과물 무시
+/bin/
+/build/
+
+# IDE 관련
+.idea/
+*.iml
+
+# OS별 임시파일
+*.DS_Store
+Thumbs.db
+ 
+*.md 
+*.pem
+
+track009_linux_aws_std/the703_accessKeys.csv
+track009_linux_aws_std/the703.pem
