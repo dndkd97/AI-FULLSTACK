@@ -290,7 +290,7 @@
     <nav class="links">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
-      <a href="#projects">Work</a>
+      <a href="#projects">Project</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -370,81 +370,90 @@
     </div>
   </section>
 
+ 
   <section id="projects">
     <div class="wrap">
-      <h2 class="section-title reveal">Work</h2>
-
-      <div class="project reveal">
-      <div class="project-media">
-          <iframe
-            src="https://www.youtube.com/embed/Hn5SBf0oBY8?start=1"
-            title="ERP 프로젝트 시연 영상 v1"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div>
-          <div class="project-ver">v1</div>
-          <h3>사내 ERP — 프로젝트/태스크 관리</h3>
-          <ul>
-            <li>Spring MVC + JSP + MyBatis + MySQL로 프로젝트/태스크 관리 모듈을 처음부터 구축</li>
-            <li>Role 기반 접근 제어로 프로젝트 수정·삭제 권한 구현</li>
-            <li>프로젝트 멤버 모달용 사원 자동완성 검색 기능 개발</li>
-          </ul>
-          <div class="tag-wrap">
-            <span class="tag">Spring MVC</span><span class="tag">JSP</span>
-            <span class="tag">MyBatis</span><span class="tag">MySQL</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="project reveal">
-      <div class="project-media">
-          <iframe
-            src="https://www.youtube.com/embed/Jr_1rsLRPBE?start=1"
-            title="ERP 프로젝트 시연 영상 v2"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div>
-          <div class="project-ver">v2</div>
-          <h3>사내 ERP — Thymeleaf 전환 &amp; 기능 고도화</h3>
-          <ul>
-            <li>전체 뷰 Thymeleaf 전환, IDOR 방지·comId 검증 등 보안 강화</li>
-            <li>재귀 CTE 기반 태스크 의존성 시스템(사이클 탐지·일정 재계산), Gantt 차트 시각화</li>
-            <li>GPT 기반 프로젝트 리스크 분석 → Discord 알림, 주간 리포트 자동화</li>
-          </ul>
-          <div class="tag-wrap">
-            <span class="tag">Thymeleaf</span><span class="tag">Oracle</span>
-            <span class="tag">Spring Security</span><span class="tag">Open API 연동</span>
-          </div>
-        </div>
-      </div>
+      <h2 class="section-title reveal">Project</h2>
 
       <div class="project reveal">
         <div class="project-media">
-          <span class="placeholder">영상 링크 삽입 예정</span>
+          <iframe
+            src="https://www.youtube.com/embed/Hn5SBf0oBY8?start=1"
+            title="ERP 프로젝트 시연 영상 V1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
         </div>
+
         <div>
-          <div class="project-ver">v3</div>
-          <h3>사내 ERP — REST 전환 &amp; 채용관리(RAG)</h3>
+          <div class="project-ver">V1</div>
+          <h3>SBErp 전사적 자원관리 시스템 V1 (Spring + MyBatis 구조화)</h3>
           <ul>
-            <li>REST API(Swagger) 전환, Spring Security + JWT + Redis 인증 체계 구축</li>
-            <li>채용관리 모듈(채용공고·지원자 CRUD) 신규 설계 및 React 프론트 개발</li>
-            <li>이력서 업로드 기반 RAG 파이프라인 및 GPT 적합도 평가, 지원자 칸반보드 구현</li>
+            <li>Spring MVC + JSP + MyBatis + MySQL 기반 사내 ERP 시스템 구축</li>
+            <li>프로젝트·태스크 관리 기능 및 Role 기반 접근 권한 구현</li>
+            <li>프로젝트 멤버 등록을 위한 사원 검색·자동완성 기능 개발</li>
           </ul>
+
           <div class="tag-wrap">
-            <span class="tag">Spring Boot</span><span class="tag">JPA</span>
-            <span class="tag">JWT / Redis</span><span class="tag">React</span><span class="tag">RAG</span>
+            <span class="tag">Spring MVC</span>
+            <span class="tag">JSP</span>
+            <span class="tag">MyBatis</span>
+            <span class="tag">MySQL</span>
           </div>
         </div>
       </div>
+      <div class="project reveal">
+        <div class="project-media">
+          <iframe
+            src="https://www.youtube.com/embed/Jr_1rsLRPBE?start=1"
+            title="ERP 프로젝트 시연 영상 V2"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div>
+          <div class="project-ver">V2</div>
+          <h3>SBErp 전사적 자원관리 시스템 V2 (Spring Boot + Thymeleaf 고도화)</h3>
+          <ul>
+            <li>Spring Boot + Thymeleaf 기반으로 기존 ERP 구조 고도화</li>
+            <li>태스크 의존관계·DFS 순환 탐지·일정 자동 재계산 및 Gantt 차트 구현</li>
+            <li>GPT 기반 프로젝트 리스크 분석·Discord 알림 및 주간 보고 자동화</li>
+          </ul>
+          <div class="tag-wrap">
+            <span class="tag">Spring Boot</span>
+            <span class="tag">Thymeleaf</span>
+            <span class="tag">Oracle</span>
+            <span class="tag">Spring Security</span>
+            <span class="tag">OpenAI API</span>
+          </div>
+        </div>
+      </div>
+      <div class="project reveal"> 
+        <div class="project-media"> 
+          <span class="placeholder">영상 링크 삽입 예정</span> 
+        </div> 
+        <div> 
+          <div class="project-ver">V3</div> 
+          <h3>SBErp 전사적 자원관리 시스템 V3 (React 전환 · 채용 서비스 신규 구축)</h3> 
+          <ul> 
+            <li>기존 ERP를 REST API + React 구조로 전환하고 JWT·Redis 기반 내부 인증 적용</li> 
+            <li>기존 ERP와 분리된 외부 지원자용 채용 사이트를 신규 구축하고 소셜 로그인 적용</li> 
+            <li>이력서 기반 RAG 검색·GPT 적합도 평가 및 지원자 칸반보드 구현</li> 
+          </ul> 
+          <div class="tag-wrap"> 
+            <span class="tag">Spring Boot</span> 
+            <span class="tag">JPA</span> 
+            <span class="tag">React</span> 
+            <span class="tag">JWT / Redis</span> 
+            <span class="tag">OAuth2</span> 
+            <span class="tag">RAG</span> 
+          </div> 
+        </div> 
+      </div>
     </div>
   </section>
-
   <section id="contact">
     <div class="wrap reveal">
       <h2 class="section-title">Contact</h2>
