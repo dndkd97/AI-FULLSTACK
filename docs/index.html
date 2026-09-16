@@ -239,6 +239,7 @@
     overflow:hidden;
   }
   .project-media iframe,.project-media video{width:100%;height:100%;border:0;display:block;}
+  .project-media img{width:100%;height:100%;object-fit:cover;display:block;}
   .project-media .placeholder{font-size:0.82rem; color:var(--muted); text-align:center; padding:0 16px;}
   .project-ver{font-size:0.8rem; color:var(--rose); font-weight:500; letter-spacing:.02em;}
   .project h3{font-family:var(--serif); font-weight:500; font-size:1.4rem; margin:6px 0 14px;}
@@ -518,6 +519,45 @@
           </div> 
         </div> 
       </div>
+      <div class="project reveal">
+        <div class="project-media">
+          <img src="img/recruitment-analytics.png" alt="Recruitment Analytics 대시보드 스크린샷">
+        </div>
+        <div>
+          <div class="project-ver">Analytics Server</div>
+          <h3>Recruitment Analytics — Django + Pandas 기반 채용 데이터 분석 서버</h3>
+          <div class="quick-grid" style="margin-bottom:16px;">
+            <div class="quick-card">
+              <span class="qc-title">채용 퍼널 전환율/정체율 분석</span>
+              <span class="qc-desc">RECEIVED→SCREENING→INTERVIEW→HIRED 각 단계 도달 인원을 뒤에서부터 누적 합산해 "최종 도달 인원" 기준 전환율 산출, REJECTED는 별도 탈락률로 분리</span>
+            </div>
+            <div class="quick-card">
+              <span class="qc-title">월별 지원자 추이 분석</span>
+              <span class="qc-desc">Pandas로 월별 지원자 수 집계, 월평균/최다/최저 및 전월 대비 증감률 계산 후 KPI 카드/차트용 데이터로 가공</span>
+            </div>
+            <div class="quick-card">
+              <span class="qc-title">기존 백엔드 REST 연동</span>
+              <span class="qc-desc">Spring Boot가 단일 API 게이트웨이 역할, RestTemplate으로 원본 통계 POST → Django가 분석 결과 JSON 반환하는 내부 전용 API 2종 제공</span>
+            </div>
+            <div class="quick-card">
+              <span class="qc-title">배포 & 인프라</span>
+              <span class="qc-desc">기존 EC2에 8000번 포트 별도 프로세스로 배포, Nginx 리버스 프록시 경로 라우팅, PM2로 상시 구동 전환</span>
+            </div>
+          </div>
+          <div class="tag-wrap">
+            <span class="tag">Python</span>
+            <span class="tag">Django</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Spring Boot</span>
+            <span class="tag">RestTemplate</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Chart.js</span>
+            <span class="tag">AWS EC2</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">PM2</span>
+          </div>
+        </div>
+      </div>
   </section>
   <section id="automation">
   <div class="wrap reveal">
@@ -561,6 +601,10 @@
       <div class="quick-card">
         <span class="qc-title">권한별 프로젝트 노출 오류</span>
         <span class="qc-desc">ROLE_ADMIN 계정이 전체 회사 프로젝트를 볼 수 있던 버그 → isRoot()와 isAdminOrRoot()를 분리해 권한 체크 로직 수정</span>
+      </div>
+      <div class="quick-card">
+        <span class="qc-title">배포 환경에서만 분석 API 500 에러</span>
+        <span class="qc-desc">urls.py가 참조하는 뷰 함수 부재로 Django가 부팅 단계에서 죽어있던 1차 원인은 PM2 상시 구동 등록으로 해결, 이후에도 재발한 2차 원인은 컴파일된 JAR 문자열 상수 역추적으로 Nginx에 /dashboard/ 라우팅이 아예 없었음을 확인 → 프록시 규칙 추가 후 무중단 반영</span>
       </div>
     </div>
   </div>
