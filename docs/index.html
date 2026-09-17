@@ -1,291 +1,27 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>최다영 — Backend-leaning Full Stack Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<style>
-  
-  :root{
-    --bg:#eef1f5;           
-    --teal-soft:#dfe8ec;  
-    --surface:#ffffff;
-    --text:#20242a;
-    --muted:#6b7280;
-    --line:#e7e3dc;
-    --rose:#c4536b;
-    --rose-soft:#e4ecf5;
-    --teal:#1f3a3d;
-    --bubble-lav:#e8ddf7;
-    --bubble-pink:#f5dce6;
-    --bubble-mint:#d7ece7;
-    --bubble-blue:#dce8f5;
-    --serif:'Fraunces','Pretendard',serif;
-    --sans:'Pretendard',-apple-system,sans-serif;
-    --radius:10px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--sans);
-    line-height:1.7;
-    font-size:16px;
-  }
-  a{color:var(--rose); text-decoration:none;}
-  a:hover{text-decoration:underline;}
-  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible{
-    outline:2px solid var(--rose);
-    outline-offset:3px;
-  }
-  .wrap{max-width:960px; margin:0 auto; padding:0 28px;}
-  img,svg{max-width:100%;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  /* ---------- ambient background shapes ---------- */
-  .ambient{position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:0;}
-  .ambient span{
-    position:absolute; border-radius:50%; filter:blur(60px); opacity:0.5;
-  }
-  .ambient .s1{ width:420px; height:420px; top:-140px; right:-120px; background:var(--rose-soft); }
-  .ambient .s2{ width:340px; height:340px; bottom:0; left:-140px; background:var(--teal-soft); }
+  <title>최다영 — Backend-leaning Full Stack Developer</title>
 
-  .ambient .bubble{
-    position:absolute; bottom:-10%; border-radius:50%;
-    opacity:0; filter:none;
-    animation:bubble-float linear infinite;
-  }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  .ambient .snow{
-    position:absolute;
-    top:-5%;
-    border-radius:50%;
-    background:#ffffff;
-    box-shadow:0 0 6px rgba(255,255,255,0.8);
-    opacity:0;
-    aspect-ratio:1/1;
-    filter:none; 
-    animation-name:snow-fall;
-    animation-timing-function:linear;
-    animation-iteration-count:infinite;
-  }
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap"
+    rel="stylesheet"
+  >
 
-  @keyframes snow-fall{
-    0%   { transform:translate(0,0);      opacity:0; }
-    8%   { opacity:0.85; }
-    25%  { transform:translate(15px, 28vh); }
-    50%  { transform:translate(-10px, 56vh); }
-    75%  { transform:translate(12px, 84vh); }
-    92%  { opacity:0.7; }
-    100% { transform:translate(0, 112vh);  opacity:0; }
-  }
+  <link
+    rel="stylesheet"
+    as="style"
+    crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+  >
 
-
-  /* ---------- nav ---------- */
-  header.nav{
-    position:sticky; top:0; z-index:20;
-    background:linear-gradient(180deg, rgba(223,235,245,0.8), rgba(238,241,245,0.9));
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid #d7e2ec;
-  }
-  header.nav .wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:16px 28px;
-  }
-  .logo{font-family:var(--serif); font-size:1.1rem; font-weight:600;}
-  nav.links{display:flex; gap:24px; font-size:0.9rem;}
-  nav.links a{color:var(--muted);}
-  nav.links a:hover{color:var(--rose);}
-
-  main{position:relative; z-index:1;}
-
-  .reveal{
-    opacity:0; transform:translateY(24px);
-    transition:opacity .7s ease, transform .7s ease;
-  }
-  .reveal.in-view{opacity:1; transform:translateY(0);}
-
-  /* ---------- intro (hero + about merged) ---------- */
-  .intro{padding:88px 0 72px;}
-  .intro-title{
-    font-family:var(--serif); font-weight:600;
-    font-size:clamp(2.2rem,6vw,3.4rem);
-    margin:0 0 12px; display:inline-block;
-    border-bottom:4px solid var(--teal);
-    padding-bottom:10px;
-  }
-  .intro-role{font-size:0.95rem; color:var(--rose); font-weight:500; margin:0 0 32px;}
-
-  .intro-top{
-    display:grid; grid-template-columns:auto 1fr; gap:48px; align-items:center;
-    margin-bottom:44px;
-  }
-  @media (max-width:640px){ .intro-top{grid-template-columns:1fr; justify-items:center; text-align:center;} }
-
-  .avatar-wrap{
-  position:relative;
-  width:160px;
-  flex:0 0 auto;
-  }
-  .avatar{
-    width:160px; height:160px; border-radius:50%;
-    background:linear-gradient(135deg,var(--rose-soft),var(--teal-soft));
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--serif); font-size:2.4rem; color:var(--teal);
-  }
-  .avatar-badge{
-    position:absolute; top:-10px; left:-6px;
-    background:var(--text); color:#fff;
-    font-size:0.72rem; font-weight:600; letter-spacing:.02em;
-    padding:5px 12px; border-radius:6px; transform:rotate(-8deg);
-  }
-
-  .link-stack{
-    display:flex;
-    flex-direction:row;
-    flex-wrap:nowrap;
-    justify-content:center;
-    gap:8px;
-    width:max-content;
-    margin-top:14px;
-  }
-  .link-stack a{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    background:#fff;
-    color:var(--text);
-    padding:8px 14px;
-    border-radius:100px;
-    font-size:0.78rem;
-    font-weight:500;
-    letter-spacing:.02em;
-    white-space:nowrap;
-    transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
-    box-shadow:0 4px 14px rgba(32,36,42,0.06);
-  }
-  .link-stack a:hover{
-    background:#fff;
-    color:var(--text);
-    transform:translateY(-2px);
-    box-shadow:0 7px 18px rgba(32,36,42,0.09);
-    text-decoration:none;
-  }
-
-  .intro-text p{margin:0 0 14px; max-width:62ch; color:var(--text);}
-  .intro-text .hl{color:var(--rose); font-weight:600;}
-  .intro-text .hl.teal{color:var(--teal);}
-
-  .fact-list{list-style:none; padding:0; margin:20px 0; display:flex; flex-direction:column; gap:8px; font-size:0.94rem; color:var(--muted);}
-  .fact-list strong{color:var(--text); font-weight:500; margin-right:8px;}
-  .trait-row{display:flex; gap:10px; margin-top:16px;}
-  .trait{
-    font-size:0.82rem; padding:5px 14px; border-radius:100px;
-    background:var(--teal); color:#fff;
-  }
-  .trait:nth-child(2){background:var(--rose);}
-  .trait:nth-child(3){background:var(--muted);}
-
-  /* ---------- section heading (shared) ---------- */
-  .section-title{
-    font-family:var(--serif);
-    font-weight:500;
-    font-size:clamp(1.5rem, 3vw, 2rem);
-    margin:0 0 36px;
-  }
-  section{padding:64px 0;}
-  section + section{border-top:1px solid var(--line);}
-
-  /* ---------- skills ---------- */
-  .skill-cluster{margin-bottom:28px;}
-  .skill-cluster:last-child{margin-bottom:0;}
-  .skill-cluster .cat-label{
-    display:flex; align-items:center; gap:8px;
-    font-size:0.85rem; color:var(--muted); margin-bottom:12px;
-  }
-  .cat-label .dot{width:8px; height:8px; border-radius:50%; background:var(--rose);}
-  .skill-cluster:nth-child(2) .dot{background:var(--teal);}
-  .skill-cluster:nth-child(3) .dot{background:#b08b3d;}
-  .skill-cluster:nth-child(4) .dot{background:#5b7a99;}
-  .skill-cluster:nth-child(5) .dot{background:#7a6a9c;}
-  .tag-wrap{display:flex; flex-wrap:wrap; gap:10px;}
-  .tag{
-    font-size:0.92rem; padding:7px 15px; border-radius:8px;
-    background:var(--surface); border:1px solid var(--line);
-  }
-
-  /* ---------- projects ---------- */
-  .project{
-    display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;
-    margin-bottom:72px;
-  }
-  .project:last-child{margin-bottom:0;}
-  .project:nth-child(even){direction:rtl;}
-  .project:nth-child(even) > *{direction:ltr;}
-  @media (max-width:760px){
-    .project{grid-template-columns:1fr;}
-    .project:nth-child(even){direction:ltr;}
-  }
-  .project-media{
-    aspect-ratio:16/9; border-radius:var(--radius);
-    background:var(--teal-soft);
-    border:1px dashed var(--line);
-    display:flex; align-items:center; justify-content:center;
-    overflow:hidden;
-  }
-  .project-media iframe,.project-media video{width:100%;height:100%;border:0;display:block;}
-  .project-media img{width:100%;height:100%;object-fit:cover;display:block;}
-  .project-media .placeholder{font-size:0.82rem; color:var(--muted); text-align:center; padding:0 16px;}
-  .project-ver{font-size:0.8rem; color:var(--rose); font-weight:500; letter-spacing:.02em;}
-  .project h3{font-family:var(--serif); font-weight:500; font-size:1.4rem; margin:6px 0 14px;}
-  .project ul{margin:0 0 16px; padding-left:18px; font-size:0.94rem;}
-  .project ul li{margin-bottom:6px;}
-  .project ul li::marker{color:var(--rose);}
-  .project .tag-wrap .tag{font-size:0.8rem; padding:5px 12px;}
-
-  /* ---------- quicklinks block ---------- */
-  .quick-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px;}
-  .quick-card{
-    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    padding:20px; transition:transform .2s ease, border-color .2s ease;
-  }
-  .quick-card:hover{transform:translateY(-4px); border-color:var(--rose); text-decoration:none;}
-  .quick-card .qc-title{display:block; font-weight:500; margin-bottom:4px; color:var(--text);}
-  .quick-card .qc-desc{display:block; font-size:0.82rem; color:var(--muted);}
-
-  /* ---------- contact ---------- */
-  .contact-box{
-    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
-    padding:36px; max-width:560px;
-  }
-  .field{display:flex; flex-direction:column; gap:6px; margin-bottom:16px;}
-  .field label{font-size:0.82rem; color:var(--muted);}
-  .field input, .field textarea{
-    background:var(--bg); border:1px solid var(--line); border-radius:8px;
-    padding:10px 12px; font-family:var(--sans); font-size:0.95rem; color:var(--text); resize:vertical;
-  }
-  .form-actions{display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-top:6px;}
-  button.submit{
-    background:var(--rose); color:#fff; border:none; border-radius:8px;
-    padding:11px 22px; font-size:0.92rem; cursor:pointer; font-family:var(--sans);
-  }
-  button.submit:hover{background:#a83f56;}
-  .direct-contact{font-size:0.86rem; color:var(--muted);}
-  .direct-contact a{margin-right:14px;}
-
-  footer{padding:28px 0; text-align:center; font-size:0.82rem; color:var(--muted); border-top:1px solid var(--line);}
-
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    .reveal{transition:none; opacity:1; transform:none;}
-    .ambient .snow{animation:none; opacity:0.4;}
-  }
-</style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -519,7 +255,7 @@
           </div> 
         </div> 
       </div>
-      <div class="project reveal">
+      <div class="project reveal analytics-project">
         <div class="project-media">
           <img src="img/recruitment-analytics.png" alt="Recruitment Analytics 대시보드 스크린샷">
         </div>
@@ -529,7 +265,10 @@
           <div class="quick-grid" style="margin-bottom:16px;">
             <div class="quick-card">
               <span class="qc-title">채용 퍼널 전환율/정체율 분석</span>
-              <span class="qc-desc">RECEIVED→SCREENING→INTERVIEW→HIRED 각 단계 도달 인원을 뒤에서부터 누적 합산해 "최종 도달 인원" 기준 전환율 산출, REJECTED는 별도 탈락률로 분리</span>
+              <span class="qc-desc">
+                RECEIVED→<wbr>SCREENING→<wbr>INTERVIEW→<wbr>HIRED
+                각 단계 도달 인원을 뒤에서부터 누적 합산해 "최종 도달 인원" 기준 전환율 산출, REJECTED는 별도 탈락률로 분리
+              </span>
             </div>
             <div class="quick-card">
               <span class="qc-title">월별 지원자 추이 분석</span>
@@ -585,57 +324,77 @@
 <section id="troubleshooting">
   <div class="wrap reveal">
     <h2 class="section-title">Troubleshooting</h2>
-    <div class="quick-grid">
-      <div class="quick-card">
-        <span class="qc-title">태스크 순환 탐지 NPE</span>
-        <span class="qc-desc">DFS 기반 isCyclic()에서 .map().findFirst() 순서 문제로 NPE 발생 → 탐색 순서를 재정렬해 해결</span>
+
+    <div class="trouble-grid">
+
+      <div class="trouble-row">
+        <div class="quick-card">
+          <span class="qc-title">태스크 순환 탐지 NPE</span>
+          <span class="qc-desc">
+            DFS 기반 isCyclic()에서 .map().findFirst() 순서 문제로 NPE 발생 → 탐색 순서를 재정렬해 해결
+          </span>
+        </div>
+
+        <div class="quick-card">
+          <span class="qc-title">동시 일정 수정 충돌</span>
+          <span class="qc-desc">
+            부모·자식 태스크를 동시에 수정하면 데이터 정합성이 깨질 수 있어 서브트리 단위 SELECT FOR UPDATE 락 도입 → 두 요청을 동시에 보내는 테스트로 순차 처리를 직접 검증
+          </span>
+        </div>
       </div>
-      <div class="quick-card">
-        <span class="qc-title">동시 일정 수정 충돌</span>
-        <span class="qc-desc">부모·자식 태스크를 동시에 수정하면 데이터 정합성이 깨질 수 있어 서브트리 단위 SELECT FOR UPDATE 락 도입 → 두 요청을 동시에 보내는 테스트로 순차 처리를 직접 검증</span>
+
+      <div class="trouble-row">
+        <div class="quick-card">
+          <span class="qc-title">IDOR 취약점</span>
+          <span class="qc-desc">
+            이력서 업로드·지원 정보 수정 API에서 소유권 검증 누락 발견 → provider+providerId 대조 로직 추가로 타인 데이터 접근 차단
+          </span>
+        </div>
+
+        <div class="quick-card">
+          <span class="qc-title">권한별 프로젝트 노출 오류</span>
+          <span class="qc-desc">
+            ROLE_ADMIN 계정이 전체 회사 프로젝트를 볼 수 있던 버그 → isRoot()와 isAdminOrRoot()를 분리해 권한 체크 로직 수정
+          </span>
+        </div>
+
+        <div class="quick-card">
+          <span class="qc-title">배포 환경에서만 분석 API 500 에러</span>
+          <span class="qc-desc">
+            urls.py가 참조하는 뷰 함수 부재로 Django가 부팅 단계에서 죽어있던 1차 원인은 PM2 상시 구동 등록으로 해결, 이후에도 재발한 2차 원인은 컴파일된 JAR 문자열 상수 역추적으로 Nginx에 /dashboard/ 라우팅이 아예 없었음을 확인 → 프록시 규칙 추가 후 무중단 반영
+          </span>
+        </div>
       </div>
-      <div class="quick-card">
-        <span class="qc-title">IDOR 취약점</span>
-        <span class="qc-desc">이력서 업로드·지원 정보 수정 API에서 소유권 검증 누락 발견 → provider+providerId 대조 로직 추가로 타인 데이터 접근 차단</span>
-      </div>
-      <div class="quick-card">
-        <span class="qc-title">권한별 프로젝트 노출 오류</span>
-        <span class="qc-desc">ROLE_ADMIN 계정이 전체 회사 프로젝트를 볼 수 있던 버그 → isRoot()와 isAdminOrRoot()를 분리해 권한 체크 로직 수정</span>
-      </div>
-      <div class="quick-card">
-        <span class="qc-title">배포 환경에서만 분석 API 500 에러</span>
-        <span class="qc-desc">urls.py가 참조하는 뷰 함수 부재로 Django가 부팅 단계에서 죽어있던 1차 원인은 PM2 상시 구동 등록으로 해결, 이후에도 재발한 2차 원인은 컴파일된 JAR 문자열 상수 역추적으로 Nginx에 /dashboard/ 라우팅이 아예 없었음을 확인 → 프록시 규칙 추가 후 무중단 반영</span>
+
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="wrap reveal">
+    <h2 class="section-title">Contact💌</h2>
+
+    <div class="contact-box">
+      <p class="contact-title">Links & Contact</p>
+
+      <div class="contact-links">
+        <a href="mailto:enqn12_14@naver.com" class="contact-link">
+          <span>Email</span>
+          <small>enqn12_14@naver.com</small>
+        </a>
+
+        <a href="https://github.com/dndkd97" target="_blank" rel="noopener" class="contact-link">
+          <span>GitHub</span>
+          <small>@dndkd97</small>
+        </a>
+
+        <a href="https://app.notion.com/p/About-Me-43af1d1d117583089d1301968d5084db" target="_blank" rel="noopener" class="contact-link">
+          <span>Notion</span>
+          <small>About Me</small>
+        </a>
       </div>
     </div>
   </div>
 </section>
-  <section id="contact">
-    <div class="wrap reveal">
-      <h2 class="section-title">Contact</h2>
-      <div class="contact-box">
-        <form>
-          <div class="field">
-            <label for="name">이름</label>
-            <input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
-          </div>
-          <div class="field">
-            <label for="email">이메일</label>
-            <input type="email" id="email" name="email" placeholder="회신받으실 이메일을 입력해주세요">
-          </div>
-          <div class="field">
-            <label for="message">내용</label>
-            <textarea id="message" name="message" rows="5" placeholder="전달하실 내용을 적어주세요"></textarea>
-          </div>
-          <div class="form-actions">
-            <button type="submit" class="submit">메시지 보내기</button>
-            <span class="direct-contact">
-              <a href="mailto:dndkd97@naver.com">이메일</a><a href="https://github.com/dndkd97" target="_blank" rel="noopener">GitHub</a>
-            </span>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
 
 </main>
 
@@ -667,7 +426,7 @@
       var message = document.getElementById('message').value.trim();
       var subject = encodeURIComponent('포트폴리오 문의 - ' + (name || '이름 없음'));
       var body = encodeURIComponent('보낸 사람: ' + name + ' (' + email + ')\n\n' + message);
-      window.location.href = 'mailto:dndkd97@naver.com?subject=' + subject + '&body=' + body;
+      window.location.href = 'mailto:enqn12_14@naver.com?subject=' + subject + '&body=' + body;
     });
   }
 </script>
