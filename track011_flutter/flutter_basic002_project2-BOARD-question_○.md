@@ -7,12 +7,18 @@
 #### 1. 게시판 상태 관리 `lib/features/post/data/board_provider.dart`
 
 ```dart
+// 전역상태 관리 : REACT - redux
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+// 비동기 처리 : REACT - AXIOS
 import 'package:dio/dio.dart';
+// 보안저장소
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+// 모바일기기에서 갤러리 / 카메라 접근라이브러리
 import 'package:image_picker/image_picker.dart';
+// 서버 BASE URL : 10.0.2 / localhost:8080 / https://thejoa703.duckdns.org
 import '../../../core/network/api_client.dart';
 
+// part1) 게시판의 상태
 class BoardState {
   final List<dynamic> posts;
   final bool loading;
@@ -24,28 +30,30 @@ class BoardState {
     this.error,
   });
 }
-
-class BoardNotifier extends __________<BoardState> {
+// part2) saga, 최신상태반영
+class BoardNotifier extends Notifier<BoardState> {
   @override
-  BoardState build() {
+  BoardState build() { // Notifier 초기화 + reducer 초기상태
     _initDio();
     return const BoardState();
   }
 
-  late final Dio _dio;
-  final _storage = const FlutterSecureStorage();
+  late final Dio _dio; // late 지연초기화 Dio 객체초기화
+  final _storage = const FlutterSecureStorage(); // 보안저장소
 
+  // 설정
   void _initDio() {
-    _dio = Dio(BaseOptions(
-      baseUrl: ApiClient.getBaseUrl(),
+    _dio = Dio(BaseOptions( // 기본옵션 설정
+      baseUrl: ApiClient.getBaseUrl(), // 10.0.0.2 / localhost:8080 / https://thejoa703.ducksdns.org
     ));
 
     // 인증 토큰 자동 첨부 + 만료 시 자동 재발급 인터셉터
-    _dio.interceptors.add(__________(
+    _dio.interceptors.add(InterceptorsWrapper( // ## InterceptorsWrapper
+      // 요청 
       onRequest: (options, handler) async {
-        final token = await _storage.read(key: 'accessToken');
+        final token = await _storage.read(key: 'accessToken'); // 토큰읽기
         if (token != null) {
-          options.headers['Authorization'] = 'Bearer $token';
+          options.headers['Authorization'] = 'Bearer $token'; // http 헤더에 Bearer
         }
         return handler.next(options);
       },
@@ -80,7 +88,7 @@ class BoardNotifier extends __________<BoardState> {
       // 인터셉터 무한루프 방지를 위해 별도 Dio 인스턴스 사용
       final refreshDio = Dio(BaseOptions(baseUrl: ApiClient.getBaseUrl()));
       final response = await refreshDio.post('/auth/refresh');
-      final newAccessToken = response.data['accessToken'];
+      final newAccessToken = response.data['accessToken']; // map 토큰추출
       if (newAccessToken != null) {
         await _storage.write(key: 'accessToken', value: newAccessToken);
         return true;
@@ -113,7 +121,7 @@ class BoardNotifier extends __________<BoardState> {
   }) async {
     try {
       //  작성자(userId)가 누락되어 익명으로 뜨는 문제를 방지하기 위해 빈 값이 아닐 때만 안전하게 포함
-      final Map<String, dynamic> dataMap = {
+      final Map<String, dynamic> dataMap = { // 전송할 Map(Json)
         'content': content,
         if (hashtags != null && hashtags.isNotEmpty) 'hashtags': hashtags,
       };
@@ -122,15 +130,15 @@ class BoardNotifier extends __________<BoardState> {
         dataMap['userId'] = userId;
       }
 
-      FormData formData = FormData.fromMap(dataMap);
+      FormData formData = FormData.fromMap(dataMap); // multpart/form-data 객체 생성
 
       //  패키지 오류 없이 XFile의 바이트를 직접 읽어 전송하여 업로드 안정성 확보
-      if (imageFiles != null && imageFiles.isNotEmpty) {
+      if (imageFiles != null && imageFiles.isNotEmpty) { // 첨부이미지가 있는 경우
         for (var image in imageFiles) {
-          final bytes = await image.readAsBytes();
+          final bytes = await image.readAsBytes(); // 파일의 바이너리 바이트 배열 읽기
           formData.files.add(MapEntry(
-            'files',
-            __________.fromBytes(
+            'files', // boot - RequestPart("files")
+            MultipartFile.fromBytes( // ## MultipartFile
               bytes,
               filename: image.name.isNotEmpty ? image.name : 'upload.jpg',
             ),
@@ -138,8 +146,8 @@ class BoardNotifier extends __________<BoardState> {
         }
       }
 
-      await _dio.post('/api/posts', data: formData);
-      await fetchPosts();
+      await _dio.post('/api/posts', data: formData); // MultpartFile - post 요청 전송
+      await fetchPosts(); // 글 다 쓰고 나서 게시판 목록새로고침
       return true;
     } on DioException catch (e) {
       print('❌ [createPost DioException]: ${e.response?.statusCode} - ${e.response?.data}');
@@ -153,7 +161,7 @@ class BoardNotifier extends __________<BoardState> {
 
 }
 
-final boardProvider = _________Provider<BoardNotifier, BoardState>(() {
+final boardProvider = NotifierProvider<BoardNotifier, BoardState>(() { // ##1. NotifierProvider 전역프로바이더 정의
   return BoardNotifier();
 });
 
@@ -168,14 +176,14 @@ final boardProvider = _________Provider<BoardNotifier, BoardState>(() {
 
 ```dart
 import 'dart:typed_data';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:image_picker/image_picker.dart';
-import '../data/board_provider.dart';
-import '../../auth/data/auth_provider.dart';
+import 'package:flutter/foundation.dart'; // 기본유틸
+import 'package:flutter/material.dart'; // ui 컴포넌트 모음
+import 'package:flutter_riverpod/flutter_riverpod.dart'; // riverpod : 전역상태 관리
+import 'package:image_picker/image_picker.dart'; // 이미지 선택
+import '../data/board_provider.dart'; // 전역상태 + 서버연동 데이터 가져오는 기능 (boardProvider)
+import '../../auth/data/auth_provider.dart'; // 인증상태 프로바이더
 
-class PostWritePage extends __________ {
+class PostWritePage extends ConsumerStatefulWidget { // ## ConsumerStatefulWidget 
   const PostWritePage({super.key});
 
   @override
@@ -183,50 +191,50 @@ class PostWritePage extends __________ {
 }
 
 class _PostWritePageState extends ConsumerState<PostWritePage> {
-  final _contentController = TextEditingController();
+  final _contentController = TextEditingController(); // 입력컨트롤러
   final _hashtagController = TextEditingController();
   
-  final ImagePicker _picker = ImagePicker();
+  final ImagePicker _picker = ImagePicker(); // 이미지선택
   List<XFile> _selectedImages = [];
   
   final Map<String, Uint8List> _imageBytesCache = {};
 
   @override
-  void dispose() {
+  void dispose() { // ## 위젯메모리해제
     _contentController.dispose();
     _hashtagController.dispose();
     super.dispose();
   }
 
   Future<void> _pickImages() async {
-    final List<XFile> images = await _picker.__________();
+    final List<XFile> images = await _picker.pickMultiImage(); // 다중이미지 선택 - pickMultiImage
     if (images.isNotEmpty) {
-      for (var image in images) {
-        final bytes = await image.readAsBytes();
-        _imageBytesCache[image.path] = bytes;
+      for (var image in images) { // 선택된 파일들
+        final bytes = await image.readAsBytes(); // 바이트 데이터 추출
+        _imageBytesCache[image.path] = bytes; // 경로를 바이트 저장
       }
-      setState(() {
+      setState(() { // ui 그리기
         _selectedImages = images;
       });
     }
   }
 
   void _handleSubmit() async {
-    final content = _contentController.text.trim();
+    final content = _contentController.text.trim(); // 본문 텍스트 공백제거
     final hashtags = _hashtagController.text.trim();
     
     // 유저 ID 안전 추출
-    final user = ref.read(authProvider).user;
-    final rawId = user?['id'] ?? user?['userId'] ?? user?['memberId'] ?? '1';
+    final user = ref.read(authProvider).user; // ## redux+saga = provider 기능의 user 가져오기
+    final rawId = user?['id'] ?? user?['userId'] ?? user?['memberId'] ?? '1'; // 백엔드 필드 대응 null-aware 키 추출
     final userId = rawId.toString();
 
-    if (content.isEmpty) {
+    if (content.isEmpty) { // 빈칸
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('내용을 입력해주세요.')),
       );
       return;
     }
-
+    // react : redux + saga = provider boot에 요청
     final success = await ref.read(boardProvider.notifier).createPost(
       userId: userId,
       content: content,
@@ -243,32 +251,32 @@ class _PostWritePageState extends ConsumerState<PostWritePage> {
           behavior: SnackBarBehavior.floating, // 바닥에 붙지 않고 떠있는 깔끔한 스타일
         ),
       );
-      Navigator.pop(context);
+      Navigator.pop(context); // ## 현재 화면 닫고 전화면 이동 pop
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('새 글 작성')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
+    return Scaffold( // # 앱의 기본골격
+      appBar: AppBar(title: const Text('새 글 작성')), // 상단앱 바
+      body: Padding( // #1. 부품 : padding : 여백레이아웃
+        padding: const EdgeInsets.all(16.0), // 4개 여백
+        child: ListView( // # 부품 : ListView : 스크롤 가능한 리스트 뷰
           children: [
-            TextField(
-              controller: _contentController,
-              decoration: const InputDecoration(labelText: '내용 입력'),
-              maxLines: 5,
+            TextField( // # 부품 : TextField : 입력폼 위젯
+              controller: _contentController, // 컨트롤러 바인딩
+              decoration: const InputDecoration(labelText: '내용 입력'), // 라벨
+              maxLines: 5, // 줄공간 확보
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 12), // 세로사이즈 12px
             TextField(
               controller: _hashtagController,
               decoration: const InputDecoration(labelText: '해시태그 (예: #flutter, #spring)'),
             ),
             const SizedBox(height: 20),
             
-            ElevatedButton.icon(
-              onPressed: _pickImages,
+            ElevatedButton.icon( // # 부품 ElevateButton : 아이콘 포함 버튼
+              onPressed: _pickImages, // on 시작 이벤트 연결
               icon: const Icon(Icons.image),
               label: Text('이미지 첨부하기 (${_selectedImages.length}장 선택됨)'),
             ),
@@ -276,16 +284,16 @@ class _PostWritePageState extends ConsumerState<PostWritePage> {
 
             if (_selectedImages.isNotEmpty)
               SizedBox(
-                height: 100,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _selectedImages.length,
+                height: 100, // 프리뷰 영역 100px 제한 ##
+                child: ListView.builder( // 동적리스트 생성
+                  scrollDirection: Axis.horizontal, // 스크롤바 가로
+                  itemCount: _selectedImages.length, // 선택갯수
                   itemBuilder: (context, index) {
                     final image = _selectedImages[index];
                     final bytes = _imageBytesCache[image.path];
 
                     return Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
+                      padding: const EdgeInsets.only(right: 8.0), // 오른쪽 여백
                       child: Stack(
                         children: [
                           bytes != null
@@ -298,7 +306,7 @@ class _PostWritePageState extends ConsumerState<PostWritePage> {
                               icon: const Icon(Icons.remove_circle, color: Colors.red),
                               onPressed: () {
                                 setState(() {
-                                  _imageBytesCache.remove(image.path);
+                                  _imageBytesCache.remove(image.path); // 캐시제거
                                   _selectedImages.removeAt(index);
                                 });
                               },
@@ -313,8 +321,8 @@ class _PostWritePageState extends ConsumerState<PostWritePage> {
 
             const SizedBox(height: 24),
             SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
+              width: double.infinity, // 가로 너비 100%
+              child: ElevatedButton( // 등록 실행 버튼
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue, foregroundColor: Colors.white),
                 onPressed: _handleSubmit,
                 child: const Text('등록하기', style: TextStyle(fontSize: 16)),
@@ -353,8 +361,8 @@ class _PostListPageState extends ConsumerState<PostListPage> {
     if (url.startsWith('http://') || url.startsWith('https://')) {
       return url;
     }
-    final String serverBaseUrl = ApiClient.getBaseUrl();
-    final cleanBase = serverBaseUrl.endsWith('/')
+    final String serverBaseUrl = ApiClient.getBaseUrl(); // https://d2big.duckdns.org , localhost:8080
+    final cleanBase = serverBaseUrl.endsWith('/') // 서버 도메인 추출
         ? serverBaseUrl.substring(0, serverBaseUrl.length - 1)
         : serverBaseUrl;
     final cleanUrl = url.startsWith('/') ? url : '/$url';
@@ -362,27 +370,28 @@ class _PostListPageState extends ConsumerState<PostListPage> {
   }
 
   @override
-  void initState() {
+  void initState() { // 위젯연결시 1번
     super.initState();
+    // 화면 그림 그리기
     Future.microtask(() => ref.read(boardProvider.notifier).fetchPosts());
-  }
+  } // ## react useEffect(...,[]) 1번 읽어들임
 
   @override
   Widget build(BuildContext context) {
-    final boardState = ref.__________(boardProvider);
+    final boardState = ref.watch(boardProvider); // watch 지속적으로 확인 useEffect(...,[user])
     final authState = ref.watch(authProvider); // 로그인 상태 감지
 
-    return AppLayout(
+    return AppLayout( // ## 공통레이아웃
       child: Scaffold(
-        body: boardState.loading && boardState.posts.isEmpty
-            ? const Center(child: CircularProgressIndicator())
-            : boardState.posts.isEmpty
+        body: boardState.loading && boardState.posts.isEmpty // 조건1: 로딩중?
+            ? const Center(child: CircularProgressIndicator()) // 로딩화면
+            : boardState.posts.isEmpty // 조건2: 비었다면
                 ? const Center(child: Text('등록된 게시글이 없습니다.'))
-                : __________(
+                : RefreshIndicator( // ## 모바일 당겨서 새로고침 - RefreshIndicator 
                     onRefresh: () async {
-                      await ref.read(boardProvider.notifier).fetchPosts();
+                      await ref.read(boardProvider.notifier).fetchPosts(); // 게시글가져와주는 api
                     },
-                    child: ListView.builder(
+                    child: ListView.builder( // ## 리스트
                       itemCount: boardState.posts.length,
                       itemBuilder: (context, index) {
                         final post = boardState.posts[index];
@@ -399,9 +408,9 @@ class _PostListPageState extends ConsumerState<PostListPage> {
                         final List<dynamic> hashtags = post['hashtags'] ?? [];
                         final List<dynamic> imageUrls = post['imageUrls'] ?? [];
 
-                        return Card(
+                        return Card( // # 카드스타일
                           margin: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
+                              horizontal: 12, vertical: 6), // 카드 외각 마진설정
                           child: InkWell(
                             onTap: () {
                               Navigator.push(
@@ -414,8 +423,8 @@ class _PostListPageState extends ConsumerState<PostListPage> {
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(12.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              child: Column( // ## 세로정렬레이아웃
+                                crossAxisAlignment: CrossAxisAlignment.start, // 좌측정렬
                                 children: [
                                   Text(
                                     '작성자: $nickname',
@@ -428,13 +437,13 @@ class _PostListPageState extends ConsumerState<PostListPage> {
                                   Text(
                                     content,
                                     style: const TextStyle(fontSize: 16),
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2, // 최대 2줄만 보이게
+                                    overflow: TextOverflow.ellipsis, // 말줄임표
                                   ),
                                   const SizedBox(height: 6),
                                   if (hashtags.isNotEmpty)
-                                    Wrap(
-                                      spacing: 6.0,
+                                    Wrap( // flex-wrap
+                                      spacing: 6.0, // 요소간의 간격
                                       children: hashtags
                                           .map(
                                             (tag) => Text(
@@ -449,15 +458,15 @@ class _PostListPageState extends ConsumerState<PostListPage> {
                                     ),
                                   if (imageUrls.isNotEmpty) ...[
                                     const SizedBox(height: 8),
-                                    ClipRRect(
+                                    ClipRRect( // 자식이미지 모서리 둥글게
                                       borderRadius: BorderRadius.circular(6.0),
                                       child: Image.network(
                                         _resolveImageUrl(
-                                            imageUrls.first.toString()),
+                                            imageUrls.first.toString()), // 이미지 주소
                                         height: 120,
                                         width: double.infinity,
-                                        fit: BoxFit.cover,
-                                        errorBuilder:
+                                        fit: BoxFit.cover, // 이미지 비율 꽉 채우기 object-fit : cover
+                                        errorBuilder: // 이미지 실패시
                                             (context, error, stackTrace) =>
                                                 Container(
                                           height: 120,
@@ -481,18 +490,18 @@ class _PostListPageState extends ConsumerState<PostListPage> {
                       },
                     ),
                   ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
+        floatingActionButton: FloatingActionButton( // 화면 우측하단 플로팅 글쓰기 버튼
+          onPressed: () { // ## 버튼 클릭시 
             if (authState.user == null && authState.accessToken == null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('로그인이 필요한 서비스입니다.')),
               );
-              Navigator.pushNamed(context, '/login');
+              Navigator.pushNamed(context, '/login'); // pushNamed - 로그인 화면 이동
             } else {
-              Navigator.pushNamed(context, '/post-write');
+              Navigator.pushNamed(context, '/post-write'); // 작성 화면
             }
           },
-          child: const Icon(Icons.create),
+          child: const Icon(Icons.create), // 연필아이콘
         ),
       ),
     );
@@ -510,7 +519,7 @@ import '../data/board_provider.dart';
 import '../../auth/data/auth_provider.dart';
 import '../../../core/network/api_client.dart';
 
-class PostDetailPage extends __________ {
+class PostDetailPage extends ConsumerWidget{
   final Map<String, dynamic> post;
 
   const PostDetailPage({super.key, required this.post});
@@ -685,10 +694,10 @@ class PostDetailPage extends __________ {
 ```dart
 // ✏️ 연습문제 & 개념 점검 [Step 4]
 // Q1. Flutter에서 모바일 기기의 갤러리에 접근하여 이미지를 선택할 때 사용하는 공식 라이브러리는 무엇인가요?
-// 답: ( __________ )
+// 답: ( image_picker )
 
 // Q2. 게시글 작성 시 이미지 파일과 일반 텍스트 데이터를 함께 백엔드로 전송하기 위해 Dio에서 사용하는 Multipart 전송 객체는 무엇인가요?
-// 답: ( __________ )
+// 답: ( FormData )
 
 
 ```
@@ -721,7 +730,7 @@ class PostDetailPage extends __________ {
 `pubspec.yaml` 파일 하단에 아래 설정을 추가합니다.
 
 ```yaml
-name: project
+name: mobile2
 description: "A new Flutter project."
 publish_to: 'none'
 
@@ -767,23 +776,23 @@ flutter:
 
 ```bash
 flutter pub get
-dart run __________
+dart run flutter_launcher_icons # 아이콘 생성스크립트
 
 
 ```
 
 4. INTERNET 권한 추가할 파일
 
-project\android\app\src\main\AndroidManifest.xml
+mobile2\android\app\src\main\AndroidManifest.xml
 
 이 파일 열어서  태그 바로 안쪽,  태그보다 위에 추가하면 됩니다:
 
 ```xml
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <uses-permission android:name="android.permission.__________" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="project"
+        android:label="the703"
         ...>
 
 ```
@@ -793,7 +802,7 @@ project\android\app\src\main\AndroidManifest.xml
 터미널에서 아래 명령어를 입력하여 실행 가능한 APK 파일을 생성합니다.
 
 ```bash
-flutter build apk __________
+flutter build apk --release
 
 
 ```
@@ -810,7 +819,7 @@ flutter build apk --release
 
 ```
 
-> 오류나면 드라이브문제 (2)
+> 오류나면 드라이브문제 (2) C:flutter / D:작업
 
 ```
 # android/gradle.properties
