@@ -860,9 +860,9 @@ flutter build apk --release
 ```bash
 # ✏️ 연습문제 & 개념 점검 [Step 5]
 # Q1. Flutter 프로젝트에서 배포용 Android APK 파일을 빌드할 때 사용하는 터미널 명령어 구문은 무엇인가요?
-# 답: flutter build ( __________ ) --release
+# 답: flutter build ( apk ) --release
 
 # Q2. 실기기 스마트폰에서 PC에 띄워둔 백엔드 서버와 통신하고자 할 때 api_client.dart에 작성해야 하는 IP 형태는 무엇인가요?
-# 답: PC의 실제 ( __________ )
+# 답: PC의 실제 ( 로컬 IP 주소 )
 
  
