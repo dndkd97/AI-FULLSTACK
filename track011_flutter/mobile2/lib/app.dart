@@ -18,7 +18,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,  // 구글 최신 Meterial Design 3 테마적용
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.blue,  // 파란색 테마헤더
+          backgroundColor: Colors.red,  // 테마헤더
           foregroundColor: Colors.white, // 글자 하얀색
         ),
       ),
