@@ -49,17 +49,16 @@
 
 ## 📚 학습 여정 (6개월 커리큘럼)
 
-부트캠프 기간 동안 매달 새 스택을 익히고, 그 스택으로 미니 프로젝트를 직접 구현했습니다. (각 프로젝트 상세 코드는 하위 폴더/커밋 참고)
+이 저장소는 AI 활용 풀스택 부트캠프 과정을 정리한 기록입니다. 매달 새로운 기술 스택을 익히고, 마지막 단계에서 4인 팀 프로젝트(SpringBreeze ERP)로 그동안 배운 스택을 종합해 적용했습니다.
 
-| 기간 | 학습 스택 | 미니 프로젝트 |
+| 기간 | 학습 스택 | 핵심 학습 내용 |
 |---|---|---|
-| 1개월차 | Git & GitHub, Java(OOP), HTML/CSS/JS | Java 콘솔 프로그램(계산기, 간단 로직), HTML/CSS/JS 프로필 페이지, GitHub 레포지토리 관리 |
-| 2개월차 | JSP, Oracle/MySQL 기초 | JSP 게시판 웹 애플리케이션(CRUD), 학생 관리 시스템(Oracle/MySQL 기본 SQL) |
-| 3개월차 | MyBatis, JPA, DB 심화 | 커뮤니티 플랫폼(회원가입, 글 작성, 댓글), DB 성능 개선 실습(트랜잭션, 인덱스, 정규화) |
-| 4개월차 | Spring, Spring Boot | Spring REST API 서비스(Todo, IoC/DI), Spring Boot 쇼핑몰(상품 등록, 장바구니, 주문) |
-| 5개월차 | React, AWS EC2 | React 날씨 대시보드(외부 API 연동), UI/UX 개선 프로젝트, AWS EC2 서버 배포 |
-| 6개월차 | Python, Django, Flutter | Python 데이터 분석(Pandas/Matplotlib), Django AI 챗봇, Flutter 메모 앱 |
-
+| 1개월차 | Git & GitHub, Java, HTML/CSS/JS | 객체지향(OOP) 기초, 브랜치·PR 기반 협업 흐름, 웹 페이지 구조 |
+| 2개월차 | JSP, Oracle/MySQL | 서버-클라이언트 구조, MVC 패턴, 기본 SQL과 CRUD |
+| 3개월차 | MyBatis, JPA, DB 심화 | SQL 매핑과 ORM 차이, 트랜잭션·인덱스·정규화 |
+| 4개월차 | Spring, Spring Boot | IoC/DI, REST API 설계 |
+| 5개월차 | React, AWS EC2 | 컴포넌트 기반 UI, 상태 관리, 서버 배포 |
+| 6개월차 | Python, Django, Flutter | 데이터 처리(Pandas), MTV 패턴, 크로스플랫폼 앱 기초 |
 ---
 
 ## 🚀 대표 프로젝트
